@@ -1,54 +1,58 @@
 module.exports = {
-  create: function (req, res) {
-    var usuarioData = {
-      nombre_usuario: req.param('nombre_usuario'),
-      nombre_arroba: req.param('nombre_arroba'),
-      correo: req.param('correo'),
-      fecha_nacimiento: req.param('fecha_nacimiento')
-      // Otros atributos del usuario
-    };
-    Usuario.create(usuarioData).exec(function (error, usuarioCreado) {
-      if (error) {
-        return res.serverError(error);
-      }
-      return res.ok(usuarioCreado);
-    });
+  crear: async function (req, res) {
+    try {
+      const nuevoUsuario = await Usuario.create(req.body).fetch();
+      res.status(201).json(nuevoUsuario);
+    } catch (error) {
+      res.status(500).json({ error: 'Error al crear el usuario' });
+    }
   },
-  find: function (req, res) {
-    Usuario.find().exec(function (error, usuariosEncontrados) {
-      if (error) {
-        return res.serverError(error);
-      }
-      //console.log(res.ok(usuariosEncontrados));
-      return res.ok(usuariosEncontrados);
-    });
+
+  listar: async function (req, res) {
+    try {
+      const usuarios = await Usuario.find();
+      res.json(usuarios);
+    } catch (error) {
+      res.status(500).json({ error: 'Error al obtener la lista de usuarios' });
+    }
   },
-	findOne: function(req, res){
-		Usuario.findOne(req).exec(
-			function (error, usuario) {
-				if (error) {
-					return res.serverError(error);
-				}
-				return res.ok(usuario);
-			});
-	},
-  update: function(req, res) {
-    Usuario.update(req.id, req.form, res).
-    exec(function(error, usuario){
-      if (error) {
-        return res.serverError(error);
+
+  listarUno: async function(req, res) {
+    try {
+      const usuario = await Usuario.findOne({ id: req.params.id });
+      if (!usuario) {
+        return res.notFound('Usuario no encontrado');
       }
-      return res.ok(usuario);
-    });
+      return res.json(usuario);
+    } catch (error) {
+      return res.serverError(error);
+    }
   },
-  delete: function(req, res){
-    Usuario.update(req.id, res).
-    exec(function(error, usuario){
-      if (error) {
-        return res.serverError(error);
-      }
-      return res.ok("Se borro correctamente");
-    });
+
+  actualizar: async function (req, res) {
+    try {
+      const usuarioActualizado = await Usuario.updateOne({ id: req.params.id })
+        .set(req.body)
+        .intercept((err) => {
+          return res.status(404).json({ error: 'Usuario no encontrado' });
+        });
+
+      res.json(usuarioActualizado);
+    } catch (error) {
+      res.status(500).json({ error: 'Error al actualizar el usuario' });
+    }
+  },
+  eliminar: async function (req, res) {
+    try {
+      const usuarioEliminado = await Usuario.destroyOne({ id: req.params.id })
+        .intercept((err) => {
+          return res.status(404).json({ error: 'Usuario no encontrado' });
+        });
+
+      res.json(usuarioEliminado);
+    } catch (error) {
+      res.status(500).json({ error: 'Error al eliminar el usuario' });
+    }
   }
 
 };

@@ -20,8 +20,9 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': { view: 'pages/homepage' },
-  'POST /usuarios': 'UsuarioController.create',
-  'GET /usuarios': 'UsuarioController.find',
+  'POST /usuarios': 'UsuarioController.crear',
+  'GET /usuarios': 'UsuarioController.listar',
+  'DELETE /usuarios/:id': 'UsuarioController.delete',
   // Otras rutas
 
   /***************************************************************************
