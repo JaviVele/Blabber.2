@@ -20,7 +20,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': { view: 'pages/homepage' },
-  'POST /usuarios': 'UsuarioController.crear',
+  'POST /usuarios': 'UsuarioController.create',
   'GET /usuarios': 'UsuarioController.find',
   // Otras rutas
 

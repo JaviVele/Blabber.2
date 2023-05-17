@@ -1,5 +1,5 @@
 module.exports = {
-  crear: function (req, res) {
+  create: function (req, res) {
     var usuarioData = {
       nombre_usuario: req.param('nombre_usuario'),
       nombre_arroba: req.param('nombre_arroba'),
@@ -22,5 +22,33 @@ module.exports = {
       //console.log(res.ok(usuariosEncontrados));
       return res.ok(usuariosEncontrados);
     });
+  },
+	findOne: function(req, res){
+		Usuario.findOne(req).exec(
+			function (error, usuario) {
+				if (error) {
+					return res.serverError(error);
+				}
+				return res.ok(usuario);
+			});
+	},
+  update: function(req, res) {
+    Usuario.update(req.id, req.form, res).
+    exec(function(error, usuario){
+      if (error) {
+        return res.serverError(error);
+      }
+      return res.ok(usuario);
+    });
+  },
+  delete: function(req, res){
+    Usuario.update(req.id, res).
+    exec(function(error, usuario){
+      if (error) {
+        return res.serverError(error);
+      }
+      return res.ok("Se borro correctamente");
+    });
   }
+
 };

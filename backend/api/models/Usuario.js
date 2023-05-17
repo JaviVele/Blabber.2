@@ -1,9 +1,11 @@
 module.exports = {
   attributes: {
+    // eslint-disable-next-line camelcase
     nombre_usuario: {
       type: 'string',
       required: true
     },
+    // eslint-disable-next-line camelcase
     nombre_arroba: {
       type: 'string',
       required: true
@@ -17,17 +19,21 @@ module.exports = {
       type: 'string',
       required: true
     },
+    // eslint-disable-next-line camelcase
     fecha_nacimiento: {
-      type: 'string',
+      type: 'ref',
       columnType: 'date',
       required: true
     },
+    // eslint-disable-next-line camelcase
     foto_perfil: {
-      type: 'string'
+      type: 'string',
+      allowNull: true
     },
     biografia: {
-      type: 'string'
-    }
+      type: 'string',
+      allowNull: true
+    },
     // Otros atributos del usuario
   }
 };
