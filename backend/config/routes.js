@@ -59,8 +59,8 @@ module.exports.routes = {
     'POST /reblabbers': 'ReblabberController.crear',
     'POST /reblabbers/listar:id': 'ReblabberController.listarUno',
     'GET /reblabbers/listar': 'ReblabberController.listar',
-    'PUT /reblabbers/actualizar': 'ReblabberController.actualizar',
-    'DELETE /reblabbers/:id': 'ReblabberController.eliminar',
+    //'PUT /reblabbers/actualizar': 'ReblabberController.actualizar',
+    //'DELETE /reblabbers/:id': 'ReblabberController.eliminar',
 
 
 
