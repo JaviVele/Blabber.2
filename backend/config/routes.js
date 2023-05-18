@@ -18,23 +18,50 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
+  //RUTAS DE USUARIO//
   '/': { view: 'pages/homepage' },
   'POST /usuarios': 'UsuarioController.crear',
-  'GET /usuarios': 'UsuarioController.listar',
+  'POST /usuarios/listar:id': 'UsuarioController.listarUno',
+  'GET /usuarios/listar': 'UsuarioController.listar',
+  'PUT /usuarios/actualizar': 'UsuarioController.actualizar',
   'DELETE /usuarios/:id': 'UsuarioController.eliminar',
-  // Otras rutas
+  
+  
+  //RUTAS DE SEGUIDORES//
+  'POST /seguidores': 'SeguidoresController.crear',
+  'POST /seguidores/listar:id': 'SeguidoresController.listarUno',
+  'GET /seguidores/listar': 'SeguidoresController.listar',
+  'PUT /seguidores/actualizar': 'SeguidoresController.actualizar',
+  'DELETE /seguidores/:id': 'SeguidoresController.eliminar',
+  
+  
+  
+  //RUTAS DE COMENTARIOS//
+  'POST /comentarios': 'ComentariosController.crear',
+  'POST /comentarios/listar:id': 'ComentariosController.listarUno',
+  'GET /comentarios/listar': 'ComentariosController.listar',
+  'PUT /comentarios/actualizar': 'ComentariosController.actualizar',
+  'DELETE /comentarios/:id': 'ComentariosController.eliminar',
 
-  /***************************************************************************
-  *                                                                          *
-  * More custom routes here...                                               *
-  * (See https://sailsjs.com/config/routes for examples.)                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the routes in this file, it   *
-  * is matched against "shadow routes" (e.g. blueprint routes).  If it does  *
-  * not match any of those, it is matched against static assets.             *
-  *                                                                          *
-  ***************************************************************************/
+
+
+
+  //RUTAS DE CONFIGURACION//
+  'POST /configuracion': 'ConfiguracionController.crear',
+  'POST /configuracion/listar:id': 'ConfiguracionController.listarUno',
+  //'GET /configuracion/listar': 'ConfiguracionController.listar',
+  'PUT /configuracion/actualizar': 'ConfiguracionController.actualizar',
+  'DELETE /configuracion/:id': 'ConfiguracionController.eliminar',
+
+
+
+    //RUTAS DE REBLABBER//
+    'POST /reblabbers': 'ReblabberController.crear',
+    'POST /reblabbers/listar:id': 'ReblabberController.listarUno',
+    'GET /reblabbers/listar': 'ReblabberController.listar',
+    'PUT /reblabbers/actualizar': 'ReblabberController.actualizar',
+    'DELETE /reblabbers/:id': 'ReblabberController.eliminar',
+
 
 
 };
