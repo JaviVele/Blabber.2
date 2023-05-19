@@ -5,18 +5,18 @@
 //  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
 //  */
 
-// module.exports = {
+module.exports = {
 
-//   attributes: {
+  attributes: {
 
-//     id_usuario: {
-//       model: 'usuario'
-//     },
-//     id_publicaciones: {
-//       model: 'publicaciones'
-//     },
+    id_usuario: {
+      model: 'usuario'
+    },
+    id_publicaciones: {
+      model: 'Publicacion'
+    },
 
-//   },
+  },
 
-// };
+};
 

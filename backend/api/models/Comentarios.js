@@ -5,28 +5,28 @@
 //  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
 //  */
 
-// module.exports = {
+module.exports = {
 
-//   attributes: {
+  attributes: {
 
-//     id_usuario: {
-//       model: 'usuario'
-//     },
-//     id_publicaciones: {
-//       model: 'publicaciones'
-//     },
-//     contenido: {
-//       type: 'string'
-//     },
-//     fecha_contenido: {
-//       type: 'ref',
-//       columnType: 'date'
-//     },
-//     num_mg: {
-//       type: 'number'
-//     },
+    id_usuario: {
+      model: 'usuario'
+    },
+    id_publicaciones: {
+      model: 'Publicacion'
+    },
+    contenido: {
+      type: 'string'
+    },
+    fecha_contenido: {
+      type: 'ref',
+      columnType: 'date'
+    },
+    num_mg: {
+      type: 'number'
+    },
 
-//   },
+  },
 
-// };
+};
 

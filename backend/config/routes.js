@@ -21,26 +21,26 @@ module.exports.routes = {
   //RUTAS DE USUARIO//
   '/': { view: 'pages/homepage' },
   'POST /usuarios': 'UsuarioController.crear',
-  'POST /usuarios/listar:id': 'UsuarioController.listarUno',
-  'GET /usuarios/listar': 'UsuarioController.listar',
-  'PUT /usuarios/actualizar': 'UsuarioController.actualizar',
+  'GET /usuarios/:id': 'UsuarioController.listarUno',
+  'GET /usuarios': 'UsuarioController.listar',
+  'PUT /usuarios/:id': 'UsuarioController.actualizar',
   'DELETE /usuarios/:id': 'UsuarioController.eliminar',
   
   
   //RUTAS DE SEGUIDORES//
   'POST /seguidores': 'SeguidoresController.crear',
-  'POST /seguidores/listar:id': 'SeguidoresController.listarUno',
-  'GET /seguidores/listar': 'SeguidoresController.listar',
-  'PUT /seguidores/actualizar': 'SeguidoresController.actualizar',
+  'GET /seguidores/:id': 'SeguidoresController.listarUno',
+  'GET /seguidores/': 'SeguidoresController.listar',
+  'PUT /seguidores/:id': 'SeguidoresController.actualizar',
   'DELETE /seguidores/:id': 'SeguidoresController.eliminar',
   
   
   
   //RUTAS DE COMENTARIOS//
   'POST /comentarios': 'ComentariosController.crear',
-  'POST /comentarios/listar:id': 'ComentariosController.listarUno',
-  'GET /comentarios/listar': 'ComentariosController.listar',
-  'PUT /comentarios/actualizar': 'ComentariosController.actualizar',
+  'GET /comentarios/:id': 'ComentariosController.listarUno',
+  'GET /comentarios/': 'ComentariosController.listar',
+  'PUT /comentarios/:id': 'ComentariosController.actualizar',
   'DELETE /comentarios/:id': 'ComentariosController.eliminar',
 
 
@@ -48,20 +48,36 @@ module.exports.routes = {
 
   //RUTAS DE CONFIGURACION//
   'POST /configuracion': 'ConfiguracionController.crear',
-  'POST /configuracion/listar:id': 'ConfiguracionController.listarUno',
-  //'GET /configuracion/listar': 'ConfiguracionController.listar',
-  'PUT /configuracion/actualizar': 'ConfiguracionController.actualizar',
-  'DELETE /configuracion/:id': 'ConfiguracionController.eliminar',
+  'GET /configuracion/': 'ConfiguracionController.listar',
+  'PUT /configuracion/:id': 'ConfiguracionController.actualizar',
 
 
 
     //RUTAS DE REBLABBER//
     'POST /reblabbers': 'ReblabberController.crear',
-    'POST /reblabbers/listar:id': 'ReblabberController.listarUno',
-    'GET /reblabbers/listar': 'ReblabberController.listar',
-    //'PUT /reblabbers/actualizar': 'ReblabberController.actualizar',
-    //'DELETE /reblabbers/:id': 'ReblabberController.eliminar',
+    'GET /reblabbers': 'ReblabberController.listar',
+    'DELETE /reblabbers/:id': 'ReblabberController.eliminar',
 
+    //RUTAS DE NOTIFICACIONES//
+    'POST /notificaciones': 'NotificacionesController.crear',
+    'GET /notificaciones': 'NotificacionesController.listar',
+    'DELETE /notificaciones/:id': 'NotificacionesController.eliminar',
 
+    //RUTAS DE MENSAJES//
+    'POST /mensajes': 'MensajesController.crear',
+    'GET /mensajes': 'MensajesController.listar',
+    'DELETE /mensajes/:id': 'MensajesController.eliminar',
+
+    //RUTA DE ME GUSTAS//
+    'POST /me_gustas': 'MeGustasController.crear',
+    'GET /me_gustas': 'MeGustasController.listar',
+    'DELETE /me_gustas/:id': 'MeGustasController.eliminar',
+
+    //RUTAS DE PUBLICACIONES//
+    'POST /publicaciones': 'PublicacionesController.crear',
+    'GET /publicaciones': 'PublicacionesController.listar',
+    'GET /publicaciones/:id': 'PublicacionesController.listarUno',
+    'PUT /publicaciones/:id': 'PublicacionesController.actualizar',
+    'DELETE /publicaciones/:id': 'PublicacionesController.eliminar',
 
 };

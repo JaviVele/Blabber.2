@@ -25,17 +25,17 @@ module.exports = {
         }
       },
     
-      listarUno: async function(req, res) {
-        try {
-          const reblabber = await Reblabber.findOne({ id: req.params.id });
-          if (!reblabber) {
-            return res.notFound('Reblabber no encontrado');
-          }
-          return res.json(reblabber);
-        } catch (error) {
-          return res.serverError(error);
-        }
-      },
+      // listarUno: async function(req, res) {
+      //   try {
+      //     const reblabber = await Reblabber.findOne({ id: req.params.id });
+      //     if (!reblabber) {
+      //       return res.notFound('Reblabber no encontrado');
+      //     }
+      //     return res.json(reblabber);
+      //   } catch (error) {
+      //     return res.serverError(error);
+      //   }
+      // },
     
     //   actualizar: async function (req, res) {
     //     try {
@@ -50,18 +50,18 @@ module.exports = {
     //       res.status(500).json({ error: 'Error al actualizar el reblabber' });
     //     }
     //   },
-    //   eliminar: async function (req, res) {
-    //     try {
-    //       const seguidorEliminado = await Reblabber.destroyOne({ id: req.params.id })
-    //         .intercept((err) => {
-    //           return res.status(404).json({ error: 'Reblabber no encontrado' });
-    //         });
+      eliminar: async function (req, res) {
+        try {
+          const blabberEliminado = await Reblabber.destroyOne({ id: req.params.id })
+            .intercept((err) => {
+              return res.status(404).json({ error: 'Reblabber no encontrado' });
+            });
     
-    //       res.json(seguidorEliminado);
-    //     } catch (error) {
-    //       res.status(500).json({ error: 'Error al eliminar el reblabber' });
-    //     }
-    //   }
+          res.json(blabberEliminado);
+        } catch (error) {
+          res.status(500).json({ error: 'Error al eliminar el reblabber' });
+        }
+      }
 
 };
 

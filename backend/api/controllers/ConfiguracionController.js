@@ -15,44 +15,54 @@ module.exports = {
           res.status(500).json({ error: 'Error al crear la congifuracion' });
         }
       },
-    
-      listarUno: async function(req, res) {
+
+
+      listar: async function (req, res) {
         try {
-          const congifuracion = await Congifuracion.findOne({ id: req.params.id });
-          if (!congifuracion) {
-            return res.notFound('Congifuracion no encontrado');
-          }
-          return res.json(congifuracion);
+          const configuraciones = await Configuracion.find();
+          res.json(configuraciones);
         } catch (error) {
-          return res.serverError(error);
+          res.status(500).json({ error: 'Error al obtener la lista de configuracion' });
         }
       },
     
+      // listarUno: async function(req, res) {
+      //   try {
+      //     const congifuracion = await Congifuracion.findOne({ id: req.params.id });
+      //     if (!congifuracion) {
+      //       return res.notFound('Congifuracion no encontrado');
+      //     }
+      //     return res.json(congifuracion);
+      //   } catch (error) {
+      //     return res.serverError(error);
+      //   }
+      // },
+    
       actualizar: async function (req, res) {
         try {
-          const seguidorActualizado = await Congifuracion.updateOne({ id: req.params.id })
+          const configuracionActualizar = await Congifuracion.updateOne({ id: req.params.id })
             .set(req.body)
             .intercept((error) => {
               return res.status(404).json({ error: 'Congifuracion no encontrado' });
             });
     
-          res.json(seguidorActualizado);
+          res.json(configuracionActualizar);
         } catch (error) {
           res.status(500).json({ error: 'Error al actualizar el congifuracion' });
         }
       },
-      eliminar: async function (req, res) {
-        try {
-          const eliminarCongifuracion = await Congifuracion.destroyOne({ id: req.params.id })
-            .intercept((err) => {
-              return res.status(404).json({ error: 'Congifuracion no encontrado' });
-            });
+      // eliminar: async function (req, res) {
+      //   try {
+      //     const eliminarCongifuracion = await Congifuracion.destroyOne({ id: req.params.id })
+      //       .intercept((err) => {
+      //         return res.status(404).json({ error: 'Congifuracion no encontrado' });
+      //       });
     
-          res.json(eliminarCongifuracion);
-        } catch (error) {
-          res.status(500).json({ error: 'Error al eliminar el congifuracion' });
-        }
-      }
+      //     res.json(eliminarCongifuracion);
+      //   } catch (error) {
+      //     res.status(500).json({ error: 'Error al eliminar el congifuracion' });
+      //   }
+      // }
 
 };
 
