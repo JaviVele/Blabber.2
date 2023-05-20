@@ -45,10 +45,11 @@ module.exports = {
   eliminar: async function (req, res) {
     try {
       const usuarioEliminado = await Usuario.destroyOne({ id: req.params.id })
+      
         .intercept((err) => {
           return res.status(404).json({ error: 'Usuario no encontrado' });
         });
-
+      await Publicacion.destroy({ id_usuario: req.params.id })
       res.json(usuarioEliminado);
     } catch (error) {
       res.status(500).json({ error: 'Error al eliminar el usuario' });

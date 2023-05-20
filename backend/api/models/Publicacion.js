@@ -21,7 +21,7 @@ module.exports = {
       num_comentarios: {
         type:'integer',
       },
-      usuario: {
+      id_usuario: {
         model: 'Usuario'
       }
 
