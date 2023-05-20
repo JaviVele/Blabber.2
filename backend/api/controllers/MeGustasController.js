@@ -5,12 +5,12 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const Me_gusta = require("../models/Me_gusta");
+//const MeGusta = require("../models/MeGusta");
 
 module.exports = {
     crear: async function (req, res) {
         try {
-          const nuevoMeGusta = await Me_gusta.create(req.body).fetch();
+          const nuevoMeGusta = await MeGusta.create(req.body).fetch();
           res.status(201).json(nuevoMeGusta);
         } catch (error) {
           res.status(500).json({ error: 'Error al crear el me gusta' });
@@ -19,7 +19,7 @@ module.exports = {
     
       listar: async function (req, res) {
         try {
-          const meGustas = await Me_gusta.find();
+          const meGustas = await MeGusta.find();
           res.json(meGustas);
         } catch (error) {
           res.status(500).json({ error: 'Error al obtener la lista de me gustas' });
@@ -53,7 +53,7 @@ module.exports = {
     //   },
       eliminar: async function (req, res) {
         try {
-          const meGustaEliminado = await Me_gusta.destroyOne({ id: req.params.id })
+          const meGustaEliminado = await MeGusta.destroyOne({ id: req.params.id })
             .intercept((err) => {
               return res.status(404).json({ error: 'Me gusta no encontrado' });
             });

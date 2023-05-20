@@ -9,7 +9,7 @@ module.exports = {
   
     crear: async function (req, res) {
         try {
-          const nuevoComentario = await Comentario.create(req.body).fetch();
+          const nuevoComentario = await Comentarios.create(req.body).fetch();
           res.status(201).json(nuevoComentario);
         } catch (error) {
           res.status(500).json({ error: 'Error al crear el comentario' });
@@ -18,7 +18,7 @@ module.exports = {
     
       listar: async function (req, res) {
         try {
-          const comentarios = await Comentario.find();
+          const comentarios = await Comentarios.find();
           res.json(comentarios);
         } catch (error) {
           res.status(500).json({ error: 'Error al obtener la lista de comentarios' });
@@ -27,7 +27,7 @@ module.exports = {
     
       listarUno: async function(req, res) {
         try {
-          const comentario = await Comentario.findOne({ id: req.params.id });
+          const comentario = await Comentarios.findOne({ id: req.params.id });
           if (!comentario) {
             return res.notFound('Comentario no encontrado');
           }
@@ -39,7 +39,7 @@ module.exports = {
     
       actualizar: async function (req, res) {
         try {
-          const seguidorActualizado = await Comentario.updateOne({ id: req.params.id })
+          const seguidorActualizado = await Comentarios.updateOne({ id: req.params.id })
             .set(req.body)
             .intercept((error) => {
               return res.status(404).json({ error: 'Comentario no encontrado' });
@@ -52,7 +52,7 @@ module.exports = {
       },
       eliminar: async function (req, res) {
         try {
-          const comentarioEliminado = await Comentario.destroyOne({ id: req.params.id })
+          const comentarioEliminado = await Comentarios.destroyOne({ id: req.params.id })
             .intercept((err) => {
               return res.status(404).json({ error: 'Comentario no encontrado' });
             });

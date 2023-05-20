@@ -9,7 +9,7 @@ module.exports = {
   
     crear: async function (req, res) {
         try {
-          const nuevoSeguidor = await Seguidor.create(req.body).fetch();
+          const nuevoSeguidor = await Seguidores.create(req.body).fetch();
           res.status(201).json(nuevoSeguidor);
         } catch (error) {
           res.status(500).json({ error: 'Error al crear el seguidor' });
@@ -18,7 +18,7 @@ module.exports = {
     
       listar: async function (req, res) {
         try {
-          const seguidores = await Seguidor.find();
+          const seguidores = await Seguidores.find();
           res.json(seguidores);
         } catch (error) {
           res.status(500).json({ error: 'Error al obtener la lista de seguidores' });
@@ -27,7 +27,7 @@ module.exports = {
     
       listarUno: async function(req, res) {
         try {
-          const seguidor = await Seguidor.findOne({ id: req.params.id });
+          const seguidor = await Seguidores.findOne({ id: req.params.id });
           if (!seguidor) {
             return res.notFound('Seguidor no encontrado');
           }
@@ -39,7 +39,7 @@ module.exports = {
     
       actualizar: async function (req, res) {
         try {
-          const seguidorActualizado = await Seguidor.updateOne({ id: req.params.id })
+          const seguidorActualizado = await Seguidores.updateOne({ id: req.params.id })
             .set(req.body)
             .intercept((error) => {
               return res.status(404).json({ error: 'Seguidor no encontrado' });
@@ -52,7 +52,7 @@ module.exports = {
       },
       eliminar: async function (req, res) {
         try {
-          const seguidorEliminado = await Seguidor.destroyOne({ id: req.params.id })
+          const seguidorEliminado = await Seguidores.destroyOne({ id: req.params.id })
             .intercept((err) => {
               return res.status(404).json({ error: 'Seguidor no encontrado' });
             });

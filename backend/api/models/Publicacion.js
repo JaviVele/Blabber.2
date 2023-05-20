@@ -12,7 +12,7 @@ module.exports = {
         type: 'string',
       },
       fecha_publicacion: {
-        type: 'string',
+        type: 'ref',
         columnType: 'date',
       },
       num_mg: {
@@ -26,6 +26,20 @@ module.exports = {
       }
 
   },
+
+  beforeCreate: function (values, next) {
+    if (values.fecha_publicacion) {
+      values.fecha_publicacion = moment(values.fecha_publicacion).format('YYYY-MM-DD');
+    }
+    return next();
+  },
+
+  beforeUpdate: function (values, next) {
+    if (values.fecha_publicacion) {
+      values.fecha_publicacion = moment(values.fecha_publicacion).format('YYYY-MM-DD');
+    }
+    return next();
+  }
 
 };
 

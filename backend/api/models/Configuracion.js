@@ -24,7 +24,7 @@ module.exports = {
       required: true
     },
     id_usuario: {
-      model: 'usuario'
+      model: 'Usuario'
     }
 
 

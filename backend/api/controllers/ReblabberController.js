@@ -9,7 +9,7 @@ module.exports = {
   
     crear: async function (req, res) {
         try {
-          const nuevoReblabber = await Reblabber.create(req.body).fetch();
+          const nuevoReblabber = await Reblabbers.create(req.body).fetch();
           res.status(201).json(nuevoReblabber);
         } catch (error) {
           res.status(500).json({ error: 'Error al crear el reblabber' });
@@ -18,7 +18,7 @@ module.exports = {
     
       listar: async function (req, res) {
         try {
-          const reblabbers = await Reblabber.find();
+          const reblabbers = await Reblabbers.find();
           res.json(reblabbers);
         } catch (error) {
           res.status(500).json({ error: 'Error al obtener la lista de reblabbers' });
@@ -27,7 +27,7 @@ module.exports = {
     
       // listarUno: async function(req, res) {
       //   try {
-      //     const reblabber = await Reblabber.findOne({ id: req.params.id });
+      //     const reblabber = await Reblabbers.findOne({ id: req.params.id });
       //     if (!reblabber) {
       //       return res.notFound('Reblabber no encontrado');
       //     }
@@ -39,7 +39,7 @@ module.exports = {
     
     //   actualizar: async function (req, res) {
     //     try {
-    //       const seguidorActualizado = await Reblabber.updateOne({ id: req.params.id })
+    //       const seguidorActualizado = await Reblabbers.updateOne({ id: req.params.id })
     //         .set(req.body)
     //         .intercept((error) => {
     //           return res.status(404).json({ error: 'Reblabber no encontrado' });
@@ -52,7 +52,7 @@ module.exports = {
     //   },
       eliminar: async function (req, res) {
         try {
-          const blabberEliminado = await Reblabber.destroyOne({ id: req.params.id })
+          const blabberEliminado = await Reblabbers.destroyOne({ id: req.params.id })
             .intercept((err) => {
               return res.status(404).json({ error: 'Reblabber no encontrado' });
             });

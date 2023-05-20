@@ -69,9 +69,9 @@ module.exports.routes = {
     'DELETE /mensajes/:id': 'MensajesController.eliminar',
 
     //RUTA DE ME GUSTAS//
-    'POST /me_gustas': 'MeGustasController.crear',
-    'GET /me_gustas': 'MeGustasController.listar',
-    'DELETE /me_gustas/:id': 'MeGustasController.eliminar',
+    'POST /megustas': 'MeGustasController.crear',
+    'GET /megustas': 'MeGustasController.listar',
+    'DELETE /megustas/:id': 'MeGustasController.eliminar',
 
     //RUTAS DE PUBLICACIONES//
     'POST /publicaciones': 'PublicacionesController.crear',

@@ -5,7 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const Publicacion = require("../models/Publicacion");
+//const Publicacion = require("../models/Publicacion");
 
 module.exports = {
     crear: async function (req, res) {
@@ -20,7 +20,6 @@ module.exports = {
       listar: async function (req, res) {
         try {
           const publi = await Publicacion.find();
-          console.log(publi);
           res.json(publi);
         } catch (error) {
           res.status(500).json({ error: 'Error al obtener la lista de publicaciones' });

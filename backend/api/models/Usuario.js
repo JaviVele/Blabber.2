@@ -35,5 +35,18 @@ module.exports = {
       allowNull: true
     },
     // Otros atributos del usuario
+  },
+  beforeCreate: function (values, next) {
+    if (values.fecha_nacimiento) {
+      values.fecha_nacimiento = moment(values.fecha_nacimiento).format('YYYY-MM-DD');
+    }
+    return next();
+  },
+
+  beforeUpdate: function (values, next) {
+    if (values.fecha_nacimiento) {
+      values.fecha_nacimiento = moment(values.fecha_nacimiento).format('YYYY-MM-DD');
+    }
+    return next();
   }
 };

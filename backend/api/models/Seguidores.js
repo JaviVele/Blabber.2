@@ -18,6 +18,19 @@ module.exports = {
     }
 
   },
+  beforeCreate: function (values, next) {
+    if (values.fecha) {
+      values.fecha = moment(values.fecha).format('YYYY-MM-DD');
+    }
+    return next();
+  },
+
+  beforeUpdate: function (values, next) {
+    if (values.fecha) {
+      values.fecha = moment(values.fecha).format('YYYY-MM-DD');
+    }
+    return next();
+  }
 
 };
 
