@@ -5,18 +5,20 @@ import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InicioComponent } from './inicio/inicio.component';
+import { SignupComponent } from './signup/signup.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InicioComponent
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
     
   ],
   providers: [],

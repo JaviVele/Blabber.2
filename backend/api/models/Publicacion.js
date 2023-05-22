@@ -16,10 +16,10 @@ module.exports = {
         columnType: 'date',
       },
       num_mg: {
-        type:'integer',
+        type:'number',
       },
       num_comentarios: {
-        type:'integer',
+        type:'number',
       },
       id_usuario: {
         model: 'Usuario'

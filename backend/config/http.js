@@ -8,6 +8,8 @@ module.exports.http = {
       'cors',
       // ...
       'router',
+
+      'bodyParser',
       // ...
     ],
     // ...
@@ -21,6 +23,14 @@ module.exports.http = {
       };
       return cors(corsOptions);
     })(),
+
+    bodyParser: (function() {
+      var opts = {
+        limit: '5mb',
+        extended: true,
+      };
+      return require('body-parser').urlencoded(opts);
+    })
     // ...
   },
   // ...

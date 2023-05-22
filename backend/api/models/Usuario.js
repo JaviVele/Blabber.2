@@ -15,7 +15,7 @@ module.exports = {
       required: true,
       unique: 'true'
     },
-    contraseña: {
+    contrasena: {
       type: 'string',
       required: true
     },

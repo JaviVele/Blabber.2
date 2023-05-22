@@ -2,13 +2,24 @@
 
 module.exports = {
   crear: async function (req, res) {
+    console.log(req.body);
     try {
-      const nuevoUsuario = await Usuario.create(req.body).fetch();
-      res.status(201).json(nuevoUsuario);
+      const { nombre_usuario, nombre_arroba, correo, contrasena, fecha_nacimiento } = req.body;
+  
+      const nuevoUsuario = await Usuario.create({
+        nombre_usuario: nombre_usuario,
+        nombre_arroba: nombre_arroba,
+        correo: correo,
+        contrasena: contrasena,
+        fecha_nacimiento: fecha_nacimiento
+      }).fetch();
+  
+      res.ok(nuevoUsuario);
     } catch (error) {
-      res.status(500).json({ error: 'Error al crear el usuario' });
+      res.serverError(error).json({ error: 'Error al crear el usuario' });
     }
   },
+  
 
   listar: async function (req, res) {
     try {
