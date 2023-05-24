@@ -1,0 +1,18 @@
+.custom-button {
+    &.btn-primary {
+      background-color: #91FAF9;
+      border-color: #91FAF9;
+      
+      &:hover,
+      &:focus {
+        background-color: #77D5D3;
+        border-color: #77D5D3;
+      }
+      
+      &:active {
+        background-color: #5CB8B6;
+        border-color: #5CB8B6;
+      }
+    }
+  }
+  
