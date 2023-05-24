@@ -4,7 +4,7 @@ import { BackendService } from '../services/backend.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css','./signup.component.scss']
 })
 export class SignupComponent {
   nombre_usuario: string = '';
