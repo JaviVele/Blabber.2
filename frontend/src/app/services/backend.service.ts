@@ -21,5 +21,12 @@ export class BackendService {
    
     return this.http.post(url + 'usuarios', usuario);
   }
+
+  comprobarUsuario(usuario: any): Observable<any> {
+   
+    const url = 'http://localhost:1337/';
+   
+    return this.http.post(url + 'usuarios', usuario);
+  }
 }
 
