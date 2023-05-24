@@ -3,7 +3,7 @@ import { BackendService } from '../services/backend.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css','./login.component.scss']
 })
 export class LoginComponent {
   nombre_arroba: string = '';
