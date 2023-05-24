@@ -1,26 +1,27 @@
 
 
 module.exports = {
+  // api/controllers/UsuarioController.js
   crear: async function (req, res) {
-    console.log(req.body);
     try {
       const { nombre_usuario, nombre_arroba, correo, contrasena, fecha_nacimiento } = req.body;
-  
+
+      // Aquí puedes realizar las validaciones necesarias y el procesamiento de los datos recibidos
+
+      // Por ejemplo, puedes crear un nuevo usuario en la base de datos
       const nuevoUsuario = await Usuario.create({
-        nombre_usuario: nombre_usuario,
-        nombre_arroba: nombre_arroba,
-        correo: correo,
-        contrasena: contrasena,
-        fecha_nacimiento: fecha_nacimiento
+        nombre_usuario,
+        nombre_arroba,
+        correo,
+        contrasena,
+        fecha_nacimiento
       }).fetch();
-  
-      res.ok(nuevoUsuario);
+
+      return res.status(200).json({ mensaje: 'Usuario creado exitosamente', usuario: nuevoUsuario });
     } catch (error) {
-      res.serverError(error).json({ error: 'Error al crear el usuario' });
+      return res.status(500).json({ error: 'Ocurrió un error al crear el usuario', mensaje: error.message });
     }
   },
-  
-
   listar: async function (req, res) {
     try {
       const usuarios = await Usuario.find();

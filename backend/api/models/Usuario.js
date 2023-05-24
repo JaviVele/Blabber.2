@@ -3,27 +3,27 @@ module.exports = {
     // eslint-disable-next-line camelcase
     nombre_usuario: {
       type: 'string',
-      required: true
+      
     },
     // eslint-disable-next-line camelcase
     nombre_arroba: {
       type: 'string',
-      required: true
+      
     },
     correo: {
       type: 'string',
-      required: true,
+    
       unique: 'true'
     },
     contrasena: {
       type: 'string',
-      required: true
+    
     },
     // eslint-disable-next-line camelcase
     fecha_nacimiento: {
       type: 'ref',
       columnType: 'date',
-      required: true
+  
     },
     // eslint-disable-next-line camelcase
     foto_perfil: {
@@ -36,17 +36,17 @@ module.exports = {
     },
     // Otros atributos del usuario
   },
-  beforeCreate: function (values, next) {
-    if (values.fecha_nacimiento) {
-      values.fecha_nacimiento = moment(values.fecha_nacimiento).format('YYYY-MM-DD');
-    }
-    return next();
-  },
+  // beforeCreate: function (values, next) {
+  //   if (values.fecha_nacimiento) {
+  //     values.fecha_nacimiento = moment(values.fecha_nacimiento).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // },
 
-  beforeUpdate: function (values, next) {
-    if (values.fecha_nacimiento) {
-      values.fecha_nacimiento = moment(values.fecha_nacimiento).format('YYYY-MM-DD');
-    }
-    return next();
-  }
+  // beforeUpdate: function (values, next) {
+  //   if (values.fecha_nacimiento) {
+  //     values.fecha_nacimiento = moment(values.fecha_nacimiento).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // }
 };

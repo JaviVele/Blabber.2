@@ -7,24 +7,26 @@ import { BackendService } from '../services/backend.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+  nombre_usuario: string = '';
+  nombre_arroba: string = '';
+  correo: string = '';
+  contrasena: string = '';
+  fecha_nacimiento: string = '';
 
   constructor(private backendService: BackendService) { }
 
-
-
-  usuario: any = {
-    nombre_usuario: '',
-    nombre_arroba: '',
-    correo: '',
-    contrasena: '',
-    fecha_nacimiento: '',
-    
-};
+ 
 
   onSubmit() {
-    
+    const data = {
+      nombre_usuario: this.nombre_usuario,
+      nombre_arroba: this.nombre_arroba,
+      correo: this.correo,
+      contrasena: this.contrasena,
+      fecha_nacimiento: this.fecha_nacimiento
+    }
     // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor
-    this.backendService.registrarUsuario(this.usuario).subscribe(
+    this.backendService.registrarUsuario(data).subscribe(
       response => {
         // La solicitud al servidor fue exitosa, puedes manejar la respuesta aquí
         console.log(response);

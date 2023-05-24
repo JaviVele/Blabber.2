@@ -1,17 +1,19 @@
 const cors = require('cors');
-
+const bodyParser = require('body-parser');
 
 module.exports.http = {
   middleware: {
     order: [
       // ...
+      'bodyParser',
       'cors',
       // ...
       'router',
 
-      'bodyParser',
+      
       // ...
     ],
+    //bodyParser: require('body-parser').json(),
     // ...
     cors: (function() {
       const corsOptions = {
@@ -23,15 +25,26 @@ module.exports.http = {
       };
       return cors(corsOptions);
     })(),
-
-    bodyParser: (function() {
-      var opts = {
-        limit: '5mb',
-        extended: true,
-      };
-      return require('body-parser').urlencoded(opts);
-    })
+    // bodyParser: (function _configureBodyParser(){
+    //   var skipper = require('skipper');
+    //   var middlewareFn = skipper({
+    //     strict: true,
+    //     // ... more Skipper options here ...
+    //   });
+    //   return middlewareFn;
+    // })(),
     // ...
   },
   // ...
 };
+
+
+module.exports.bodyParser ={
+  json: {
+    limit: '1mb',
+  },
+  urlencoded: {
+    limit: '1mb',
+    extended: true,
+  },
+}
