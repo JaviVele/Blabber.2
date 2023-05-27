@@ -26,7 +26,8 @@ export class LoginComponent {
       this.backendService.comprobarUsuario(data).subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/inicio']);
+          let id = response.usuario.id;
+          this.router.navigate(['/inicio', id]);
         },
         error => {
           console.error(error);

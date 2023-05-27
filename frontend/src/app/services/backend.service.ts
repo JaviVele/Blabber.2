@@ -28,5 +28,11 @@ export class BackendService {
    
     return this.http.post(url + 'usuarios', usuario);
   }
+
+  listarUno(id: any): Observable<any> {
+    const url = 'http://localhost:1337/';
+   
+    return this.http.get(url + 'usuarios', id);
+  }
 }
 
