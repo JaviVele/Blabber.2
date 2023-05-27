@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
-import { PerfilComponent } from './perfil/perfil.component';
+import { InicioComponent } from './inicio/inicio.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
     AppComponent,
     SignupComponent,
     LoginComponent,
-    PerfilComponent
+    InicioComponent
   ],
   imports: [
     BrowserModule,

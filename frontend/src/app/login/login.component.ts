@@ -26,7 +26,7 @@ export class LoginComponent {
       this.backendService.comprobarUsuario(data).subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/perfil']);
+          this.router.navigate(['/inicio']);
         },
         error => {
           console.error(error);
