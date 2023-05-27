@@ -16,11 +16,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const data = {
-        id: params['id']
-      };
-      console.log(data);
-      this.backandservice.listarUno(data).subscribe(
+      this.backandservice.listarUno(params['id']).subscribe(
         response => {
           console.log(response);
         },

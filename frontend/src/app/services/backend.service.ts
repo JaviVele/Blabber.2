@@ -30,9 +30,9 @@ export class BackendService {
   }
 
   listarUno(id: any): Observable<any> {
-    const url = 'http://localhost:1337/';
+    const url = 'http://localhost:1337/usuarios/' + id;
    
-    return this.http.get(url + 'usuarios', id);
+    return this.http.get(url);
   }
 }
 
