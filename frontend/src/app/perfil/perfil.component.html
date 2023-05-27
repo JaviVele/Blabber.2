@@ -1,38 +1,44 @@
-<div class="profile">
-    <div class="sidebar" [ngClass]="{'active': sidebarOpen}">
-        <div class="toggle-sidebar" (click)="toggleSidebar()">
-          <i class="fa fa-bars"></i>
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col">
+      Column
+    </div>
+    <div class="col-6">
+      <div class="profile">
+
+
+        <div class="main-content">
+          <button class="btn btn-primary d-sm-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive">Toggle offcanvas</button>
+      
+          <div class="profile-header">
+            <img class="profile-picture" src="ruta-de-la-imagen.png" alt="Perfil">
+            <h1 class="profile-name">Nombre de Usuario</h1>
+            <p class="profile-bio">Biografía del usuario</p>
+          </div>
+          <div class="timeline">
+            <!-- Mensajes de otros usuarios -->
+          </div>
+      
+      
+          <div class="alert alert-info d-none d-sm-block">Resize your browser to show the responsive offcanvas toggle.</div>
+          
+          <div class="offcanvas-sm offcanvas-start w-50" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">Responsive offcanvas</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body w-100">
+              <p class="mb-0">This is content within an <code>.offcanvas-lg</code>.</p>
+            </div>
+          </div>
         </div>
-        <ul class="sidebar-links">
-          <li><a href="#">Perfil</a></li>
-          <li><a href="#">Mensajes directos</a></li>
-          <li><a href="#">Configuración</a></li>
-          <li><a href="#">Notificaciones</a></li>
-        </ul>
-      </div>
-  <div class="main-content">
-    <div class="profile-header">
-      <img class="profile-picture" src="ruta-de-la-imagen.png" alt="Perfil">
-      <h1 class="profile-name">Nombre de Usuario</h1>
-      <p class="profile-bio">Biografía del usuario</p>
-    </div>
-    <div class="profile-details">
-      <div class="profile-stat">
-        <span class="stat-label">Tweets</span>
-        <span class="stat-value">1000</span>
-      </div>
-      <div class="profile-stat">
-        <span class="stat-label">Seguidores</span>
-        <span class="stat-value">500</span>
-      </div>
-      <div class="profile-stat">
-        <span class="stat-label">Siguiendo</span>
-        <span class="stat-value">200</span>
       </div>
     </div>
-    <div class="timeline">
-      <!-- Mensajes de otros usuarios -->
+    <div class="col">
+      Column
     </div>
   </div>
 </div>
+
+
 

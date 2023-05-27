@@ -6,10 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
-  sidebarOpen = false;
 
-  toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
 }
 
