@@ -2,9 +2,14 @@
   <div class="row align-items-center justify-content-center" style="height: 100vh;">
     <div class="col-md-6">
       <div class="overlay">
-        <a routerLink="/login">Iniciar Sesion</a>
+      
       </div>
       <div class="card shadow">
+       
+          <picture class="imagencontainer img-fluid mt-5">
+            <img class="imagen" src="../../assets/ajolote-logo.png" type="image/png">
+          </picture>
+       
         <div class="card-body p-5">
           <h3 class="card-title mb-4">Crea tu cuenta</h3>
           <form (ngSubmit)="onSubmit()">
@@ -28,10 +33,16 @@
               <label class="mb-2" for="fecha_nacimiento">Fecha de nacimiento</label>
               <input type="date" class="form-control" id="fecha_nacimiento" [(ngModel)]="fecha_nacimiento" name="fecha_nacimiento" required>
             </div>
-            <div class="row">
+            <div class="row mb-4">
               <div class="col">
                 <button type="submit" class="btn btn-lg btn-primary custom-button rounded-pill w-100 text-black">Registrarse</button>
               </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>¿Ya tienes una cuenta? <a class="text-primary text-decoration-none" routerLink="/login">Iniciar Sesión</a></p>
+
+              </div>  
             </div>
             
 

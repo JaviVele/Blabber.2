@@ -7,6 +7,17 @@
     z-index: 2;
   }
 
+  .imagen{
+    width: 10%;
+    height: 100%;
+  }
+
+  .imagencontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 
   
   
