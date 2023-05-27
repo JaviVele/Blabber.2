@@ -81,4 +81,65 @@
   .timeline {
     /* Estilos para los mensajes de otros usuarios */
   }
+
+
+  .imagen{
+    height: 50%;
+    width: 50%;
+  }
+
+  .imagencontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .custom-button {
+    width: 60%;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 50px;
+    
+  }
+
+  p{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-align: center;
+    font-size: 25px; /* Puedes ajustar el tamaño de la letra según tus preferencias */
+    line-height: 1; /* Ajusta este valor según el tamaño de la letra y el tamaño del botón */
+    height: 100%; 
+  }
+  
+  .custom-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+  }
+
+  .text {
+    margin-left: 10px; /* Ajusta este valor según el espacio deseado entre el icono y el texto */
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    width: 10%;
+    margin-right: 10px; /* Ajusta este valor según el espacio deseado entre el icono y el texto */
+  }
+
+  
+  
+
+
+  @media screen and (min-width: 768px) {
+    .imagen{
+      width: 10%;
+      height: 100%;
+    }
+  }
   
