@@ -1,4 +1,4 @@
-<div class="container-fluid text-center p-2">
+<div class="container-fluid text-center">
   <div class="row">
     <div class="col">
       <picture class="imagencontainer img-fluid">
@@ -16,45 +16,61 @@
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
             <button class="custom-button">
-             <p class="text"><img class="icon" src="../../assets/bell.svg">Notificaciones</p> 
+              <p class="text"><img class="icon" src="../../assets/bell.svg">Notificaciones</p>
             </button>
           </div>
         </div>
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
             <button class="custom-button">
-              <p class="text"><img class="icon" src="../../assets/envelope-open-heart.svg">Mensajes</p> 
+              <p class="text"><img class="icon" src="../../assets/envelope-open-heart.svg">Mensajes</p>
             </button>
           </div>
         </div>
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
             <button class="custom-button">
-              <p class="text"><img class="icon" src="../../assets/person.svg">Perfil</p> 
+              <p class="text"><img class="icon" src="../../assets/person.svg">Perfil</p>
             </button>
           </div>
         </div>
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
             <button class="custom-button">
-              <p class="text"><img class="icon" src="../../assets/sliders2.svg">Configuración</p> 
+              <p class="text"><img class="icon" src="../../assets/sliders2.svg">Configuración</p>
             </button>
           </div>
         </div>
       </div>
-      
-      
-      
-      
+
+
+
+
     </div>
     <div class="col-6">
-      Columna del medio
+      <div class="tweet-box">
+        <div class="avatar">
+          <img src="logo.png" alt="Avatar">
+        </div>
+        <div class="mensaje">
+          <form action="" method="post" (ngSubmit)="onSubmit()">
+            
+            <input type="text" [(ngModel)]="contenido" name="contenido" placeholder="Escribe tu mensaje...">
+            <div class="button-container">
+              <div>
+                <label for="upload" class="upload-icon">
+                  <img src="imagen.svg" alt="imagen">
+                </label>
+                <input id="upload" class="upload-button" type="file" accept="image/*" value="Subir" [(ngModel)]="imagen" name="imagen">
+              </div>
+              <button class="publish-button"  type="submit">Publicar</button>
+            </div>
+          </form>
+          </div>
+      </div>
     </div>
     <div class="col">
       Column
     </div>
   </div>
 </div>
-
-
-

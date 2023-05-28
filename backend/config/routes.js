@@ -21,7 +21,7 @@ module.exports.routes = {
   //RUTAS DE USUARIO//
   '/': { view: 'pages/homepage' },
   'POST /usuarios': 'UsuarioController.crear',
-  'POST /usuarios': 'UsuarioController.comprobarUsuario',
+  'POST /usuarios/:id': 'UsuarioController.comprobarUsuario',
   'GET /usuarios/:id': 'UsuarioController.listarUno',
   'GET /usuarios': 'UsuarioController.listar',
   'PUT /usuarios/:id': 'UsuarioController.actualizar',
