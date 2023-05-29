@@ -26,13 +26,20 @@ export class BackendService {
    
     const url = 'http://localhost:1337/';
    
-    return this.http.post(url + 'usuarios/comprobarUsuario', usuario);
+    return this.http.post(url + 'usuarios', usuario);
   }
 
   listarUno(id: any): Observable<any> {
     const url = 'http://localhost:1337/usuarios/' + id;
    
     return this.http.get(url);
+  }
+
+  registrarPublicacion(publicacion: any): Observable<any> {
+    console.log(publicacion);
+    const url = 'http://localhost:1337/';
+   
+    return this.http.post(url + 'publicaciones', publicacion);
   }
 }
 

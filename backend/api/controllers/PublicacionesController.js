@@ -9,6 +9,7 @@
 
 module.exports = {
     crear: async function (req, res) {
+      console.log(req.body);
         try {
           const nuevaPublicacion = await Publicacion.create(req.body).fetch();
           res.status(201).json(nuevaPublicacion);
