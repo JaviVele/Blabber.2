@@ -81,7 +81,7 @@ module.exports = {
         //return res.notFound('Usuario no encontrado en la base de datos');
       }
       //res.json(comprobarUsuario);
-      return res.status(200).json({ mensaje: 'Usuario agregado exitosamente', usuario: comprobarUsuario });
+      return res.status(200).json({ mensaje: 'Usuario encontrado exitosamente', usuario: comprobarUsuario });
     } catch(error) {
       res.status(500).json({error: 'Error al comprobar el usuario'});
     }

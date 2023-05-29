@@ -14,6 +14,8 @@ export class InicioComponent {
   usuario: any;
   contenido: string | undefined;
   imagen: string | undefined;
+  publicaciones: any;
+  publicacion_usuario: any;
 
   constructor(private route: ActivatedRoute, private backandService: BackendService ) {
     this.route.params.subscribe(params => {
@@ -27,6 +29,29 @@ export class InicioComponent {
 
       );
     });
+    this.backandService.listarPublicaciones().subscribe(
+      response => {
+        this.publicaciones = response;
+        console.log(this.publicaciones);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    for (let i = 0; i < this.publicaciones.length; i++) {
+      
+      this.backandService.listarUno(this.publicaciones[i].id_usuario).subscribe(
+        response => {
+          console.log(response);
+          this.publicacion_usuario.push(response);
+        },
+        error => {
+          console.log(error);
+        }
+
+      );
+
+    }
     
    }
    onSubmit() {

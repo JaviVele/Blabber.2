@@ -9,7 +9,8 @@ module.exports = {
 
   attributes: {
       contenido: {
-        type: 'string',
+        type: 'json',
+        columnType: 'json',
       },
       fecha_publicacion: {
         type: 'ref',

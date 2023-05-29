@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,19 +14,22 @@ export class BackendService {
     return this.http.get(url + 'usuarios');
   }
 
+
+  comprobarUsuario(usuario: any): Observable<any> {
+   
+    const url = 'http://localhost:1337/usuarios';
+   console.log(usuario);
+    return this.http.post(url , usuario);
+  }
+
   registrarUsuario(usuario: any): Observable<any> {
     console.log(usuario);
     const url = 'http://localhost:1337/';
    
-    return this.http.post(url + 'usuarios', usuario);
+    return this.http.post(url + 'usuarios/nuevo', usuario);
   }
 
-  comprobarUsuario(usuario: any): Observable<any> {
-   
-    const url = 'http://localhost:1337/';
-   
-    return this.http.post(url + 'usuarios/', usuario.id);
-  }
+
 
   listarUno(id: any): Observable<any> {
     const url = 'http://localhost:1337/usuarios/' + id;
@@ -41,5 +43,12 @@ export class BackendService {
    
     return this.http.post(url + 'publicaciones', publicacion);
   }
+
+  listarPublicaciones(){
+    const url = 'http://localhost:1337/';
+
+    return this.http.get(url + 'publicaciones');
+  }
+
 }
 
