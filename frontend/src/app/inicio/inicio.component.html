@@ -61,7 +61,7 @@
                 <label for="upload" class="upload-icon">
                   <img src="imagen.svg" alt="imagen">
                 </label>
-                <input id="upload" class="upload-button" type="file" accept="image/*" value="Subir" [(ngModel)]="imagen" name="imagen">
+                <input id="upload" class="upload-button" type="file" accept="image/*" (change)="onImageSelected($event)" value="Subir" name="imagen">
               </div>
               <button class="publish-button"  type="submit">Publicar</button>
             </div>
@@ -70,7 +70,7 @@
       </div>
     </div>
     <div class="col">
-      Column
+      columna
     </div>
   </div>
 </div>

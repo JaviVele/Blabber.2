@@ -6,13 +6,34 @@
  */
 
 //const Publicacion = require("../models/Publicacion");
-
+const multer = require('multer');
+const fs = require('fs');
+// Configurar el middleware Multer para manejar la carga de archivos
+const upload = multer({
+  dest: 'uploads/' // Especifica la carpeta de destino donde se guardarán los archivos adjuntos
+});
 module.exports = {
     crear: async function (req, res) {
-      console.log(req.body);
+      //console.log(req.body);
+      upload.single('imagen')
         try {
-          const nuevaPublicacion = await Publicacion.create(req.body).fetch();
-          res.status(201).json(nuevaPublicacion);
+          const { contenido, fecha_publicacion, num_mg, num_comentarios, id_usuario } = req.body;
+          const imagen = req.file; // Obtener la información de la imagen adjunta
+    
+          // Aquí puedes procesar la imagen, como guardarla en una ubicación específica o realizar otras operaciones necesarias
+          const { mensaje } = contenido;
+          const nuevaPublicacion = await Publicacion.create({
+            contenido: {
+              mensaje,
+              imagen
+            },
+            fecha_publicacion,
+            num_mg,
+            num_comentarios,
+            id_usuario
+          });
+    
+          res.status(200).json({ mensaje: 'Publicacion creada exitosamente', publicacion: nuevaPublicacion });
         } catch (error) {
           res.status(500).json({ error: 'Error al crear la publicación' });
         }

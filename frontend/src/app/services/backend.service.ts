@@ -26,7 +26,7 @@ export class BackendService {
    
     const url = 'http://localhost:1337/';
    
-    return this.http.post(url + 'usuarios', usuario);
+    return this.http.post(url + 'usuarios/comprobarUsuario', usuario);
   }
 
   listarUno(id: any): Observable<any> {
@@ -36,10 +36,12 @@ export class BackendService {
   }
 
   registrarPublicacion(publicacion: any): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
     console.log(publicacion);
     const url = 'http://localhost:1337/';
    
-    return this.http.post(url + 'publicaciones', publicacion);
+    return this.http.post(url + 'publicaciones', publicacion,{headers});
   }
 }
 

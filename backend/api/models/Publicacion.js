@@ -9,7 +9,8 @@ module.exports = {
 
   attributes: {
       contenido: {
-        type: 'string',
+        type: 'json',
+        
       },
       fecha_publicacion: {
         type: 'ref',
@@ -27,19 +28,19 @@ module.exports = {
 
   },
 
-  beforeCreate: function (values, next) {
-    if (values.fecha_publicacion) {
-      values.fecha_publicacion = moment(values.fecha_publicacion).format('YYYY-MM-DD');
-    }
-    return next();
-  },
+  // beforeCreate: function (values, next) {
+  //   if (values.fecha_publicacion) {
+  //     values.fecha_publicacion = moment(values.fecha_publicacion).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // },
 
-  beforeUpdate: function (values, next) {
-    if (values.fecha_publicacion) {
-      values.fecha_publicacion = moment(values.fecha_publicacion).format('YYYY-MM-DD');
-    }
-    return next();
-  }
+  // beforeUpdate: function (values, next) {
+  //   if (values.fecha_publicacion) {
+  //     values.fecha_publicacion = moment(values.fecha_publicacion).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // }
 
 };
 
