@@ -26,7 +26,7 @@ export class BackendService {
    
     const url = 'http://localhost:1337/';
    
-    return this.http.post(url + 'usuarios', usuario);
+    return this.http.post(url + 'usuarios/comprobarUsuario', usuario);
   }
 
   listarUno(id: any): Observable<any> {
