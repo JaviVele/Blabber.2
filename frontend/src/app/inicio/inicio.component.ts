@@ -9,7 +9,7 @@ import { BackendService } from '../services/backend.service';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent {
-
+  isDisabled: boolean = true;
   id: number | undefined;
   usuario: any;
   contenido: string = '';
@@ -29,8 +29,16 @@ export class InicioComponent {
 
       );
     });
-    
+
    }
+
+   checkInput() {
+    if (this.contenido.trim() !== '') {
+      this.isDisabled = false;
+    } else {
+      this.isDisabled = true;
+    }
+  }
 
   onImageSelected(event: any) {
     const file: File = event.target.files[0].name;

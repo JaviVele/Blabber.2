@@ -1,6 +1,6 @@
 <div class="container-fluid text-center">
   <div class="row">
-    <div class="col">
+    <div class="col-2 col-md-3 border-end">
       <!-- <picture class="imagencontainer img-fluid">
         <img class="imagen" src="../../assets/ajolote-logo.png" alt="logo">
       </picture> -->
@@ -110,15 +110,14 @@
 
 
     </div>
-    <div class="col-6">
-      <div class="tweet-box">
+    <div class="col-10 col-md-6">
+      <div class="tweet-box border-bottom p-3">
         <div class="avatar">
           <img src="logo.png" alt="Avatar">
         </div>
         <div class="mensaje">
-          <form action="" method="post" (ngSubmit)="onSubmit()">
-            
-            <input type="text" [(ngModel)]="contenido" name="contenido" placeholder="Escribe tu mensaje...">
+          <form (ngSubmit)="onSubmit()">
+            <input type="text" [(ngModel)]="contenido" name="contenido" placeholder="Escribe tu mensaje..." (input)="checkInput()">
             <div class="button-container">
               <div>
                 <label for="upload" class="upload-icon">
@@ -126,13 +125,14 @@
                 </label>
                 <input id="upload" class="upload-button" type="file" accept="image/*" (change)="onImageSelected($event)" value="Subir" name="imagen">
               </div>
-              <button class="publish-button"  type="submit">Publicar</button>
+              <button class="publish-button rounded-pill text-black" type="submit" [disabled]="isDisabled">Publicar</button>
             </div>
           </form>
+          
           </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col ultima">
       columna
     </div>
   </div>

@@ -78,10 +78,6 @@
     font-weight: bold;
   }
 
-  .col{
-    border-right: 1px solid #999;
-    height: auto;
-  }
 
   .imagen{
     height: 100%;
@@ -149,7 +145,6 @@
   .tweet-box {
     display: flex;
     width: 100%;
-    border-bottom: 1px solid #ccc;
     /* padding: 10px; */
     margin-top: 20px;
 
@@ -192,7 +187,13 @@ input[type="text"] {
 }
 
 .publish-button {
+    background-color: #91FAF9;
+    border-color: #91FAF9;
     order: 2;
+}
+.publish-button:hover, .publish-button:focus{
+    background-color: #77D5D3;
+    border-color: #77D5D3;
 }
 .upload-button {
     display: none; /* Ocultar el botón de selección de archivo por defecto */
@@ -222,8 +223,13 @@ input[type="text"] {
   }
   .btn-canva {
     pointer-events: all;
+  }
+  .ultima {
+    display: none;
+  }
+  
 }
-}
+
 
 
 
