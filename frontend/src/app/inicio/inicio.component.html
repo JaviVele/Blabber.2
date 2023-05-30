@@ -1,11 +1,15 @@
 <div class="container-fluid text-center">
   <div class="row">
     <div class="col">
-      <picture class="imagencontainer img-fluid">
+      <!-- <picture class="imagencontainer img-fluid">
         <img class="imagen" src="../../assets/ajolote-logo.png" alt="logo">
-      </picture>
-
-      <div class="container mt-5">
+      </picture> -->
+      <a class="btn-canva" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+        <picture class="imagencontainer img-fluid">
+          <img class="imagen" src="../../assets/ajolote-logo.png" alt="logo">
+        </picture>      
+      </a>
+      <div class="desaparecer container mt-5">
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
             <button class="custom-button" routerLink="/inicio">
@@ -42,6 +46,65 @@
           </div>
         </div>
       </div>
+
+
+ <!-- EMPIEZA EL CANVA -->
+ <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+      <picture class="imagencontainer img-fluid">
+      <img class="imagen" src="../../assets/ajolote-logo.png" alt="logo">
+      </picture>
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="container mt-5">
+      <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-center">
+          <button class="custom-button" routerLink="/inicio">
+            <p class="text"><img class="icon" src="../../assets/house-heart.svg">Inicio</p>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-center">
+          <button class="custom-button">
+            <p class="text"><img class="icon" src="../../assets/bell.svg">Notificaciones</p>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-center">
+          <button class="custom-button">
+            <p class="text"><img class="icon" src="../../assets/envelope-open-heart.svg">Mensajes</p>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-center">
+          <button class="custom-button">
+            <p class="text"><img class="icon" src="../../assets/person.svg">Perfil</p>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-center">
+          <button class="custom-button">
+            <p class="text"><img class="icon" src="../../assets/sliders2.svg">Configuración</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 
 

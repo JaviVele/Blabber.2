@@ -84,14 +84,16 @@
   }
 
   .imagen{
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
   }
 
   .imagencontainer{
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 50px;
+    height: 70px;
   }
 
   .custom-button {
@@ -119,12 +121,14 @@
   .custom-button:hover {
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 50px;
+    width: 100%;
   }
 
   .text {
     margin-left: 10px; /* Ajusta este valor según el espacio deseado entre el icono y el texto */
     display: flex;
     align-items: center;
+    font-size: 100%;
   }
 
   .icon {
@@ -136,12 +140,12 @@
   
 
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     .imagen{
       width: 10%;
       height: 100%;
     }
-  }
+  } */
   .tweet-box {
     display: flex;
     width: 100%;
@@ -209,5 +213,17 @@ input[type="text"] {
     height: 16px;
     fill: #555; /* Ajusta el color del icono */
 }
+.btn-canva {
+    pointer-events: none;
+}
+@media screen and (max-width: 768px) {
+  .desaparecer {
+    display: none;
+  }
+  .btn-canva {
+    pointer-events: all;
+}
+}
+
 
 
