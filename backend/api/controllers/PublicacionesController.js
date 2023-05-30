@@ -18,10 +18,10 @@ module.exports = {
       upload.single('imagen')
         try {
           const { contenido, fecha_publicacion, num_mg, num_comentarios, id_usuario } = req.body;
-          const imagen = req.file; // Obtener la información de la imagen adjunta
+          const imagen = req.body.contenido.imagen; // Obtener la información de la imagen adjunta
     
           // Aquí puedes procesar la imagen, como guardarla en una ubicación específica o realizar otras operaciones necesarias
-          const { mensaje } = contenido;
+          const  mensaje  = contenido.mensaje;
           const nuevaPublicacion = await Publicacion.create({
             contenido: {
               mensaje,
@@ -31,7 +31,8 @@ module.exports = {
             num_mg,
             num_comentarios,
             id_usuario
-          });
+          }).fetch();
+          
     
           res.status(200).json({ mensaje: 'Publicacion creada exitosamente', publicacion: nuevaPublicacion });
         } catch (error) {

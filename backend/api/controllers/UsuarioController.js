@@ -16,7 +16,6 @@ module.exports = {
         contrasena,
         fecha_nacimiento
       }).fetch();
-
       return res.status(200).json({ mensaje: 'Usuario creado exitosamente', usuario: nuevoUsuario });
     } catch (error) {
       return res.status(500).json({ error: 'Ocurrió un error al crear el usuario', mensaje: error.message });

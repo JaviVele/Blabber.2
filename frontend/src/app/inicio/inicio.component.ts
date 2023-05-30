@@ -32,14 +32,8 @@ export class InicioComponent {
     
    }
 
-  //  ngOnInit(): void {
-  //   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-  //   //Add 'implements OnInit' to the class.
-  //     //this.listarPublicaciones();
-  //  }
-
   onImageSelected(event: any) {
-    const file: File = event.target.files[0];
+    const file: File = event.target.files[0].name;
     this.imagen = file;
 
     console.log(this.imagen);
@@ -58,15 +52,10 @@ export class InicioComponent {
   
     this.backandService.registrarPublicacion(publicacion).subscribe(
       response => {
-        // La solicitud al servidor fue exitosa, puedes manejar la respuesta aquí
         console.log(response);
-        //this.publicacion = response;
-        // Por ejemplo, puedes mostrar un mensaje de éxito al usuario o redirigirlo a otra página
       },
       error => {
-        // La solicitud al servidor generó un error, puedes manejarlo aquí
         console.error(error);
-        // Por ejemplo, puedes mostrar un mensaje de error al usuario o realizar alguna otra acción
       }
     );
   }
