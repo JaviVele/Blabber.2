@@ -29,11 +29,11 @@ module.exports.routes = {
   
   
   //RUTAS DE SEGUIDORES//
-  'POST /seguidores': 'SeguidoresController.crear',
-  'GET /seguidores/:id': 'SeguidoresController.listarUno',
-  'GET /seguidores/': 'SeguidoresController.listar',
-  'PUT /seguidores/:id': 'SeguidoresController.actualizar',
-  'DELETE /seguidores/:id': 'SeguidoresController.eliminar',
+  'POST /seguirUsuario': 'SeguidoresController.seguirUsuario',
+  'GET /seguidores': 'SeguidoresController.obtenerSeguidores',
+  'GET /seguidos': 'SeguidoresController.obtenerSeguidos',
+  'DELETE /dejarSeguirUsuario/:idUsuario': 'SeguidoresController.dejarSeguirUsuario',
+  
   
   
   

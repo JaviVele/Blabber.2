@@ -13,27 +13,29 @@ module.exports = {
       columnType: 'date',
       required: true
     },
-    usuarioPrincipal: {
-      model: 'Usuario'
+    seguidor_id: {
+      model: 'Usuario',
+      required: true
     },
-    seguidor: {
-      model: 'Usuario'
+    seguido_id: {
+      model: 'Usuario',
+      required: true
     }
 
   },
-  beforeCreate: function (values, next) {
-    if (values.fecha) {
-      values.fecha = moment(values.fecha).format('YYYY-MM-DD');
-    }
-    return next();
-  },
+  // beforeCreate: function (values, next) {
+  //   if (values.fecha) {
+  //     values.fecha = moment(values.fecha).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // },
 
-  beforeUpdate: function (values, next) {
-    if (values.fecha) {
-      values.fecha = moment(values.fecha).format('YYYY-MM-DD');
-    }
-    return next();
-  }
+  // beforeUpdate: function (values, next) {
+  //   if (values.fecha) {
+  //     values.fecha = moment(values.fecha).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // }
 
 };
 

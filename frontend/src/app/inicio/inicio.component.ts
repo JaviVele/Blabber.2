@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackendService } from '../services/backend.service';
 
@@ -8,28 +8,35 @@ import { BackendService } from '../services/backend.service';
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
-export class InicioComponent {
+export class InicioComponent implements OnInit {
   isDisabled: boolean = true;
-  id: number | undefined;
+  id: any;
   usuario: any;
   contenido: string = '';
   imagen: File | undefined;
   publicacion: any;  
+  publicaciones: any[] = [];
+  usuarioSeguidos: any[] = [];
+
+  constructor(private route: ActivatedRoute, private backandService: BackendService) {}
   
-
-  constructor(private route: ActivatedRoute, private backandService: BackendService ) {
-    this.route.params.subscribe(params => {
-      this.backandService.listarUno(params['id']).subscribe(
-        response => {
-          this.usuario = response;
-        },
-        error => {
-          console.log(error);
-        }
-
-      );
-    });
-
+   ngOnInit(): void {
+      this.route.params.subscribe(params => {
+        this.backandService.listarUno(params['id']).subscribe(
+          response => {
+            this.usuario = response;
+            this.id = this.usuario.id;
+            console.log(this.id);
+            this.obtenerUsuariosSeguidos();
+          },
+          error => {
+            console.log(error);
+          }
+  
+        );
+      });
+       this.listarPublicaciones();
+       
    }
 
    checkInput() {
@@ -61,13 +68,42 @@ export class InicioComponent {
     this.backandService.registrarPublicacion(publicacion).subscribe(
       response => {
         console.log(response);
+        this.listarPublicaciones();
       },
       error => {
         console.error(error);
       }
     );
+
+    
   }
-  
+
+  listarPublicaciones() {
+    this.backandService.listarPublicaciones().subscribe(
+      (response) => {
+        this.publicaciones = response.filter((publicacion) =>
+          this.usuarioSeguidos.some((seguido) => seguido.id === publicacion.id_usuario)
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  obtenerUsuariosSeguidos() {
+    this.backandService.obtenerUsuariosSeguidos(this.usuario.id).subscribe(
+      (response) => {
+        this.usuarioSeguidos = response;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+
+ 
 
 
 }

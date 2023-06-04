@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 
@@ -42,6 +42,17 @@ export class BackendService {
     const url = 'http://localhost:1337/';
    
     return this.http.post(url + 'publicaciones', publicacion,{headers});
+  }
+
+  listarPublicaciones(): Observable<any[]> {
+    const url = 'http://localhost:1337/publicaciones';
+    return this.http.get<any[]>(url);
+  }
+
+  obtenerUsuariosSeguidos(userId: any): Observable<any> {
+    const params = new HttpParams().set('userId', userId);
+    const url = 'http://localhost:1337/seguidos/';
+    return this.http.get(url,{params});
   }
 }
 
