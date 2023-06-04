@@ -230,6 +230,89 @@ input[type="text"] {
   
 }
 
+.container-buscador{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #999;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 0px 3px;
+}
+#buscador{
+  background-color: transparent;
+  margin: 3px;
+  padding: 3px;
+}
+#icono{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3px;
+  padding: auto;
+}
 
+.tendencia{
+  background-color: #999;
+  border-radius: 20px;
+  margin: 20px;
+}
+.tendencia-titulo{
+  color: white;
+}
+.tendencia mat-card:last-child:hover{
+  background-color:#cdc9c9;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.card{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+.card:hover{
+  background-color:#cdc9c9;
+}
+.card-titulo{
+  color: #333;
+  font-size: 14px;
+}
+.card-subtitulo{
+  color: white;
+}
+.card-view{
+  color: #333;
+  font-size: 14px;
+}
+.card-icono:hover{
+  background-color: #77d5d394;
+  border-radius: 40%;
+}
+.enlaces{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
+nav {
+  font-size: 14px;
+}
+nav p {
+  padding: 5px;
+  font-size: 14px;
+}
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
 
