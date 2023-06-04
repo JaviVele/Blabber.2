@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     MatCardModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    MatIconModule
+    
     
   ],
   providers: [],
