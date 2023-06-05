@@ -15,27 +15,26 @@ module.exports = {
     },
     seguidor_id: {
       model: 'Usuario',
+      columnName: 'seguidor_id',
       required: true
     },
     seguido_id: {
       model: 'Usuario',
+      columnName: 'seguido_id',
       required: true
     }
 
   },
-  // beforeCreate: function (values, next) {
-  //   if (values.fecha) {
-  //     values.fecha = moment(values.fecha).format('YYYY-MM-DD');
-  //   }
-  //   return next();
-  // },
-
-  // beforeUpdate: function (values, next) {
-  //   if (values.fecha) {
-  //     values.fecha = moment(values.fecha).format('YYYY-MM-DD');
-  //   }
-  //   return next();
+  // find: function(criteria) {
+  //   return new Promise((resolve, reject) => {
+  //     Seguidores.find(criteria).exec((error, seguidores) => {
+  //       if (error) {
+  //         reject(new Error('Error al obtener los seguidores'));
+  //       } else {
+  //         resolve(seguidores);
+  //       }
+  //     });
+  //   });
   // }
-
 };
 

@@ -316,3 +316,10 @@ nav a:hover {
   text-decoration: underline;
 }
 
+.publicacion{
+  padding: 10px;
+}
+.hrpubli{
+    margin: 0; /* Elimina el margin */
+}
+

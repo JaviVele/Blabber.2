@@ -13,7 +13,7 @@
       <div class="desaparecer container mt-5">
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button class="custom-button" routerLink="/inicio" (click)="listarPublicaciones()">
+            <button class="custom-button" routerLink="/inicio" (click)="recargarPublicaciones()">
               <p class="text"><img class="icon" src="../../assets/house-heart.svg">Inicio</p>
             </button>
           </div>
@@ -128,10 +128,28 @@
         </div>
       </div>
       <div *ngFor="let publicacion of publicaciones">
-        <p>{{ publicacion.contenido.mensaje }}</p>
-        <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
-        <hr>
+        <div class="publicacion">
+            <div class="nombre-info">
+              <div *ngFor="let usuarioSeguido of usuarioSeguidos">
+                <ng-container *ngIf="publicacion.id_usuario === usuario.id; else elseBlock">
+                  <!-- Mostrar tu propio usuario -->
+                  <p>{{ usuario.nombre_usuario }} {{usuario.nombre_arroba}} - ({{ getTimeElapsed(publicacion.fecha_publicacion) }})</p>
+                </ng-container>
+                <ng-template #elseBlock>
+                  <!-- Mostrar los usuarios seguidos -->
+                  <p>{{ usuarioSeguido.seguido_id.nombre_usuario }} {{ usuarioSeguido.seguido_id.nombre_arroba }} - ({{ getTimeElapsed(publicacion.fecha_publicacion) }})</p>
+                </ng-template>
+              </div>
+              
+              
+            </div>
+         
+          <p>{{ publicacion.contenido.mensaje }}</p>
+          <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
+        </div>
+        <hr class="hrpubli border border-2">
       </div>
+      
       
       
     </div>
