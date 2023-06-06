@@ -14,7 +14,8 @@
  */
 
 module.exports.models = {
-
+  Usuario: require('../api/models/Usuario'),
+  Seguidores: require('../api/models/Seguidores'),
 
   /***************************************************************************
   *                                                                          *
