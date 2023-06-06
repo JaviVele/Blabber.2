@@ -307,7 +307,12 @@ nav {
     }
   }
 }
-
+.publicacion{
+  padding: 10px;
+}
+.hrpubli{
+    margin: 0; /* Elimina el margin */
+}
 
 @media screen and (max-width: 768px) {
   .desaparecer {
