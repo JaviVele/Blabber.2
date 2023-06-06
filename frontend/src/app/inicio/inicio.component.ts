@@ -112,11 +112,26 @@ export class InicioComponent implements OnInit {
   }
 
   getTimeElapsed(fechaPublicacion: string): string {
+    const fechaCreacion = new Date(fechaPublicacion);
     const fechaActual = new Date();
-    const fecha = new Date(fechaPublicacion);
   
-    return formatDistanceToNow(fecha, { addSuffix: true });
+    const diferencia = Math.abs(fechaActual.getTime() - fechaCreacion.getTime());
+    const segundos = Math.floor(diferencia / 1000);
+    const minutos = Math.floor(segundos / 60);
+    const horas = Math.floor(minutos / 60);
+    const dias = Math.floor(horas / 24);
+  
+    if (dias > 0) {
+      return `${dias}d`;
+    } else if (horas > 0) {
+      return `${horas}h`;
+    } else if (minutos > 0) {
+      return `${minutos}m`;
+    } else {
+      return 'Ahora mismo';
+    }
   }
+  
   
   
   
