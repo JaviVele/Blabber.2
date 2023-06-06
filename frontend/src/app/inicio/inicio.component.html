@@ -128,7 +128,6 @@
         </div>
       </div>
       <div *ngFor="let publicacion of publicaciones">
-<<<<<<< HEAD
         <div class="publicacion">
           <div class="nombre-info">
             <ng-container *ngIf="usuarioSeguidos.length === 0">
@@ -152,11 +151,6 @@
           <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
         </div>
         <hr class="hrpubli border border-2">
-=======
-        <p>{{ publicacion.contenido.mensaje }}</p>
-        <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
-        <hr>
->>>>>>> d2a4add1ba593d72d442fb609cdcd3752d1d7507
       </div>
       
       
