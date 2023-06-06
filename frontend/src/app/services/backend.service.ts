@@ -51,7 +51,7 @@ export class BackendService {
 
   obtenerUsuariosSeguidos(userId: any): Observable<any> {
     const params = new HttpParams().set('userId', userId);
-    const url = 'http://localhost:1337/seguidos';
+    const url = 'http://localhost:1337/seguidos/';
     return this.http.get(url,{params});
   }
 }

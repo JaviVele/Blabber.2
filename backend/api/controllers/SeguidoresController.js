@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+=======
+const Seguidores = require('../models/Seguidores');
 
+>>>>>>> parent of 5731d28 (inicio publicaciones hecho)
 module.exports = {
   seguirUsuario: async function (req, res) {
     try {
@@ -21,20 +25,25 @@ module.exports = {
 
   obtenerSeguidores: async function (req, res) {
     try {
+<<<<<<< HEAD
       const usuarioId = req.query.userId; // Obtén el ID del usuario del parámetro de la consulta
       //console.log(usuarioId);
       // Busca los seguidores del usuario especificado
       const seguidores = await Seguidores.find({ seguido_id: usuarioId })
         .populate('seguidor_id'); // Realiza el populate para obtener los datos de los seguidores
   
+=======
+      const seguidores = await Seguidores.find({ seguidor_id: req.Usuario.id }).populate('seguido_id');
+>>>>>>> d2a4add1ba593d72d442fb609cdcd3752d1d7507
       res.status(200).json(seguidores);
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener los seguidores' });
     }
   },
-  
+
   obtenerSeguidos: async function (req, res) {
     try {
+<<<<<<< HEAD
       const usuarioId = req.query.userId; // Obtén el ID del usuario del parámetro de la consulta
       //console.log(usuarioId);
       // Busca los usuarios seguidos por el usuario especificado
@@ -42,14 +51,15 @@ module.exports = {
         .populate('seguido_id'); // Realiza el populate para obtener los datos de los usuarios seguidos
   
       res.status(200).json(seguidos);
+=======
+      const seguidores = await Seguidores.find({ seguidor_id: req.query.userId }).populate('seguido_id');
+      const usuariosSeguidos = seguidores.map(seguidor => seguidor.seguido_id);
+      res.status(200).json(usuariosSeguidos);
+>>>>>>> d2a4add1ba593d72d442fb609cdcd3752d1d7507
     } catch (error) {
-      console.log(error);
       res.status(500).json({ error: 'Error al obtener los usuarios seguidos' });
     }
   },
-  
-  
-  
 
   dejarSeguirUsuario: async function (req, res) {
     try {

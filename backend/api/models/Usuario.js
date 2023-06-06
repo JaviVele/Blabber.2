@@ -34,13 +34,19 @@ module.exports = {
       type: 'string',
       allowNull: true
     },
-    seguidores: {
-      collection: 'Seguidores',
-      via: 'seguido_id'
-    },
-    seguidos: {
-      collection: 'Seguidores',
-      via: 'seguidor_id'
-    }
-  }
+    // Otros atributos del usuario
+  },
+  // beforeCreate: function (values, next) {
+  //   if (values.fecha_nacimiento) {
+  //     values.fecha_nacimiento = moment(values.fecha_nacimiento).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // },
+
+  // beforeUpdate: function (values, next) {
+  //   if (values.fecha_nacimiento) {
+  //     values.fecha_nacimiento = moment(values.fecha_nacimiento).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // }
 };
