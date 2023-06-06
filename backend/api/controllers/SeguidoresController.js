@@ -22,7 +22,7 @@ module.exports = {
   obtenerSeguidores: async function (req, res) {
     try {
       const usuarioId = req.query.userId; // Obtén el ID del usuario del parámetro de la consulta
-      console.log(usuarioId);
+      //console.log(usuarioId);
       // Busca los seguidores del usuario especificado
       const seguidores = await Seguidores.find({ seguido_id: usuarioId })
         .populate('seguidor_id'); // Realiza el populate para obtener los datos de los seguidores
@@ -36,7 +36,7 @@ module.exports = {
   obtenerSeguidos: async function (req, res) {
     try {
       const usuarioId = req.query.userId; // Obtén el ID del usuario del parámetro de la consulta
-      console.log(usuarioId);
+      //console.log(usuarioId);
       // Busca los usuarios seguidos por el usuario especificado
       const seguidos = await Seguidores.find({ seguidor_id: usuarioId })
         .populate('seguido_id'); // Realiza el populate para obtener los datos de los usuarios seguidos
