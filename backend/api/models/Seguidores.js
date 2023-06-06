@@ -13,12 +13,14 @@ module.exports = {
       columnType: 'date',
       required: true
     },
-    usuarioPrincipal: {
+    seguidor_id: {
       model: 'Usuario',
+      columnName: 'seguidor_id',
       required: true
     },
-    seguidor: {
+    seguido_id: {
       model: 'Usuario',
+      columnName: 'seguido_id',
       required: true
     }
 
