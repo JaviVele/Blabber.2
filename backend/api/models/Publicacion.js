@@ -8,23 +8,23 @@
 module.exports = {
 
   attributes: {
-      contenido: {
-        type: 'json',
-        columnType: 'json'
-      },
-      fecha_publicacion: {
-        type: 'ref',
-        columnType: 'date',
-      },
-      num_mg: {
-        type:'number',
-      },
-      num_comentarios: {
-        type:'number',
-      },
-      id_usuario: {
-        model: 'Usuario'
-      }
+    contenido: {
+      type: 'json',
+      columnType: 'json'
+    },
+    fecha_publicacion: {
+      type: 'ref',
+      columnType: 'datetime',
+    },
+    num_mg: {
+      type:'number',
+    },
+    num_comentarios: {
+      type:'number',
+    },
+    id_usuario: {
+      model: 'Usuario'
+    }
 
   },
 
