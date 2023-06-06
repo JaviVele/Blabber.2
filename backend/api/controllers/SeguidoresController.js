@@ -1,5 +1,3 @@
-const Seguidores = require('../models/Seguidores');
-
 module.exports = {
   seguirUsuario: async function (req, res) {
     try {
@@ -31,8 +29,8 @@ module.exports = {
 
   obtenerSeguidos: async function (req, res) {
     try {
-      const seguidores = await Seguidores.find({ seguidor_id: req.query.userId }).populate('seguido_id');
-      const usuariosSeguidos = seguidores.map(seguidor => seguidor.seguido_id);
+      const seguidores = await Seguidores.find({ usuarioPrincipal: req.query.userId }).populate('seguidor');
+      const usuariosSeguidos = seguidores.map(seguidor => seguidor.seguidor);
       res.status(200).json(usuariosSeguidos);
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener los usuarios seguidos' });
