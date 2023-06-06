@@ -14,7 +14,7 @@ module.exports = {
       },
       fecha_publicacion: {
         type: 'ref',
-        columnType: 'datetime',
+        columnType: 'date',
       },
       num_mg: {
         type:'number',
