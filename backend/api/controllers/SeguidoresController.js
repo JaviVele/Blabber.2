@@ -23,26 +23,29 @@ module.exports = {
 
   obtenerSeguidores: async function (req, res) {
     try {
-
       const usuarioId = req.query.userId; // Obtén el ID del usuario del parámetro de la consulta
       //console.log(usuarioId);
       // Busca los seguidores del usuario especificado
       const seguidores = await Seguidores.find({ seguido_id: usuarioId })
         .populate('seguidor_id'); // Realiza el populate para obtener los datos de los seguidores
   
-
       res.status(200).json(seguidores);
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener los seguidores' });
     }
   },
-
+  
   obtenerSeguidos: async function (req, res) {
     try {
-      const seguidores = await Seguidores.find({ seguidor_id: req.query.userId }).populate('seguido_id');
-      const usuariosSeguidos = seguidores.map(seguidor => seguidor.seguido_id);
-      res.status(200).json(usuariosSeguidos);
+      const usuarioId = req.query.userId; // Obtén el ID del usuario del parámetro de la consulta
+      //console.log(usuarioId);
+      // Busca los usuarios seguidos por el usuario especificado
+      const seguidos = await Seguidores.find({ seguidor_id: usuarioId })
+        .populate('seguido_id'); // Realiza el populate para obtener los datos de los usuarios seguidos
+  
+      res.status(200).json(seguidos);
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: 'Error al obtener los usuarios seguidos' });
     }
   },
