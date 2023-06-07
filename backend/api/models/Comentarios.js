@@ -27,19 +27,19 @@ module.exports = {
     },
 
   },
-  beforeCreate: function (values, next) {
-    if (values.fecha_contenido) {
-      values.fecha_contenido = moment(values.fecha_contenido).format('YYYY-MM-DD');
-    }
-    return next();
-  },
+  // beforeCreate: function (values, next) {
+  //   if (values.fecha_contenido) {
+  //     values.fecha_contenido = moment(values.fecha_contenido).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // },
 
-  beforeUpdate: function (values, next) {
-    if (values.fecha_contenido) {
-      values.fecha_contenido = moment(values.fecha_contenido).format('YYYY-MM-DD');
-    }
-    return next();
-  }
+  // beforeUpdate: function (values, next) {
+  //   if (values.fecha_contenido) {
+  //     values.fecha_contenido = moment(values.fecha_contenido).format('YYYY-MM-DD');
+  //   }
+  //   return next();
+  // }
 
 };
 

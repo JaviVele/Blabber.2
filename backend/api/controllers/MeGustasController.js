@@ -8,14 +8,50 @@
 //const MeGusta = require("../models/MeGusta");
 
 module.exports = {
-    crear: async function (req, res) {
-        try {
-          const nuevoMeGusta = await MeGusta.create(req.body).fetch();
-          res.status(201).json(nuevoMeGusta);
-        } catch (error) {
-          res.status(500).json({ error: 'Error al crear el me gusta' });
-        }
-      },
+  crear: async function (req, res) {
+    try {
+      console.log(req.body);
+      const { id_usuario, id_publicacion } = req.body;
+  
+      // Buscar el registro de "Me gusta" existente para la publicación y el usuario
+      const existeMeGusta = await MeGusta.find({ id_usuario: id_usuario, id_publicacion: id_publicacion }).limit(1);
+  
+      if (existeMeGusta.length > 0) {
+        // Si existe, eliminar el registro de "Me gusta"
+        await MeGusta.destroy({ id: existeMeGusta[0].id });
+  
+        // Obtener el número actual de "Me gusta" para la publicación
+        const numMgActualizado = await MeGusta.count({ id_publicacion: id_publicacion });
+  
+        // Actualizar el contador de "Me gusta" en la publicación
+        await Publicacion.update({ id: id_publicacion }).set({ num_mg: numMgActualizado });
+  
+        res.status(200).json({ num_mg: numMgActualizado });
+      } else {
+        // Si no existe, crear un nuevo registro de "Me gusta"
+        console.log('usuarioId:', id_usuario);
+        console.log('publicacionId:', id_publicacion);
+
+        const nuevoMegusta = await MeGusta.create({
+          id_usuario,
+          id_publicacion
+          
+        }).fetch();
+        console.log(nuevoMegusta);
+        // Obtener el número actual de "Me gusta" para la publicación
+        const numMgActualizado = await MeGusta.count({ id_publicacion: id_publicacion });
+  
+        // Actualizar el contador de "Me gusta" en la publicación
+        await Publicacion.update({ id: id_publicacion }).set({ num_mg: numMgActualizado });
+  
+        res.status(200).json({ num_mg: numMgActualizado, nuevo_megusta: nuevoMegusta });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'Error al dar/quitar Me gusta' });
+    }
+  },
+  
     
       listar: async function (req, res) {
         try {

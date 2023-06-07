@@ -149,6 +149,8 @@
          
           <p>{{ publicacion.contenido.mensaje }}</p>
           <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
+          <p>Me gusta: <span>{{ publicacion.num_mg }}</span></p>
+          <button (click)="darMeGusta(publicacion)">Me gusta</button>
         </div>
         <hr class="hrpubli border border-2">
       </div>

@@ -54,5 +54,18 @@ export class BackendService {
     const url = 'http://localhost:1337/seguidos/';
     return this.http.get(url,{params});
   }
+
+  darMeGusta(id_publicacion: number, id_usuario: number): Observable<any> {
+    const data = {
+      id_usuario: id_usuario,
+      id_publicacion: id_publicacion
+      
+      
+    };
+    console.log(data);
+  
+    return this.http.post<any>('http://localhost:1337/megustas', data);
+  }
+  
 }
 
