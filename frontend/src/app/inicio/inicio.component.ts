@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackendService } from '../services/backend.service';
 //import { formatDistanceToNow } from 'date-fns';
@@ -17,7 +17,7 @@ export class InicioComponent implements OnInit {
   publicaciones: any[] = [];
   usuarioSeguidos: any[] = [];
 
-  constructor(private route: ActivatedRoute, private backandService: BackendService) {}
+  constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -106,10 +106,10 @@ export class InicioComponent implements OnInit {
       }
     );
   }
-
-  recargarPublicaciones() {
-    this.listarPublicaciones(this.id);
+  reloadPage() {
+    this.renderer.setProperty(window, 'location', window.location.href);
   }
+  
 
   getTimeElapsed(fechaPublicacion: string): string {
     const fechaCreacion = new Date(fechaPublicacion);
