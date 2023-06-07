@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +22,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     SignupComponent,
     LoginComponent,
     InicioComponent,
-    PerfilComponent
+    PerfilComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -29,9 +32,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     MatCardModule,
     FormsModule,
     RouterModule,
-    MatIconModule
-    
-    
+    MatIconModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]
