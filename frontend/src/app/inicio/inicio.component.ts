@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackendService } from '../services/backend.service';
-import { formatDistanceToNow } from 'date-fns';
+//import { formatDistanceToNow } from 'date-fns';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css']
+  styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
   isDisabled: boolean = true;

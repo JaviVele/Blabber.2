@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     SignupComponent,
     LoginComponent,
-    InicioComponent
+    InicioComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
