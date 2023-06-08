@@ -13,7 +13,7 @@
       <div class="desaparecer container mt-5">
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button class="custom-button" routerLink="/inicio" (click)="reloadPage()">
+            <button class="custom-button" [routerLink]="['/inicio', usuario.id]" (click)="recargarPagina()">
               <p class="text"><img class="icon" src="../../assets/house-heart.svg">Inicio</p>
             </button>
           </div>
@@ -34,7 +34,7 @@
         </div>
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button class="custom-button" routerLink="/perfil">
+            <button class="custom-button" [routerLink]="['/perfil', usuario.id]">
               <p class="text"><img class="icon" src="../../assets/person.svg">Perfil</p>
             </button>
           </div>
@@ -120,6 +120,7 @@
                 <input id="upload" class="upload-button" type="file" accept="image/*" (change)="onImageSelected($event)"
                   value="Subir" name="imagen">
               </div>
+              
               <button class="publish-button rounded-pill text-black" type="submit"
                 [disabled]="isDisabled">Publicar</button>
             </div>
@@ -127,7 +128,7 @@
 
         </div>
       </div>
-      <div *ngFor="let publicacion of publicaciones">
+      <div *ngFor="let publicacion of publicaciones; let i = index">
         <div class="publicacion">
           <div class="nombre-info">
             <ng-container *ngIf="usuarioSeguidos.length === 0">
@@ -149,8 +150,15 @@
          
           <p>{{ publicacion.contenido.mensaje }}</p>
           <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
-          <p>Me gusta: <span>{{ publicacion.num_mg }}</span></p>
-          <button (click)="darMeGusta(publicacion)">Me gusta</button>
+          <button class="btn-like" (click)="darMeGusta(publicacion)">
+            <mat-icon>
+              <span [ngStyle]="{'color': publicacion.num_mg==0 ? 'transparent' : 'red',
+               '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'}">
+               favorite
+              </span>
+            </mat-icon>
+            <span>{{ publicacion.num_mg }}</span></button>
+
         </div>
         <hr class="hrpubli border border-2">
       </div>

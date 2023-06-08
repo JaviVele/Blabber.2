@@ -10,7 +10,7 @@
 module.exports = {
   crear: async function (req, res) {
     try {
-      console.log(req.body);
+      //console.log(req.body);
       const { id_usuario, id_publicacion } = req.body;
   
       // Buscar el registro de "Me gusta" existente para la publicación y el usuario
@@ -29,15 +29,14 @@ module.exports = {
         res.status(200).json({ num_mg: numMgActualizado });
       } else {
         // Si no existe, crear un nuevo registro de "Me gusta"
-        console.log('usuarioId:', id_usuario);
-        console.log('publicacionId:', id_publicacion);
+        // console.log('usuarioId:', id_usuario);
+        // console.log('publicacionId:', id_publicacion);
 
         const nuevoMegusta = await MeGusta.create({
           id_usuario,
           id_publicacion
           
         }).fetch();
-        console.log(nuevoMegusta);
         // Obtener el número actual de "Me gusta" para la publicación
         const numMgActualizado = await MeGusta.count({ id_publicacion: id_publicacion });
   

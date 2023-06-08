@@ -33,6 +33,7 @@ export class InicioComponent implements OnInit {
         }
       );
     });
+
   }
 
   checkInput() {
@@ -106,7 +107,7 @@ export class InicioComponent implements OnInit {
       }
     );
   }
-  reloadPage() {
+  recargarPagina() {
     this.renderer.setProperty(window, 'location', window.location.href);
   }
   
