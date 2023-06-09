@@ -14,6 +14,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { PerfilComponent } from './perfil/perfil.component';
+import { InitialsAvatarComponent } from './initials-avatar/initials-avatar.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     LoginComponent,
     InicioComponent,
     PerfilComponent,
+    InitialsAvatarComponent,
     
   ],
   imports: [

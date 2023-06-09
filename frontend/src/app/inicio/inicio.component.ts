@@ -11,11 +11,12 @@ import { BackendService } from '../services/backend.service';
 export class InicioComponent implements OnInit {
   isDisabled: boolean = true;
   id: any;
-  usuario: any;
+  usuario!: any;
   contenido: string = '';
   imagen: File | undefined;
   publicaciones: any[] = [];
   usuarioSeguidos: any[] = [];
+  foto!: boolean;
 
   constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
 
@@ -25,6 +26,7 @@ export class InicioComponent implements OnInit {
         response => {
           this.usuario = response;
           this.id = this.usuario.id;
+          this.fotoPerfil(this.usuario);
           this.obtenerUsuariosSeguidos(this.id);
           this.listarPublicaciones(this.id);
         },
@@ -35,7 +37,6 @@ export class InicioComponent implements OnInit {
     });
 
   }
-
   checkInput() {
     if (this.contenido.trim() !== '') {
       this.isDisabled = false;
@@ -71,6 +72,10 @@ export class InicioComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  fotoPerfil(usuario: any) {
+    usuario.foto_perfil ? this.foto : !this.foto;
   }
 
   obtenerUsuariosSeguidos(userId: any) {

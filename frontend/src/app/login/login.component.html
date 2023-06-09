@@ -20,10 +20,8 @@
                 </div>
               </div>
               <div class="row">
-                
                 <div class="col">
-                  <p>¿No tienes una cuenta? <a class="text-primary text-decoration-none" routerLink="/signup">Regístrate</a></p>
-                    
+                  <p *ngIf="!registrado">¿No tienes una cuenta? <a class="text-primary text-decoration-none" routerLink="/signup">Regístrate</a></p>
                 </div>
               </div>  
   

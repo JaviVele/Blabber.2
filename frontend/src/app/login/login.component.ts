@@ -11,6 +11,7 @@ export class LoginComponent {
   nombre_arroba: string = '';
   contrasena: string = '';
   submitted: boolean = false;
+  registrado: boolean = true;
 
   constructor(private backendService: BackendService, private router: Router) { }
 
@@ -25,12 +26,14 @@ export class LoginComponent {
 
       this.backendService.comprobarUsuario(data).subscribe(
         response => {
-          console.log(response);
+          this.registrado = true;
           let id = response.usuario.id;
           this.router.navigate(['/inicio', id]);
         },
         error => {
           console.error(error);
+          this.registrado = false;
+
         }
       );
     }
