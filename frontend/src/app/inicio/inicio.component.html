@@ -105,9 +105,12 @@
     </div>
     <div class="col-10 col-md-6 border-end p-0">
       <div class="tweet-box border-bottom p-3">
-        <div class="avatar">
+        <div class="avatar" *ngIf="foto; else inicial" >
           <img src="../../assets/avatar.jpg" alt="Avatar">
         </div>
+        <ng-template #inicial>
+          <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
+        </ng-template>
         <div class="mensaje">
           <form (ngSubmit)="onSubmit()">
             <input type="text" [(ngModel)]="contenido" name="contenido" placeholder="Escribe tu mensaje..."
