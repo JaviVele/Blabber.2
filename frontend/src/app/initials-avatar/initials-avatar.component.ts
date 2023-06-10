@@ -14,7 +14,6 @@ export class InitialsAvatarComponent implements OnInit {
   backgroundColor!: string;
 
   ngOnInit() {
-    console.log(this.name);
     const nameParts = this.name.split(' ');
     this.initials = nameParts.map(part => part[0]).join('').toUpperCase();
     this.backgroundColor = this.generateBackgroundColor();

@@ -106,7 +106,7 @@
     <div class="col-10 col-md-6 border-end p-0">
       <div class="tweet-box border-bottom p-3">
         <div class="avatar" *ngIf="foto; else inicial" >
-          <img src="../../assets/avatar.jpg" alt="Avatar">
+          <img [src]="'assets/' + usuario.foto_perfil" alt="Avatar">
         </div>
         <ng-template #inicial>
           <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
@@ -118,7 +118,7 @@
             <div class="button-container">
               <div>
                 <label for="upload" class="upload-icon">
-                  <img src="imagen.svg" alt="imagen">
+                  <mat-icon>image</mat-icon>
                 </label>
                 <input id="upload" class="upload-button" type="file" accept="image/*" (change)="onImageSelected($event)"
                   value="Subir" name="imagen">
@@ -136,7 +136,7 @@
           <div class="nombre-info">
             <ng-container *ngIf="usuarioSeguidos.length === 0">
               <div class="avatar" *ngIf="foto; else inicial" >
-                <img src="../../assets/avatar.jpg" alt="Avatar">
+                <img [src]="'assets/' + usuario.foto_perfil" alt="Avatar">
               </div>
               <ng-template #inicial>
                 <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
@@ -144,45 +144,54 @@
               <!-- Mostrar el tiempo si no hay usuarios seguidos -->
               <p>{{ usuario.nombre_usuario }} {{ usuario.nombre_arroba }} · {{ getTimeElapsed(publicacion.fecha_publicacion) }}</p>
             </ng-container>
-            <div *ngFor="let usuarioSeguido of usuarioSeguidos">
-              <ng-container *ngIf="publicacion.id_usuario === usuario.id; else elseBlock">
-                <!-- Mostrar tu propio usuario -->
-                <div class="avatar" *ngIf="foto; else inicial" >
-                  <img src="../../assets/avatar.jpg" alt="Avatar">
-                </div>
-                <ng-template #inicial>
-                  <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
-                </ng-template>
-                <p>{{ usuario.nombre_usuario }} {{ usuario.nombre_arroba }} · {{ getTimeElapsed(publicacion.fecha_publicacion) }}</p>
-              </ng-container>
-              <ng-template #elseBlock>
+            <ng-container *ngIf="publicacion.id_usuario === usuario.id; else elseBlock">
+              <!-- Mostrar tu propio usuario -->
+              <div class="avatar" *ngIf="foto; else inicial" >
+                <img [src]="'assets/' + usuario.foto_perfil" alt="Avatar">
+              </div>
+              <ng-template #inicial>
+                <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
+              </ng-template>
+              <p>{{ usuario.nombre_usuario }} {{ usuario.nombre_arroba }} · {{ getTimeElapsed(publicacion.fecha_publicacion) }}</p>
+              <p>{{ publicacion.contenido.mensaje }}</p>
+              <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
+                <button class="btn-like" (click)="darMeGusta(publicacion)">
+                  <mat-icon>
+                    <span [ngStyle]="{'color': publicacion.num_mg==0 ? 'transparent' : 'red',
+                    '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'}">
+                    favorite
+                  </span>
+                </mat-icon>
+                <span>{{ publicacion.num_mg }}</span></button>
+              <hr class="hrpubli border border-2">
+
+            </ng-container>
+            <ng-template #elseBlock>
+              <div *ngFor="let usuarioSeguido of usuarioSeguidos">
                 <!-- Mostrar los usuarios seguidos -->
-                <div class="avatar" *ngIf="foto; else inicial" >
-                  <img src="../../assets/avatar.jpg" alt="Avatar">
+                <div class="avatar" *ngIf="fotoSeguido; else inicial" >
+                  <img [src]="'assets/' + usuarioSeguido.seguido_id.foto_perfil" alt="Avatar">
                 </div>
                 <ng-template #inicial>
                   <app-initials-avatar name="{{usuarioSeguido.seguido_id.nombre_usuario}}"></app-initials-avatar>
                 </ng-template>
                 
                 <p>{{ usuarioSeguido.seguido_id.nombre_usuario }} {{ usuarioSeguido.seguido_id.nombre_arroba }} · {{ getTimeElapsed(publicacion.fecha_publicacion) }}</p>
+                <p>{{ publicacion.contenido.mensaje }}</p>
+                <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
+                <button class="btn-like" (click)="darMeGusta(publicacion)">
+                  <mat-icon>
+                    <span [ngStyle]="{'color': publicacion.num_mg==0 ? 'transparent' : 'red',
+                    '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'}">
+                    favorite
+                  </span>
+                </mat-icon>
+                <span>{{ publicacion.num_mg }}</span></button>
+                <hr class="hrpubli border border-2">
+              </div>
               </ng-template>
-            </div>
           </div>
-          
-         
-          <p>{{ publicacion.contenido.mensaje }}</p>
-          <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
-          <button class="btn-like" (click)="darMeGusta(publicacion)">
-            <mat-icon>
-              <span [ngStyle]="{'color': publicacion.num_mg==0 ? 'transparent' : 'red',
-               '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'}">
-               favorite
-              </span>
-            </mat-icon>
-            <span>{{ publicacion.num_mg }}</span></button>
-
         </div>
-        <hr class="hrpubli border border-2">
       </div>
       
       

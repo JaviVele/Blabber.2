@@ -16,8 +16,8 @@ export class InicioComponent implements OnInit {
   imagen: File | undefined;
   publicaciones: any[] = [];
   usuarioSeguidos: any[] = [];
-  foto!: boolean;
-
+  foto: boolean = false;
+  fotoSeguido: boolean = false;
   constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
 
   ngOnInit(): void {
@@ -65,7 +65,6 @@ export class InicioComponent implements OnInit {
 
     this.backandService.registrarPublicacion(publicacion).subscribe(
       response => {
-        console.log(response);
         this.listarPublicaciones(this.id);
       },
       error => {
@@ -75,14 +74,22 @@ export class InicioComponent implements OnInit {
   }
 
   fotoPerfil(usuario: any) {
-    usuario.foto_perfil ? this.foto : !this.foto;
+    if (usuario.foto_perfil) {
+      this.foto = true;
+    }
+  }
+  fotoUsuariSeguido(usuario: any){
+    if (usuario.foto_perfil) {
+      this.fotoSeguido = true;
+    }
   }
 
   obtenerUsuariosSeguidos(userId: any) {
     this.backandService.obtenerUsuariosSeguidos(userId).subscribe(
       response => {
         this.usuarioSeguidos = response;
-        console.log(response);
+        this.fotoUsuariSeguido(this.usuarioSeguidos);
+
       },
       error => {
         console.error(error);
