@@ -9,6 +9,7 @@
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
     "body-parser": "^1.20.2",
+    "cloudinary": "^1.37.1",
     "cors": "^2.8.5",
     "grunt": "1.0.4",
     "moment": "^2.29.4",
@@ -20,7 +21,8 @@
     "sails-hook-orm": "^4.0.0",
     "sails-hook-sockets": "^2.0.0",
     "sails-mysql": "^3.0.1",
-    "skipper": "^0.9.3"
+    "skipper": "^0.9.3",
+    "skipper-cloudinary": "^0.1.1"
   },
   "devDependencies": {
     "eslint": "5.16.0"
@@ -43,4 +45,3 @@
     "node": "^18.16"
   }
 }
-

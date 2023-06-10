@@ -13,7 +13,7 @@ export class InicioComponent implements OnInit {
   id: any;
   usuario!: any;
   contenido: string = '';
-  imagen: File | undefined;
+  imagen: any;
   publicaciones: any[] = [];
   usuarioSeguidos: any[] = [];
   foto: boolean = false;
@@ -46,23 +46,26 @@ export class InicioComponent implements OnInit {
   }
 
   onImageSelected(event: any) {
-    const file: File = event.target.files[0].name;
+    const file: File = event.target.files[0];
     this.imagen = file;
     console.log(this.imagen);
   }
 
   onSubmit() {
+    console.log(this.imagen);
+    const formData = new FormData();
+    formData.append('mensaje', this.contenido);
+    formData.append('imagen', this.imagen,this.imagen.name);
+  
     const publicacion = {
-      contenido: {
-        mensaje: this.contenido,
-        imagen: this.imagen ? this.imagen : ''
-      },
+      contenido: this.contenido,
       fecha_publicacion: new Date().toISOString(),
       num_mg: 0,
       num_comentarios: 0,
-      id_usuario: this.usuario.id
+      id_usuario: this.usuario.id,
+      imagen: this.imagen
     };
-
+  
     this.backandService.registrarPublicacion(publicacion).subscribe(
       response => {
         this.listarPublicaciones(this.id);
@@ -72,6 +75,7 @@ export class InicioComponent implements OnInit {
       }
     );
   }
+  
 
   fotoPerfil(usuario: any) {
     if (usuario.foto_perfil) {

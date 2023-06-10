@@ -13,6 +13,7 @@ module.exports.http = {
       
       // ...
     ],
+    
     //bodyParser: require('body-parser').json(),
     // ...
     cors: (function() {
@@ -33,8 +34,11 @@ module.exports.http = {
     //   });
     //   return middlewareFn;
     // })(),
-    // ...
+    
+   
   },
+  
+  
   // ...
 };
 

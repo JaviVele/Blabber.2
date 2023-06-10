@@ -35,12 +35,21 @@ export class BackendService {
   }
 
   registrarPublicacion(publicacion: any): Observable<any> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
+    const formData = new FormData();
+    formData.append('contenido', publicacion.contenido);
+    formData.append('fecha_publicacion', publicacion.fecha_publicacion);
+    formData.append('num_mg', publicacion.num_mg);
+    formData.append('num_comentarios', publicacion.num_comentarios);
+    formData.append('id_usuario', publicacion.id_usuario);
+    formData.append('imagen', publicacion.imagen);
+  
     const url = 'http://localhost:1337/';
-   
-    return this.http.post(url + 'publicaciones', publicacion,{headers});
+  
+    return this.http.post(url + 'publicaciones', formData);
   }
+  
+  
+  
 
   listarPublicaciones(): Observable<any[]> {
     const url = 'http://localhost:1337/publicaciones';

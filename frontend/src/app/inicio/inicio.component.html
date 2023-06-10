@@ -155,7 +155,7 @@
               <p>{{ publicacion.usuario.nombre_usuario }} {{ publicacion.usuario.nombre_arroba }} · {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
             </ng-template>
             <p>{{ publicacion.contenido.mensaje }}</p>
-            <img *ngIf="publicacion.contenido.imagen" [src]="'assets/' + publicacion.contenido.imagen" alt="Imagen de la publicación">
+            <img *ngIf="publicacion.contenido.imagen" src="{{publicacion.contenido.imagen}}" alt="Imagen de la publicación">
             <button class="btn-like" (click)="darMeGusta(publicacion)">
               <mat-icon>
                 <span [ngStyle]="{'color': publicacion.num_mg==0 ? 'transparent' : 'red',
@@ -193,7 +193,7 @@
                 <p>{{ publicacion.usuario.nombre_usuario }} {{ publicacion.usuario.nombre_arroba }} · {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
               </ng-template>
               <p>{{ publicacion.contenido.mensaje }}</p>
-              <img *ngIf="publicacion.contenido.imagen" src="publicacion.contenido.imagen" alt="Imagen de la publicación">
+              <img *ngIf="publicacion.contenido.imagen" src="{{publicacion.contenido.imagen}}" alt="Imagen de la publicación">
               <button class="btn-like" (click)="darMeGusta(publicacion)">
                 <mat-icon>
                   <span [ngStyle]="{'color': publicacion.num_mg==0 ? 'transparent' : 'red',

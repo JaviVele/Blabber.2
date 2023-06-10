@@ -4,41 +4,64 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-
+const cloudinary = require('cloudinary').v2;
+const path = require('path');
 //const Publicacion = require("../models/Publicacion");
-const multer = require('multer');
-const fs = require('fs');
+cloudinary.config({
+  cloud_name: 'dvvoon3qo',
+  api_key: '166311839662986',
+  api_secret: 'HPBj4wE3lryIXHbd72YCIytJ250'
+})
 // Configurar el middleware Multer para manejar la carga de archivos
-const upload = multer({
-  dest: 'uploads/' // Especifica la carpeta de destino donde se guardarán los archivos adjuntos
-});
+
 module.exports = {
-    crear: async function (req, res) {
+ 
+
+
+    crear: function (req, res) {
       //console.log(req.body);
-      upload.single('imagen')
-        try {
-          const { contenido, fecha_publicacion, num_mg, num_comentarios, id_usuario } = req.body;
-          const imagen = req.body.contenido.imagen; // Obtener la información de la imagen adjunta
-    
-          // Aquí puedes procesar la imagen, como guardarla en una ubicación específica o realizar otras operaciones necesarias
-          const  mensaje  = contenido.mensaje;
-          const nuevaPublicacion = await Publicacion.create({
-            contenido: {
-              mensaje,
-              imagen
-            },
-            fecha_publicacion,
-            num_mg,
-            num_comentarios,
-            id_usuario
-          }).fetch();
-          
-    
-          res.status(200).json({ mensaje: 'Publicacion creada exitosamente', publicacion: nuevaPublicacion });
-        } catch (error) {
-          res.status(500).json({ error: 'Error al crear la publicación' });
+      //console.log(req.file('imagen'));
+      req.file('imagen').upload(function (err, uploadedFiles) {
+        if (err) {
+          return res.send(500, err);
         }
-      },
+  
+        if (!uploadedFiles || uploadedFiles.length === 0) {
+          return res.badRequest('No se ha seleccionado ningún archivo.');
+        }
+  
+        cloudinary.uploader.upload(uploadedFiles[0].fd, async function (error, result) {
+          if (error) {
+            return res.send(500, error);
+          }
+  
+          const { contenido, fecha_publicacion, num_mg, num_comentarios, id_usuario } = req.body;
+          let mensaje =req.body.contenido;
+          //console.log(mensaje);
+          try {
+            const nuevaPublicacion = await Publicacion.create({
+              contenido: {
+                mensaje: mensaje,
+                imagen: result.secure_url
+              },
+              fecha_publicacion,
+              num_mg,
+              num_comentarios,
+              id_usuario
+            }).fetch();
+  
+            return res.status(200).json({ mensaje: 'Publicacion creada exitosamente', publicacion: nuevaPublicacion });
+          } catch (error) {
+            return res.status(500).json({ error: 'Error al crear la publicación' });
+          }
+        });
+      });
+    },
+
+  
+      
+    
+    
     
       listar: async function (req, res) {
         try {
@@ -85,7 +108,21 @@ module.exports = {
         } catch (error) {
           res.status(500).json({ error: 'Error al eliminar la publicacion' });
         }
-      }
+      },
+
+      upload: function (req, res) {
+        req.file('imagen').upload(function (err, uploadedFiles) {
+          if (err) { 
+            return res.send(500, err);
+          } else {        
+            cloudinary.uploader.upload(uploadedFiles[0].fd, function(result) {
+              res.json(result);
+            });
+          }
+        });
+      },
+    
+      
 
 };
 

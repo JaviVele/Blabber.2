@@ -60,15 +60,15 @@ export class PerfilComponent implements OnInit {
       id_usuario: this.usuario.id
     };
 
-    this.backandService.registrarPublicacion(publicacion).subscribe(
-      response => {
-        console.log(response);
-        this.listarPublicaciones(this.id);
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    // this.backandService.registrarPublicacion(publicacion).subscribe(
+    //   response => {
+    //     console.log(response);
+    //     this.listarPublicaciones(this.id);
+    //   },
+    //   error => {
+    //     console.error(error);
+    //   }
+    // );
   }
 
   obtenerUsuariosSeguidos(userId: any) {
