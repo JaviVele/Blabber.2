@@ -40,13 +40,7 @@
                     </button>
                   </div>
                 </div>
-                <div class="row mt-5">
-                  <div class="col-12 d-flex justify-content-center">
-                    <button class="custom-button">
-                      <p class="text"><img class="icon" src="../../assets/sliders2.svg">Configuración</p>
-                    </button>
-                  </div>
-                </div>
+                
               </div>
 
 
@@ -91,13 +85,7 @@
                             </button>
                           </div>
                         </div>
-                        <div class="row mt-5">
-                          <div class="col-12 d-flex justify-content-center">
-                            <button class="custom-button">
-                              <p class="text"><img class="icon" src="../../assets/sliders2.svg">Configuración</p>
-                            </button>
-                          </div>
-                        </div>
+                        
                       </div>
                 </div>
             </div>
@@ -121,7 +109,7 @@
                 <div class="perfil">
                     <div class="perfil-header">
                       <div class="avatar" *ngIf="foto; else inicial" >
-                        <img [src]="'assets/' + usuario.foto_perfil" alt="Avatar">
+                        <img [src]="usuario.foto_perfil" alt="Avatar">
                       </div>
                       <ng-template #inicial>
                         <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
@@ -132,7 +120,7 @@
                         <h3>{{usuario.nombre_usuario}}</h3>
                         <p>{{usuario.nombre_arroba}}</p>
                         <br>
-                        <p>{{usuario.fecha_creacion}} <mat-icon>date_range</mat-icon></p>
+                        <p>{{usuario.fecha_nacimiento}} <mat-icon>date_range</mat-icon></p>
                         <div class="perfil-usuario_follow">
                             <p>{{usuario.seguidos}} seguidos</p>
                             <p>{{usuario.seguidores}} seguidores</p>
@@ -160,12 +148,7 @@
         </div>
         <div class="col ultima p-0">
             <div class="container">
-                <form action="" method="post">
-                    <div class="container-buscador">
-                        <label for="buscador" id="icono"><mat-icon>search</mat-icon></label>
-                        <input type="text" name="buscador" id="buscador" placeholder="Buscar Blabber">
-                    </div>
-                </form>
+                
                 <div class="tendencia">
                     <h3 class="tendencia-titulo">No pasa nada</h3>
 

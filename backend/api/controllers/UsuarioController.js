@@ -53,7 +53,7 @@ module.exports = {
     
     //console.log(req.file('foto_perfil'));
     const usuario = await Usuario.find({ id: req.param('id') });
-    console.log(usuario);
+    //console.log(usuario);
     
     
     req.file('foto_perfil').upload(async function (err, uploadedFiles) {

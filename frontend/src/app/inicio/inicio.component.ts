@@ -208,6 +208,7 @@ export class InicioComponent implements OnInit {
         );
     }
     this.cerrarPopUp();
+    
   }
   
   

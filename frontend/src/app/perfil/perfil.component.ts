@@ -27,6 +27,7 @@ export class PerfilComponent implements OnInit {
           this.usuario = response;
           this.id = this.usuario.id;
           this.listarPublicaciones(this.id);
+          this.fotoPerfil(this.usuario);
         },
         error => {
           console.log(error);
@@ -86,6 +87,11 @@ export class PerfilComponent implements OnInit {
       
     });
     
+  }
+  fotoPerfil(usuario: any) {
+    if (usuario.foto_perfil) {
+      this.foto = true;
+    }
   }
   
 }

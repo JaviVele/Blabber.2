@@ -1,4 +1,4 @@
-import { Component, Inject, Renderer2 } from '@angular/core';
+import { Component, Inject, Renderer2, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BackendService } from '../services/backend.service';
 
@@ -7,18 +7,44 @@ import { BackendService } from '../services/backend.service';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
 })
-export class DialogComponent {
+export class DialogComponent implements OnInit {
   constructor(private backandService: BackendService,
     private renderer: Renderer2,
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+      console.log(data);
   }
-
-  datosUsuario!: any;
-
+  
+  datosUsuario: any = {};
+  fechaFormateada: any;
   onClose(): void {
     this.dialogRef.close();
   }
+  ngOnInit(): void {
+    const fecha_nacimiento = new Date(this.data.usuario.fecha_nacimiento);
+   
+    const dia = fecha_nacimiento.getDate();
+    const mes = fecha_nacimiento.getMonth() + 1; // Los meses en JavaScript se indexan desde 0
+    const anio = fecha_nacimiento.getFullYear();
+
+  // Formatear la fecha como "dd/mm/aaaa"
+    const fechaFormateada = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
+    console.log(fechaFormateada);
+    this.datosUsuario.biografia = this.data.usuario.biografia;
+    this.datosUsuario.fecha_nacimiento = fechaFormateada;
+    this.datosUsuario.nombre_usuario = this.data.usuario.nombre_usuario;
+    console.log(this.datosUsuario);
+  }
+
+  
+  
+  onFechaNacimientoChange(value: any) {
+    const fecha = value.target.value;
+    this.datosUsuario.fecha_nacimiento = fecha;
+  }
+  
+    // Resto de tu código
+  
   
   
  
@@ -26,10 +52,10 @@ export class DialogComponent {
   submitForm() {
     this.datosUsuario = {
       id: this.data.usuario.id,
-      nombre_usuario: this.data.usuario.nombre_usuario,
-      foto_perfil: this.data.usuario.foto_perfil,
-      biografia: this.data.usuario.biografia,
-      fecha_nacimiento: this.data.usuario.fecha_nacimiento
+      nombre_usuario: this.datosUsuario.nombre_usuario,
+      foto_perfil: this.datosUsuario.foto_perfil,
+      biografia: this.datosUsuario.biografia,
+      fecha_nacimiento: this.datosUsuario.fecha_nacimiento,
     };
     this.backandService.actualizarPerfil(this.datosUsuario).subscribe(
       response => {
