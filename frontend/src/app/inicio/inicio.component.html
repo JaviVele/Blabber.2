@@ -137,45 +137,48 @@
           <div class="publicacion" *ngIf="publicacion.id_usuario === usuario.id">
             <div *ngIf="publicacion.id_usuario === usuario.id; then userAvatar else seguidoAvatar"></div>
             <ng-template #userAvatar>
-              <div class="avatar" *ngIf="foto; else inicial" >
+              <div class="avatar" *ngIf="foto; else inicial">
                 <img [src]="'assets/' + usuario.foto_perfil" alt="Avatar">
               </div>
               <ng-template #inicial>
-                <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
+                <app-initials-avatar name="{{ usuario.nombre_usuario }}"></app-initials-avatar>
               </ng-template>
-              <p>{{ usuario.nombre_usuario }} {{ usuario.nombre_arroba }} · {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
+              <p>{{ usuario.nombre_usuario }} {{ usuario.nombre_arroba }} · {{ getTimeElapsed(publicacion.fecha_publicacion) }}</p>
             </ng-template>
             <ng-template #seguidoAvatar>
-              <div class="avatar" *ngIf="foto; else inicial" >
+              <div class="avatar" *ngIf="foto; else inicial">
                 <img [src]="'assets/' + usuario.foto_perfil" alt="Avatar">
               </div>
               <ng-template #inicial>
-                <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
+                <app-initials-avatar name="{{ usuario.nombre_usuario }}"></app-initials-avatar>
               </ng-template>
-              <p>{{ publicacion.usuario.nombre_usuario }} {{ publicacion.usuario.nombre_arroba }} · {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
+              <p>{{ publicacion.usuario.nombre_usuario }} {{ publicacion.usuario.nombre_arroba }} · {{ getTimeElapsed(publicacion.fecha_publicacion) }}</p>
             </ng-template>
             <p>{{ publicacion.contenido.mensaje }}</p>
-            <img *ngIf="publicacion.contenido.imagen" src="{{publicacion.contenido.imagen}}" alt="Imagen de la publicación">
+            <img *ngIf="publicacion.contenido.imagen" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
             <button class="btn-like" (click)="darMeGusta(publicacion)">
               <mat-icon>
-                <span [ngStyle]="{'color': publicacion.num_mg==0 ? 'transparent' : 'red',
-                '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'}">
-                favorite
+                <span [ngStyle]="{
+                  'color': publicacion.num_mg==0 ? 'transparent' : 'red',
+                  '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'
+                }">
+                  favorite
                 </span>
               </mat-icon>
               <span>{{ publicacion.num_mg }}</span>
             </button>
             <hr class="hrpubli border border-2">
+            <button class="btn-responder" (click)="abrirPopUp(publicacion.id)">Responder</button>
+            <span class="contador-mensajes">{{ publicacion.num_respuestas }}</span>
           </div>
         </div>
       
-        <!-- Mostrar las publicaciones de los usuarios seguidos, incluyendo las nuevas publicaciones -->
         <ng-container *ngFor="let usuarioSeguido of usuarioSeguidos">
           <div *ngFor="let publicacion of publicaciones">
             <div class="publicacion" *ngIf="publicacion.id_usuario === usuarioSeguido.seguido_id.id">
               <div *ngIf="publicacion.id_usuario === usuarioSeguido.seguido_id.id; then userAvatar else seguidoAvatar"></div>
               <ng-template #userAvatar>
-                <div class="avatar" *ngIf="foto; else inicial" >
+                <div class="avatar" *ngIf="foto; else inicial">
                   <img [src]="'assets/' + usuarioSeguido.seguido_id.foto_perfil" alt="Avatar">
                 </div>
                 <ng-template #inicial>
@@ -184,7 +187,7 @@
                 <p>{{ usuarioSeguido.seguido_id.nombre_usuario }} {{ usuarioSeguido.seguido_id.nombre_arroba }} · {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
               </ng-template>
               <ng-template #seguidoAvatar>
-                <div class="avatar" *ngIf="foto; else inicial" >
+                <div class="avatar" *ngIf="foto; else inicial">
                   <img [src]="'assets/' + usuario.foto_perfil" alt="Avatar">
                 </div>
                 <ng-template #inicial>
@@ -193,7 +196,7 @@
                 <p>{{ publicacion.usuario.nombre_usuario }} {{ publicacion.usuario.nombre_arroba }} · {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
               </ng-template>
               <p>{{ publicacion.contenido.mensaje }}</p>
-              <img *ngIf="publicacion.contenido.imagen" src="{{publicacion.contenido.imagen}}" alt="Imagen de la publicación">
+              <img *ngIf="publicacion.contenido.imagen" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
               <button class="btn-like" (click)="darMeGusta(publicacion)">
                 <mat-icon>
                   <span [ngStyle]="{'color': publicacion.num_mg==0 ? 'transparent' : 'red',
@@ -204,21 +207,25 @@
                 <span>{{ publicacion.num_mg }}</span>
               </button>
               <hr class="hrpubli border border-2">
+              <button class="btn-responder" (click)="abrirPopUp(publicacion.id)">Responder</button>
+              <span class="contador-mensajes">{{ publicacion.num_respuestas }}</span>
             </div>
           </div>
         </ng-container>
+      
+        <!-- Pop-up de respuesta -->
+        <div class="popup" *ngIf="mostrarPopUp">
+          <textarea [(ngModel)]="nuevaRespuesta" placeholder="Escribe tu respuesta"></textarea>
+          <button (click)="agregarRespuesta(publicaciones)">Enviar</button>
+          <button (click)="cerrarPopUp()">Cerrar</button>
+        </div>
       </div>
       
       
       
-      
-      
-      
-      
-      
-      
-      
     </div>
+      
+    
     <div class="col ultima p-0">
       <div class="container">
         <form action="" method="post">
@@ -251,5 +258,4 @@
         </nav>
       </div>
     </div>
-  </div>
 </div>

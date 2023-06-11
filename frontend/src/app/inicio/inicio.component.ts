@@ -18,6 +18,10 @@ export class InicioComponent implements OnInit {
   usuarioSeguidos: any[] = [];
   foto: boolean = false;
   fotoSeguido: boolean = false;
+  nuevaRespuesta: string = '';
+  mostrarPopUp = false;
+  publicacionSeleccionadaId: number = 0;
+
   constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
 
   ngOnInit(): void {
@@ -53,9 +57,6 @@ export class InicioComponent implements OnInit {
 
   onSubmit() {
     console.log(this.imagen);
-    const formData = new FormData();
-    formData.append('mensaje', this.contenido);
-    formData.append('imagen', this.imagen,this.imagen.name);
   
     const publicacion = {
       contenido: this.contenido,
@@ -63,7 +64,7 @@ export class InicioComponent implements OnInit {
       num_mg: 0,
       num_comentarios: 0,
       id_usuario: this.usuario.id,
-      imagen: this.imagen
+      imagen: this.imagen,
     };
   
     this.backandService.registrarPublicacion(publicacion).subscribe(
@@ -160,6 +161,43 @@ export class InicioComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  abrirPopUp(publicacionId: number) {
+    this.mostrarPopUp = true;
+    this.publicacionSeleccionadaId = publicacionId;
+    // Lógica adicional para obtener y configurar la publicación correspondiente al publicacionId si es necesario
+  }
+
+  cerrarPopUp() {
+    this.mostrarPopUp = false;
+    this.nuevaRespuesta = '';
+  }
+
+  agregarRespuesta(publicacion: any) {
+    if (this.nuevaRespuesta !== '') {
+      const nuevoComentario = {
+        contenido: this.nuevaRespuesta,
+        fecha_contenido: new Date().toISOString(),
+        num_mg: 0,
+      };
+      console.log(this.publicacionSeleccionadaId);
+      this.backandService.agregarRespuesta(this.publicacionSeleccionadaId, this.usuario.id, nuevoComentario)
+      
+        .subscribe(
+          (response) => {
+            // La respuesta se ha agregado correctamente en el servidor
+            //publicacion.comentarios.push(nuevoComentario);
+            
+            this.nuevaRespuesta = '';
+          },
+          (error) => {
+            // Manejar el error en caso de fallo en la solicitud
+            console.error(error);
+          }
+        );
+    }
+    this.cerrarPopUp();
   }
   
   

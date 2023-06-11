@@ -42,6 +42,7 @@ export class BackendService {
     formData.append('num_comentarios', publicacion.num_comentarios);
     formData.append('id_usuario', publicacion.id_usuario);
     formData.append('imagen', publicacion.imagen);
+    console.log(formData);
   
     const url = 'http://localhost:1337/';
   
@@ -72,6 +73,22 @@ export class BackendService {
     console.log(data);
   
     return this.http.post<any>('http://localhost:1337/megustas', data);
+  }
+
+  agregarRespuesta(idPublicacion: number, idUsuario: number, nuevoComentario: any): Observable<any> {
+    const url = 'http://localhost:1337/comentarios';
+     // Ruta del controlador en Sails
+    const respuesta = {
+      contenido: nuevoComentario.contenido,
+      fecha_contenido: nuevoComentario.fecha_contenido,
+      num_mg: nuevoComentario.num_mg,
+      id_usuario: idUsuario,
+      id_publicaciones: idPublicacion
+  };
+
+  console.log(respuesta);
+
+    return this.http.post(url, respuesta);
   }
   
 }

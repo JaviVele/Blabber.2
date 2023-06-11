@@ -339,3 +339,44 @@ nav {
   -webkit-text-stroke: 2px black;
   color: transparent;
 }
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+.popup textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+  resize: none;
+}
+
+.popup button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.popup button:hover {
+  background-color: #45a049;
+}
+
+.popup button:last-child {
+  background-color: #f44336;
+}
+
+.popup button:last-child:hover {
+  background-color: #d32f2f;
+}
+
