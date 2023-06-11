@@ -120,9 +120,12 @@
                 </div>
                 <div class="perfil">
                     <div class="perfil-header">
-                        <div class="avatar">
-                            <img src="../../assets/avatar.jpg" alt="Avatar">
-                        </div>
+                      <div class="avatar" *ngIf="foto; else inicial" >
+                        <img [src]="'assets/' + usuario.foto_perfil" alt="Avatar">
+                      </div>
+                      <ng-template #inicial>
+                        <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
+                      </ng-template>
                         <button class="boton" (click)="openDialog()">Editar perfil</button>
                     </div>
                     <div class="perfil-usuario">

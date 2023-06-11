@@ -13,6 +13,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class PerfilComponent implements OnInit {
   id: any;
   usuario: any;
+  foto: boolean = false;
 
   publicaciones: any[] = [];
 
