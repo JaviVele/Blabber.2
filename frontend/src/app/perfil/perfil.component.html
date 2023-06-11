@@ -1,3 +1,4 @@
+
 <div class="container-fluid text-center">
     <div class="row">
         <div class="col-2 col-md-3 border-end ">
@@ -63,57 +64,57 @@
                 <div class="offcanvas-body">
                     <div class="container mt-5">
                         <div class="row mt-5">
-                            <div class="col-12 d-flex justify-content-center">
-                                <button class="custom-button" routerLink="/inicio">
-                                    <p class="text"><img class="icon" src="../../assets/house-heart.svg">Inicio</p>
-                                </button>
-                            </div>
+                          <div class="col-12 d-flex justify-content-center">
+                            <button class="custom-button" [routerLink]="['/inicio', usuario.id]">
+                              <p class="text"><img class="icon" src="../../assets/house-heart.svg">Inicio</p>
+                            </button>
+                          </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-12 d-flex justify-content-center">
-                                <button class="custom-button">
-                                    <p class="text"><img class="icon" src="../../assets/bell.svg">Notificaciones</p>
-                                </button>
-                            </div>
+                          <div class="col-12 d-flex justify-content-center">
+                            <button class="custom-button">
+                              <p class="text"><img class="icon" src="../../assets/bell.svg">Notificaciones</p>
+                            </button>
+                          </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-12 d-flex justify-content-center">
-                                <button class="custom-button">
-                                    <p class="text"><img class="icon"
-                                            src="../../assets/envelope-open-heart.svg">Mensajes</p>
-                                </button>
-                            </div>
+                          <div class="col-12 d-flex justify-content-center">
+                            <button class="custom-button">
+                              <p class="text"><img class="icon" src="../../assets/envelope-open-heart.svg">Mensajes</p>
+                            </button>
+                          </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-12 d-flex justify-content-center">
-                                <button class="custom-button" routerLink="/perfil">
-                                    <p class="text"><img class="icon" src="../../assets/person.svg">Perfil</p>
-                                </button>
-                            </div>
+                          <div class="col-12 d-flex justify-content-center">
+                            <button class="custom-button" [routerLink]="['/perfil', usuario.id]" (click)="recargarPagina()">
+                              <p class="text"><img class="icon" src="../../assets/person.svg">Perfil</p>
+                            </button>
+                          </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-12 d-flex justify-content-center">
-                                <button class="custom-button">
-                                    <p class="text"><img class="icon" src="../../assets/sliders2.svg">Configuración</p>
-                                </button>
-                            </div>
+                          <div class="col-12 d-flex justify-content-center">
+                            <button class="custom-button">
+                              <p class="text"><img class="icon" src="../../assets/sliders2.svg">Configuración</p>
+                            </button>
+                          </div>
                         </div>
-                    </div>
+                      </div>
                 </div>
             </div>
 
 
         </div>
         <div class="col-10 col-md-6 border-end p-0">
-            <div class="flex-column tweet-box border-bottom">
+            <div class="flex-column tweet-box border-bottom m-0">
                 <div class="hero">
 
                 <div class="header">
-                    <button class="header-retroceder" title="Atras" tooltip="Atras"
-                        placement="top"><mat-icon>chevron_left</mat-icon></button>
+                    <button class="header-retroceder" title="Atras" tooltip="Atras" placement="top" [routerLink]="['/inicio', usuario.id]">
+                        <mat-icon>chevron_left</mat-icon>
+                    </button>
                     <div class="header-usuario">
-                        <h3>Albertito</h3>
-                        <p>0 Blabbers</p>
+                        <h3>{{usuario.nombre_usuario}}</h3>
+                        <p>{{publicaciones.length}} Blabbers</p>
                     </div>
 
                 </div>
@@ -122,16 +123,16 @@
                         <div class="avatar">
                             <img src="../../assets/avatar.jpg" alt="Avatar">
                         </div>
-                        <button class="boton">Editar perfil</button>
+                        <button class="boton" (click)="openDialog()">Editar perfil</button>
                     </div>
                     <div class="perfil-usuario">
-                        <h3>Albertito</h3>
-                        <p>@albertito</p>
+                        <h3>{{usuario.nombre_usuario}}</h3>
+                        <p>{{usuario.nombre_arroba}}</p>
                         <br>
-                        <p>fecha que se hizo el blabber</p>
+                        <p>{{usuario.fecha_creacion}} <mat-icon>date_range</mat-icon></p>
                         <div class="perfil-usuario_follow">
-                            <p>0 seguidos</p>
-                            <p>0 seguidores</p>
+                            <p>{{usuario.seguidos}} seguidos</p>
+                            <p>{{usuario.seguidores}} seguidores</p>
                         </div>
                     </div>
                 </div>
@@ -140,36 +141,19 @@
             </div>
             <div *ngFor="let publicacion of publicaciones">
                 <div class="publicacion">
-                    <div class="nombre-info">
-                        <ng-container *ngIf="usuarioSeguidos.length === 0">
+                    <div class="nombre-info">     
                             <!-- Mostrar el tiempo si no hay usuarios seguidos -->
-                            <p>{{ usuario.nombre_usuario }} {{ usuario.nombre_arroba }} · {{
-                                getTimeElapsed(publicacion.fecha_publicacion) }}</p>
-                        </ng-container>
-                        <div *ngFor="let usuarioSeguido of usuarioSeguidos">
-                            <ng-container *ngIf="publicacion.id_usuario === usuario.id; else elseBlock">
-                                <!-- Mostrar tu propio usuario -->
-                                <p>{{ usuario.nombre_usuario }} {{ usuario.nombre_arroba }} · {{
-                                    getTimeElapsed(publicacion.fecha_publicacion) }}</p>
-                            </ng-container>
-                            <ng-template #elseBlock>
-                                <!-- Mostrar los usuarios seguidos -->
-                                <p>{{ usuarioSeguido.seguido_id.nombre_usuario }} {{
-                                    usuarioSeguido.seguido_id.nombre_arroba }} · {{
-                                    getTimeElapsed(publicacion.fecha_publicacion) }}</p>
-                            </ng-template>
-                        </div>
+                            <p class="nombre-info_p"><span>Publicado hace-</span> {{ getTimeElapsed(publicacion.fecha_publicacion) }}</p>
                     </div>
 
-
                     <p>{{ publicacion.contenido.mensaje }}</p>
-                    <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen"
+                    <div class="imagenPublicacion">
+                        <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen"
                         alt="Imagen de la publicación">
+                    </div>
                 </div>
                 <hr class="hrpubli border border-2">
             </div>
-
-
         </div>
         <div class="col ultima p-0">
             <div class="container">

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { PerfilComponent } from './perfil/perfil.component';
 import { InitialsAvatarComponent } from './initials-avatar/initials-avatar.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { InitialsAvatarComponent } from './initials-avatar/initials-avatar.compo
     InicioComponent,
     PerfilComponent,
     InitialsAvatarComponent,
+    DialogComponent,
     
   ],
   imports: [
@@ -34,7 +36,8 @@ import { InitialsAvatarComponent } from './initials-avatar/initials-avatar.compo
     MatCardModule,
     FormsModule,
     RouterModule,
-    MatIconModule,    
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

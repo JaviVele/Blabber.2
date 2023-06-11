@@ -44,7 +44,7 @@ module.exports = {
 
   actualizar: async function (req, res) {
     try {
-      const usuarioActualizado = await Usuario.updateOne({ id: req.params.id })
+      const usuarioActualizado = await Usuario.updateOne({ id: req.body.id })
         .set(req.body)
         .intercept((err) => {
           return res.status(404).json({ error: 'Usuario no encontrado' });

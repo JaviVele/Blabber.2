@@ -1,6 +1,9 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackendService } from '../services/backend.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+
 
 @Component({
   selector: 'app-perfil',
@@ -8,15 +11,13 @@ import { BackendService } from '../services/backend.service';
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
-  isDisabled: boolean = true;
   id: any;
   usuario: any;
-  contenido: string = '';
-  imagen: File | undefined;
-  publicaciones: any[] = [];
-  usuarioSeguidos: any[] = [];
 
-  constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
+  publicaciones: any[] = [];
+
+  constructor(private route: ActivatedRoute, private backandService: BackendService,
+     private renderer: Renderer2, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -24,7 +25,6 @@ export class PerfilComponent implements OnInit {
         response => {
           this.usuario = response;
           this.id = this.usuario.id;
-          this.obtenerUsuariosSeguidos(this.id);
           this.listarPublicaciones(this.id);
         },
         error => {
@@ -34,77 +34,17 @@ export class PerfilComponent implements OnInit {
     });
   }
 
-  checkInput() {
-    if (this.contenido.trim() !== '') {
-      this.isDisabled = false;
-    } else {
-      this.isDisabled = true;
-    }
-  }
-
-  onImageSelected(event: any) {
-    const file: File = event.target.files[0].name;
-    this.imagen = file;
-    console.log(this.imagen);
-  }
-
-  onSubmit() {
-    const publicacion = {
-      contenido: {
-        mensaje: this.contenido,
-        imagen: this.imagen ? this.imagen : ''
-      },
-      fecha_publicacion: new Date().toISOString(),
-      num_mg: 0,
-      num_comentarios: 0,
-      id_usuario: this.usuario.id
-    };
-
-    // this.backandService.registrarPublicacion(publicacion).subscribe(
-    //   response => {
-    //     console.log(response);
-    //     this.listarPublicaciones(this.id);
-    //   },
-    //   error => {
-    //     console.error(error);
-    //   }
-    // );
-  }
-
-  obtenerUsuariosSeguidos(userId: any) {
-    this.backandService.obtenerUsuariosSeguidos(userId).subscribe(
-      response => {
-        this.usuarioSeguidos = response;
-        console.log(response);
-      },
-      error => {
-        console.error(error);
-      }
-    );
-  }
 
   listarPublicaciones(userId: any) {
-    this.backandService.obtenerUsuariosSeguidos(userId).subscribe(
-      (response) => {
-        const usuariosSeguidos = response.map((seguido: any) => seguido.seguido_id.id);
-        usuariosSeguidos.push(userId); // Agregar el ID del usuario logueado
   
         this.backandService.listarPublicaciones().subscribe(
           (response) => {
-            this.publicaciones = response.filter((publicacion) => {
-              return usuariosSeguidos.includes(publicacion.id_usuario);
-            });
-          },
+            this.publicaciones = response;
+            },
           (error) => {
-            console.error(error);
+             console.error(error);
           }
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+        )};
 
   
 
@@ -119,11 +59,11 @@ export class PerfilComponent implements OnInit {
     const dias = Math.floor(horas / 24);
   
     if (dias > 0) {
-      return `${dias}d`;
+      return ` ${ dias} dias`;
     } else if (horas > 0) {
-      return `${horas}h`;
+      return ` ${ horas} horas`;
     } else if (minutos > 0) {
-      return `${minutos}m`;
+      return ` ${ minutos} minutos`;
     } else {
       return 'Ahora mismo';
     }
@@ -134,6 +74,17 @@ export class PerfilComponent implements OnInit {
   }
   
   
-  
+   openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: "50%",
+      height: "72%",
+      position: { top: "-20%", left: "25%" },
+      data: {"usuario" : this.usuario}
+      
+
+      
+    });
+    
+  }
   
 }

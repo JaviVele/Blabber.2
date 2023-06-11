@@ -73,6 +73,13 @@ export class BackendService {
   
     return this.http.post<any>('http://localhost:1337/megustas', data);
   }
+
+  actualizarPerfil(usuario: any): Observable<any> {
+   
+    const url = 'http://localhost:1337/';
+
+    return this.http.post(url + 'usuarios/actualizar', usuario);
+  }
   
 }
 
