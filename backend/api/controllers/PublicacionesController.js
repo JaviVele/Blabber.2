@@ -21,13 +21,32 @@ module.exports = {
     crear: function (req, res) {
       //console.log(req.body);
       //console.log(req.file('imagen'));
-      req.file('imagen').upload(function (err, uploadedFiles) {
+      req.file('imagen').upload(async function (err, uploadedFiles) {
         if (err) {
           return res.send(500, err);
         }
   
         if (!uploadedFiles || uploadedFiles.length === 0) {
-          return res.badRequest('No se ha seleccionado ningún archivo.');
+          //return res.badRequest('No se ha seleccionado ningún archivo.');
+          const { contenido, fecha_publicacion, num_mg, num_comentarios, id_usuario } = req.body;
+          let mensaje =req.body.contenido;
+          //console.log(mensaje);
+          try {
+            const nuevaPublicacion = await Publicacion.create({
+              contenido: {
+                mensaje: mensaje,
+                imagen: ''
+              },
+              fecha_publicacion,
+              num_mg,
+              num_comentarios,
+              id_usuario
+            }).fetch();
+  
+            return res.status(200).json({ mensaje: 'Publicacion creada exitosamente', publicacion: nuevaPublicacion });
+          } catch (error) {
+            return res.status(500).json({ error: 'Error al crear la publicación' });
+          }
         }
   
         cloudinary.uploader.upload(uploadedFiles[0].fd, async function (error, result) {
