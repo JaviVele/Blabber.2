@@ -92,8 +92,9 @@ module.exports = {
       },
     
       listarUno: async function(req, res) {
+        //console.log(req.params);
         try {
-          const publicacion = await Publicacion.findOne({ id: req.params.id });
+          const publicacion = await Publicacion.find({ id_usuario: req.params.id });
           if (!publicacion) {
             return res.notFound('Publicacion no encontrado');
           }

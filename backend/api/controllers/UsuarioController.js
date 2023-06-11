@@ -1,4 +1,11 @@
-
+const cloudinary = require('cloudinary').v2;
+const path = require('path');
+//const Publicacion = require("../models/Publicacion");
+cloudinary.config({
+  cloud_name: 'dvvoon3qo',
+  api_key: '166311839662986',
+  api_secret: 'HPBj4wE3lryIXHbd72YCIytJ250'
+})
 
 module.exports = {
   // api/controllers/UsuarioController.js
@@ -43,17 +50,67 @@ module.exports = {
   },
 
   actualizar: async function (req, res) {
-    try {
-      const usuarioActualizado = await Usuario.updateOne({ id: req.body.id })
-        .set(req.body)
-        .intercept((err) => {
-          return res.status(404).json({ error: 'Usuario no encontrado' });
-        });
+    
+    //console.log(req.file('foto_perfil'));
+    const usuario = await Usuario.find({ id: req.param('id') });
+    console.log(usuario);
+    
+    
+    req.file('foto_perfil').upload(async function (err, uploadedFiles) {
+      if (err) {
+        return res.send(500, err);
+      }
 
-      res.json(usuarioActualizado);
-    } catch (error) {
-      res.status(500).json({ error: 'Error al actualizar el usuario' });
-    }
+      if (!uploadedFiles || uploadedFiles.length === 0 || !uploadedFiles[0].fd) {
+        //return res.badRequest('No se ha seleccionado ningún archivo.');
+        
+        
+        //console.log(mensaje);
+        try {
+          const usuarioActualizado = await Usuario.update({ id: req.param('id') })
+            .set({
+              nombre_usuario: req.param('nombre_usuario'),
+              fecha_nacimiento: req.param('fecha_nacimiento'),
+              foto_perfil: usuario[0].foto_perfil,
+              biografia: req.param('biografia')
+            })
+            .intercept((err) => {
+              return res.status(404).json({ error: 'Usuario no encontrado' });
+            });
+
+          res.json(usuarioActualizado);
+        } catch (error) {
+          res.status(500).json({ error: 'Error al actualizar el usuario' });
+        }
+      }else{
+        cloudinary.uploader.upload(uploadedFiles[0].fd, async function (error, result) {
+          if (error) {
+            return res.send(500, error);
+          }
+          //console.log(uploadedFiles[0].fd);
+          try {
+            const usuarioActualizado = await Usuario.update({ id: req.param('id') })
+              .set({
+                nombre_usuario: req.body.nombre_usuario,
+                fecha_nacimiento: req.body.fecha_nacimiento,
+                foto_perfil: result.secure_url,
+                biografia: req.body.biografia
+              })
+              
+              .intercept((err) => {
+                return res.status(404).json({ error: 'Usuario no encontrado' });
+              });
+  
+            res.json(usuarioActualizado);
+          } catch (error) {
+            res.status(500).json({ error: 'Error al actualizar el usuario' });
+          }
+        });
+      }
+
+      
+    });
+    
   },
   eliminar: async function (req, res) {
     try {

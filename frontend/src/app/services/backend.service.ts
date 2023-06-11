@@ -76,10 +76,16 @@ export class BackendService {
   }
 
   actualizarPerfil(usuario: any): Observable<any> {
-   
     const url = 'http://localhost:1337/';
+    const formData = new FormData();
+    formData.append('id', usuario.id);
+    formData.append('nombre_usuario', usuario.nombre_usuario);
+    formData.append('fecha_nacimiento', usuario.fecha_nacimiento);
+    formData.append('foto_perfil', usuario.foto_perfil);
+    formData.append('biografia', usuario.biografia);
+    console.log(formData);
 
-    return this.http.post(url + 'usuarios/actualizar', usuario);
+    return this.http.post(url + 'usuarios/actualizar', formData);
   }
   agregarRespuesta(idPublicacion: number, idUsuario: number, nuevoComentario: any): Observable<any> {
     const url = 'http://localhost:1337/comentarios';
@@ -102,6 +108,11 @@ export class BackendService {
      
     console.log(publicacionId)// Reemplaza con la URL correcta para obtener los comentarios de la publicación
     return this.http.get(url);
+  }
+
+  listarPublicacionesUsuario(userId: any): Observable<any[]> {
+    const url = 'http://localhost:1337/publicaciones/' + userId;
+    return this.http.get<any[]>(url);
   }
   
 }

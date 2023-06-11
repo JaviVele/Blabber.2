@@ -14,18 +14,23 @@ export class DialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
+  datosUsuario!: any;
+
   onClose(): void {
     this.dialogRef.close();
   }
-  datosUsuario = {
-    id: this.data.usuario.id,
-    nombre_usuario: '',
-    foto_perfil: null,
-    biografia: '',
-    fecha_nacimiento: ''
-  };
-
+  
+  
+ 
+  
   submitForm() {
+    this.datosUsuario = {
+      id: this.data.usuario.id,
+      nombre_usuario: this.data.usuario.nombre_usuario,
+      foto_perfil: this.data.usuario.foto_perfil,
+      biografia: this.data.usuario.biografia,
+      fecha_nacimiento: this.data.usuario.fecha_nacimiento
+    };
     this.backandService.actualizarPerfil(this.datosUsuario).subscribe(
       response => {
         console.log(response);
@@ -34,14 +39,16 @@ export class DialogComponent {
         console.error(error);
       }
     );
-    this.onClose();
-    this.recargarPagina();
+    // this.onClose();
+    // this.recargarPagina();
   }
+  
 
   handleFileInput(event: any) {
     // Maneja el evento cuando se selecciona un archivo para la foto de perfil
     const file = event.target.files[0];
     this.datosUsuario.foto_perfil = file;
+    console.log(this.datosUsuario.foto_perfil);
   }
   recargarPagina() {
     this.renderer.setProperty(window, 'location', window.location.href);

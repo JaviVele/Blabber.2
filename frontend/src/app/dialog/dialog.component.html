@@ -26,7 +26,7 @@
               </div>
               <div class="form-group mb-3">
                 <label class="mb-2" for="fecha_nacimiento">Biografia</label>
-                <textarea type="date" class="form-control" id="fecha_nacimiento" [(ngModel)]="datosUsuario.biografia" name="fecha_nacimiento" required></textarea>
+                <textarea type="date" class="form-control" id="biografia" [(ngModel)]="datosUsuario.biografia" name="biografia" required></textarea>
               </div>
               <div class="form-group mb-3">
                 <div class="button-container">
@@ -35,8 +35,8 @@
                         Subir foto de Perfil 
                         <mat-icon class="perfil_imagen">image</mat-icon>
                       </label>
-                      <input id="upload" class="upload-button" type="file" accept="image/*"
-                  value="Subir" name="imagen" hidden>
+                      <input (change)="handleFileInput($event)" id="upload" class="upload-button" type="file" accept="image/*"
+                  value="Subir" name="foto_perfil" hidden>
                     </div>
                   </div>
                   

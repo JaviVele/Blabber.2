@@ -36,8 +36,8 @@ export class PerfilComponent implements OnInit {
 
 
   listarPublicaciones(userId: any) {
-  
-        this.backandService.listarPublicaciones().subscribe(
+        userId = this.id;
+        this.backandService.listarPublicacionesUsuario(userId).subscribe(
           (response) => {
             this.publicaciones = response;
             },
