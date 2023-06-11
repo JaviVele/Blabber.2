@@ -90,6 +90,13 @@ export class BackendService {
 
     return this.http.post(url, respuesta);
   }
+
+  obtenerComentarios(publicacionId: number) {
+    const url = 'http://localhost:1337/comentarios/' + publicacionId;
+     
+    console.log(publicacionId)// Reemplaza con la URL correcta para obtener los comentarios de la publicación
+    return this.http.get(url);
+  }
   
 }
 

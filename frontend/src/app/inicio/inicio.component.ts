@@ -21,6 +21,8 @@ export class InicioComponent implements OnInit {
   nuevaRespuesta: string = '';
   mostrarPopUp = false;
   publicacionSeleccionadaId: number = 0;
+  comentarios: any[] = [];
+
 
   constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
 
@@ -167,6 +169,14 @@ export class InicioComponent implements OnInit {
     this.mostrarPopUp = true;
     this.publicacionSeleccionadaId = publicacionId;
     // Lógica adicional para obtener y configurar la publicación correspondiente al publicacionId si es necesario
+    this.backandService.obtenerComentarios(publicacionId).subscribe(
+      (response: any) => {
+        this.comentarios = response; // Almacena los comentarios en la variable 'comentarios'
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   cerrarPopUp() {

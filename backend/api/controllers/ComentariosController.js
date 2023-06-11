@@ -56,14 +56,15 @@ module.exports = {
       },
     
       listarUno: async function(req, res) {
+        //console.log(req.params);
         try {
-          const comentario = await Comentarios.findOne({ id: req.params.id });
-          if (!comentario) {
-            return res.notFound('Comentario no encontrado');
-          }
-          return res.json(comentario);
+          // Lógica para obtener los comentarios de la publicación usando el publicacionId
+          // Puedes usar el modelo y los métodos adecuados para obtener los comentarios de la base de datos
+          const comentarios = await Comentarios.find({ id_publicaciones:req.params.id });
+
+          return res.status(200).json(comentarios);
         } catch (error) {
-          return res.serverError(error);
+          return res.status(500).json({ error: 'Error al obtener los comentarios' });
         }
       },
     

@@ -215,6 +215,10 @@
       
         <!-- Pop-up de respuesta -->
         <div class="popup" *ngIf="mostrarPopUp">
+          <div *ngFor="let comentario of comentarios">
+            <p>{{ comentario.contenido }}</p>
+            <!-- Mostrar más detalles del comentario si es necesario -->
+          </div>
           <textarea [(ngModel)]="nuevaRespuesta" placeholder="Escribe tu respuesta"></textarea>
           <button (click)="agregarRespuesta(publicaciones)">Enviar</button>
           <button (click)="cerrarPopUp()">Cerrar</button>
