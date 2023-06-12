@@ -260,18 +260,18 @@
 
 
     <div class="col ultima p-0">
-      <div class="container">
+      <div class="container m-0">
 
         <div class="tendencia">
           <h3 class="tendencia-titulo">Que esta pasando?</h3>
 
           <mat-card class="card">
             <mat-card-header>
-              <mat-card-title class="card-titulo">Tendencias</mat-card-title>
+              <mat-card-title class="card-titulo"><h4>Tendencias</h4></mat-card-title>
             </mat-card-header>
             <mat-card-content>
               <ul>
-                <li *ngFor="let palabra of palabrasMasRepetidas">{{ palabra }}</li>
+                <li class="card-lista" *ngFor="let palabra of palabrasMasRepetidas">{{ palabra }}</li>
               </ul>
             </mat-card-content>
           </mat-card>

@@ -67,11 +67,7 @@ export class BackendService {
     const data = {
       id_usuario: id_usuario,
       id_publicacion: id_publicacion
-      
-      
-    };
-    console.log(data);
-  
+    };  
     return this.http.post<any>('http://localhost:1337/megustas', data);
   }
 

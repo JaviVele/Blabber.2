@@ -14,11 +14,14 @@ export class PerfilComponent implements OnInit {
   id: any;
   usuario: any;
   foto: boolean = false;
+  palabrasMasRepetidas: any[] = [];
 
   publicaciones: any[] = [];
 
   constructor(private route: ActivatedRoute, private backandService: BackendService,
-     private renderer: Renderer2, private dialog: MatDialog) {}
+     private renderer: Renderer2, private dialog: MatDialog) {
+      this.listarTodasPublicaciones();
+     }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -92,6 +95,49 @@ export class PerfilComponent implements OnInit {
     if (usuario.foto_perfil) {
       this.foto = true;
     }
+  }
+  listarTodasPublicaciones() {
+        this.backandService.listarPublicaciones().subscribe(
+          (response) => {
+            console.log(response);
+            this.contarPalabras(response);
+          }
+          ,
+          (error) => {
+            console.error(error);
+          }
+    );
+  }
+
+  contarPalabras(publicaciones: any[]): void {
+    const palabras: { [palabra: string]: number } = {};
+    //console.log(publicaciones);
+    // Recorrer las publicaciones
+    for (const publicacion of publicaciones) {
+      const mensaje = publicacion.contenido.mensaje;
+      //console.log(mensaje);
+      // Separar el mensaje en palabras
+      const palabrasMensaje = mensaje.split(' ');
+      //console.log(palabrasMensaje);
+      // Contar las palabras
+      for (const palabra of palabrasMensaje) {
+        // Ignorar palabras vacías o de longitud menor a 3 caracteres
+        if (palabra.trim() !== '' && palabra.length > 2) {
+          if (palabras[palabra]) {
+            palabras[palabra]++;
+          } else {
+            palabras[palabra] = 1;
+          }
+        }
+      }
+    }
+    console.log(palabras);
+    const palabrasOrdenadas = Object.entries(palabras).sort((a, b) => b[1] - a[1]);
+    console.log(palabrasOrdenadas);
+    // Obtener las 5 palabras más frecuentes
+    this.palabrasMasRepetidas = palabrasOrdenadas.slice(0, 5).map((item) => item[0]);
+    
+    
   }
   
 }

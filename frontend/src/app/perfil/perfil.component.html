@@ -120,7 +120,7 @@
                         <h3>{{usuario.nombre_usuario}}</h3>
                         <p>{{usuario.nombre_arroba}}</p>
                         <br>
-                        <p>{{usuario.fecha_nacimiento}} <mat-icon>date_range</mat-icon></p>
+                        <p>{{usuario.fecha_nacimiento | date: 'yyyy-MM-dd' }} <mat-icon>date_range</mat-icon></p>
                         <div class="perfil-usuario_follow">
                             <p>{{usuario.seguidos}} seguidos</p>
                             <p>{{usuario.seguidores}} seguidores</p>
@@ -149,20 +149,23 @@
         <div class="col ultima p-0">
             <div class="container">
                 
-                <div class="tendencia">
-                    <h3 class="tendencia-titulo">No pasa nada</h3>
-
-                    <mat-card class="card">
-                        <mat-card-header>
-                            <mat-card-title class="card-titulo">Título del Card</mat-card-title>
-                            <mat-card-subtitle class="card-subtitulo">Subtítulo del Card</mat-card-subtitle>
-                            <mat-card-subtitle class="card-view">Viewers</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-icon class="card-icono">more_horizontal</mat-icon>
-                    </mat-card>
-
-
-                </div>
+              <div class="tendencia">
+                <h3 class="tendencia-titulo">Que esta pasando?</h3>
+      
+                <mat-card class="card">
+                  <mat-card-header>
+                    <mat-card-title class="card-titulo"><h4>Tendencias</h4></mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <ul>
+                      <li class="card-lista" *ngFor="let palabra of palabrasMasRepetidas">{{ palabra }}</li>
+                    </ul>
+                  </mat-card-content>
+                </mat-card>
+                
+      
+      
+              </div>
                 <nav aria-label="Footer" role="navigation" class="enlaces">
                     <a href="">Politica de privacidad</a>
                     <a href="">Politicas de Cookies</a>
