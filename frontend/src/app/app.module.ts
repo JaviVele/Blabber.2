@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { PerfilComponent } from './perfil/perfil.component';
 import { InitialsAvatarComponent } from './initials-avatar/initials-avatar.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { NotificacionComponent } from './notificacion/notificacion.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { DialogComponent } from './dialog/dialog.component';
     PerfilComponent,
     InitialsAvatarComponent,
     DialogComponent,
+    NotificacionComponent,
     
   ],
   imports: [

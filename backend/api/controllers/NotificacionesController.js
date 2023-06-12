@@ -8,8 +8,15 @@
 module.exports = {
   
     crear: async function (req, res) {
+      const { tipo, fecha_notificacion, id_usuario } = req.body;
         try {
-          const nuevaNotificacion = await Notificacion.create(req.body).fetch();
+          const nuevaNotificacion = await Notificacion.create(
+            {
+              tipo,
+              fecha_notificacion,
+              id_usuario
+            }
+          ).fetch();
           res.status(201).json(nuevaNotificacion);
         } catch (error) {
           res.status(500).json({ error: 'Error al crear la notificacion' });
@@ -17,8 +24,10 @@ module.exports = {
       },
     
       listar: async function (req, res) {
+        const idUsuario = req.param('idUsuario');
+        //console.log(idUsuario);
         try {
-          const notificaciones = await Notificacion.find();
+          const notificaciones = await Notificacion.find({ id_usuario: idUsuario });
           res.json(notificaciones);
         } catch (error) {
           res.status(500).json({ error: 'Error al obtener la lista de notificaciones' });

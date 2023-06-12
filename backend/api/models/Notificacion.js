@@ -8,9 +8,9 @@
 module.exports = {
 
   attributes: {
-    tipo: {
+    tipo_noti: {
       type: 'string',
-      isIn: ['Me gusta', 'Rebblaber','Seguidor'],
+      //isIn: ['Me gusta', 'Rebblaber','Seguidor'],
     },  
     fecha_notificacion: {
       type: 'ref',
@@ -21,19 +21,7 @@ module.exports = {
     }
 
   },
-  beforeCreate: function (values, next) {
-    if (values.fecha_notificacion) {
-      values.fecha_notificacion = moment(values.fecha_notificacion).format('YYYY-MM-DD');
-    }
-    return next();
-  },
-
-  beforeUpdate: function (values, next) {
-    if (values.fecha_notificacion) {
-      values.fecha_notificacion = moment(values.fecha_notificacion).format('YYYY-MM-DD');
-    }
-    return next();
-  }
+  
 
 };
 

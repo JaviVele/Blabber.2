@@ -114,6 +114,15 @@ export class BackendService {
     const url = 'http://localhost:1337/publicaciones/' + userId;
     return this.http.get<any[]>(url);
   }
+
+
+  obtenerNotificaciones(idUsuario: number): Observable<any> {
+    const url = `http://localhost:1337/notificaciones/${idUsuario}`;
+    
+   
+    return this.http.get(url);
+  }
+  
   
 }
 
