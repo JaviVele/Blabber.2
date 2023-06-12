@@ -12,7 +12,6 @@ export class DialogComponent implements OnInit {
     private renderer: Renderer2,
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      console.log(data);
   }
   
   datosUsuario: any = {};
@@ -29,11 +28,9 @@ export class DialogComponent implements OnInit {
 
   // Formatear la fecha como "dd/mm/aaaa"
     const fechaFormateada = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
-    console.log(fechaFormateada);
     this.datosUsuario.biografia = this.data.usuario.biografia;
     this.datosUsuario.fecha_nacimiento = fechaFormateada;
     this.datosUsuario.nombre_usuario = this.data.usuario.nombre_usuario;
-    console.log(this.datosUsuario);
   }
 
   
@@ -41,6 +38,7 @@ export class DialogComponent implements OnInit {
   onFechaNacimientoChange(value: any) {
     const fecha = value.target.value;
     this.datosUsuario.fecha_nacimiento = fecha;
+    console.log(this.datosUsuario.fecha_nacimiento);
   }
   
     // Resto de tu código
@@ -65,8 +63,8 @@ export class DialogComponent implements OnInit {
         console.error(error);
       }
     );
-    // this.onClose();
-    // this.recargarPagina();
+    this.onClose();
+    this.recargarPagina();
   }
   
 
@@ -77,6 +75,9 @@ export class DialogComponent implements OnInit {
     console.log(this.datosUsuario.foto_perfil);
   }
   recargarPagina() {
-    this.renderer.setProperty(window, 'location', window.location.href);
+    setTimeout(() => {
+      this.renderer.setProperty(window, 'location', window.location.href);
+    }, 1000); // Espera 1 segundo (1000 milisegundos) antes de recargar la página
   }
+  
 }

@@ -39,7 +39,7 @@
             </button>
           </div>
         </div>
-        
+
       </div>
 
 
@@ -84,7 +84,7 @@
                 </button>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
     </div>
     <div class="col-10 col-md-6 border-end p-0">
       <div class="tweet-box border-bottom p-3">
-        <div class="avatar" *ngIf="foto; else inicial" >
+        <div class="avatar" *ngIf="foto; else inicial">
           <img [src]="usuario.foto_perfil" alt="Avatar">
         </div>
         <ng-template #inicial>
@@ -111,7 +111,7 @@
                 <input id="upload" class="upload-button" type="file" accept="image/*" (change)="onImageSelected($event)"
                   value="Subir" name="imagen">
               </div>
-              
+
               <button class="publish-button rounded-pill text-black" type="submit"
                 [disabled]="isDisabled">Publicar</button>
             </div>
@@ -131,7 +131,8 @@
               <ng-template #inicial>
                 <app-initials-avatar name="{{ usuario.nombre_usuario }}"></app-initials-avatar>
               </ng-template>
-              <p>{{ usuario.nombre_usuario }} {{ usuario.nombre_arroba }} · {{ getTimeElapsed(publicacion.fecha_publicacion) }}</p>
+              <p>{{ usuario.nombre_usuario }} {{ usuario.nombre_arroba }} · {{
+                getTimeElapsed(publicacion.fecha_publicacion) }}</p>
             </ng-template>
             <ng-template #seguidoAvatar>
               <div class="avatar" *ngIf="foto; else inicial">
@@ -140,31 +141,50 @@
               <ng-template #inicial>
                 <app-initials-avatar name="{{ usuario.nombre_usuario }}"></app-initials-avatar>
               </ng-template>
-              <p>{{ publicacion.usuario.nombre_usuario }} {{ publicacion.usuario.nombre_arroba }} · {{ getTimeElapsed(publicacion.fecha_publicacion) }}</p>
+              <p>{{ publicacion.usuario.nombre_usuario }} {{ publicacion.usuario.nombre_arroba }} · {{
+                getTimeElapsed(publicacion.fecha_publicacion) }}</p>
             </ng-template>
             <p>{{ publicacion.contenido.mensaje }}</p>
-            <img *ngIf="publicacion.contenido.imagen" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
-            <button class="btn-like" (click)="darMeGusta(publicacion)">
-              <mat-icon>
-                <span [ngStyle]="{
-                  'color': publicacion.num_mg==0 ? 'transparent' : 'red',
-                  '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'
-                }">
-                  favorite
-                </span>
-              </mat-icon>
-              <span>{{ publicacion.num_mg }}</span>
-            </button>
+            <div class="publicacion-imagen">
+              <img *ngIf="publicacion.contenido.imagen" [src]="publicacion.contenido.imagen"
+                alt="Imagen de la publicación">
+            </div>
+            <div class="publicacion-interaccion">
+              <div class="publicacion-interaccion_like">
+
+                <button class="btn-i" (click)="darMeGusta(publicacion)">
+                  <mat-icon>
+                    <span [ngStyle]="{
+                      'color': publicacion.num_mg==0 ? 'transparent' : 'red',
+                      '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'
+                    }">
+                      favorite
+                    </span>
+                  </mat-icon>
+                  <span>{{ publicacion.num_mg }}</span>
+                </button>
+              </div>
+              <div class="publicacion-interaccion_reblabbers">
+                <button class="btn-i">
+                  <mat-icon>compare_arrows</mat-icon>
+                </button>
+              </div>
+              <div class="publicacion-interaccion_comentario">
+                <button class="btn-i" (click)="abrirPopUp(publicacion.id)">
+                  <mat-icon>chat</mat-icon>
+                  <span class="contador-mensajes">{{ publicacion.num_comentarios }}</span>
+                </button>
+              </div>
+            </div>
             <hr class="hrpubli border border-2">
-            <button class="btn-responder" (click)="abrirPopUp(publicacion.id)">Responder</button>
-            <span class="contador-mensajes">{{ publicacion.num_comentarios }}</span>
           </div>
         </div>
-      <!-- ------------------------------------- -->
+        <!-- ------------------------------------- -->
         <ng-container *ngFor="let usuarioSeguido of usuarioSeguidos">
           <div *ngFor="let publicacion of publicaciones">
             <div class="publicacion" *ngIf="publicacion.id_usuario === usuarioSeguido.seguido_id.id">
-              <div *ngIf="publicacion.id_usuario === usuarioSeguido.seguido_id.id; then userAvatar else seguidoAvatar"></div>
+              <div *ngIf="publicacion.id_usuario === usuarioSeguido.seguido_id.id; then userAvatar else seguidoAvatar">
+              </div>
               <ng-template #userAvatar>
                 <div class="avatar" *ngIf="foto; else inicial">
                   <img [src]="usuarioSeguido.seguido_id.foto_perfil" alt="Avatar">
@@ -172,55 +192,76 @@
                 <ng-template #inicial>
                   <app-initials-avatar name="{{usuarioSeguido.seguido_id.nombre_usuario}}"></app-initials-avatar>
                 </ng-template>
-                <p>{{ usuarioSeguido.seguido_id.nombre_usuario }} {{ usuarioSeguido.seguido_id.nombre_arroba }} · {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
+                <p>{{ usuarioSeguido.seguido_id.nombre_usuario }} {{ usuarioSeguido.seguido_id.nombre_arroba }} ·
+                  {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
               </ng-template>
               <ng-template #seguidoAvatar>
                 <div class="avatar" *ngIf="foto; else inicial">
-                  <img [src]="'assets/' + usuario.foto_perfil" alt="Avatar">
+                  <img [src]="usuario.foto_perfil" alt="Avatar">
                 </div>
                 <ng-template #inicial>
                   <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
                 </ng-template>
-                <p>{{ publicacion.usuario.nombre_usuario }} {{ publicacion.usuario.nombre_arroba }} · {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
+                <p>{{ publicacion.usuario.nombre_usuario }} {{ publicacion.usuario.nombre_arroba }} ·
+                  {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
               </ng-template>
               <p>{{ publicacion.contenido.mensaje }}</p>
-              <img *ngIf="publicacion.contenido.imagen" [src]="publicacion.contenido.imagen" alt="Imagen de la publicación">
-              <button class="btn-like" (click)="darMeGusta(publicacion)">
-                <mat-icon>
-                  <span [ngStyle]="{'color': publicacion.num_mg==0 ? 'transparent' : 'red',
-                  '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'}">
-                  favorite
-                  </span>
-                </mat-icon>
-                <span>{{ publicacion.num_mg }}</span>
-              </button>
+              <div class="publicacion-imagen">
+                <img *ngIf="publicacion.contenido.imagen" [src]="publicacion.contenido.imagen"
+                  alt="Imagen de la publicación">
+              </div>
+              <div class="publicacion-interaccion">
+                <div class="publicacion-interaccion_like">
+
+                  <button class="btn-i" (click)="darMeGusta(publicacion)">
+                    <mat-icon>
+                      <span [ngStyle]="{
+                          'color': publicacion.num_mg==0 ? 'transparent' : 'red',
+                          '-webkit-text-stroke': publicacion.num_mg==0 ? '2px black' : '0px black'
+                        }">
+                        favorite
+                      </span>
+                    </mat-icon>
+                    <span>{{ publicacion.num_mg }}</span>
+                  </button>
+                </div>
+                <div class="publicacion-interaccion_comentario">
+                  <button class="btn-i" (click)="abrirPopUp(publicacion.id)">
+                    <mat-icon>chat</mat-icon>
+                    <span class="contador-mensajes">{{ publicacion.num_comentarios }}</span>
+                  </button>
+                </div>
+              </div>
               <hr class="hrpubli border border-2">
-              <button class="btn-responder" (click)="abrirPopUp(publicacion.id)">Responder</button>
-              <span class="contador-mensajes">{{ publicacion.num_comentarios }}</span>
             </div>
           </div>
         </ng-container>
-      
+
         <!-- Pop-up de respuesta -->
-        <div class="popup" *ngIf="mostrarPopUp">
+        <div class="popup w-50 w-25-md" *ngIf="mostrarPopUp">
           <div *ngFor="let comentario of comentarios">
             <p>{{ comentario.contenido }}</p>
-            <!-- Mostrar más detalles del comentario si es necesario -->
           </div>
           <textarea [(ngModel)]="nuevaRespuesta" placeholder="Escribe tu respuesta"></textarea>
-          <button (click)="agregarRespuesta(publicaciones)">Enviar</button>
-          <button (click)="cerrarPopUp()">Cerrar</button>
+          <div class="btn-container">
+            <button class="btn-i" (click)="agregarRespuesta(publicaciones)">
+              <mat-icon>send</mat-icon>
+            </button>
+            <button class="btn-i" (click)="cerrarPopUp()">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
-      
-      
-      
+
+
+
     </div>
-      
-    
+
+
     <div class="col ultima p-0">
       <div class="container">
-        
+
         <div class="tendencia">
           <h3 class="tendencia-titulo">Que esta pasando?</h3>
 
@@ -245,4 +286,4 @@
         </nav>
       </div>
     </div>
-</div>
+  </div>
