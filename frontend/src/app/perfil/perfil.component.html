@@ -117,13 +117,20 @@
                         <button class="boton" (click)="openDialog()">Editar perfil</button>
                     </div>
                     <div class="perfil-usuario">
-                        <h3>{{usuario.nombre_usuario}}</h3>
-                        <p>{{usuario.nombre_arroba}}</p>
-                        <br>
+                      <div class="perfil-usuario_container">
+                        <div>
+                          <h3>{{usuario.nombre_usuario}}</h3>
+                          <p>{{usuario.nombre_arroba}}</p>
+                        </div>
                         <p>{{usuario.fecha_nacimiento | date: 'yyyy-MM-dd' }} <mat-icon>date_range</mat-icon></p>
                         <div class="perfil-usuario_follow">
+                          <div class="follow">
                             <p>{{usuario.seguidos}} seguidos</p>
                             <p>{{usuario.seguidores}} seguidores</p>
+                          </div>
+                          <button class="btn-seguir btn btn-primary p-2"><mat-icon>person_add</mat-icon>
+                          </button>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -138,7 +145,7 @@
                     </div>
 
                     <p>{{ publicacion.contenido.mensaje }}</p>
-                    <div class="imagenPublicacion">
+                    <div class="publicacion-imagen">
                         <img *ngIf="publicacion.contenido.imagen !== ''" [src]="publicacion.contenido.imagen"
                         alt="Imagen de la publicación">
                     </div>
@@ -148,7 +155,10 @@
         </div>
         <div class="col ultima p-0">
             <div class="container">
-                
+              <div class="container-buscador">
+                <mat-icon id="icono">search</mat-icon>
+                <input type="text" placeholder="Buscar seguidor..." id="buscador"/>
+              </div>
               <div class="tendencia">
                 <h3 class="tendencia-titulo">Que esta pasando?</h3>
       
