@@ -42,6 +42,14 @@ module.exports = {
   
         // Actualizar el contador de "Me gusta" en la publicación
         await Publicacion.update({ id: id_publicacion }).set({ num_mg: numMgActualizado });
+
+        const tipoNotificacion = 'me gusta';
+        const fecha_notificacion = new Date().toISOString();
+        const idNotificacion = await Notificacion.create({
+          tipo_noti: tipoNotificacion,
+          fecha_notificacion: fecha_notificacion,
+          id_usuario
+        }).fetch();
   
         res.status(200).json({ num_mg: numMgActualizado, nuevo_megusta: nuevoMegusta });
       }
