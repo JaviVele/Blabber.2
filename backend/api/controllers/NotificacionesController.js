@@ -24,10 +24,10 @@ module.exports = {
       },
     
       listar: async function (req, res) {
-        const idUsuario = req.param('idUsuario');
+        //const idUsuario = req.param('idUsuario');
         //console.log(idUsuario);
         try {
-          const notificaciones = await Notificacion.find({ id_usuario: idUsuario });
+          const notificaciones = await Notificacion.find();
           res.json(notificaciones);
         } catch (error) {
           res.status(500).json({ error: 'Error al obtener la lista de notificaciones' });

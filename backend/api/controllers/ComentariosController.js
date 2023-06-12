@@ -37,13 +37,19 @@ module.exports = {
       // Obtener el número actual de "Me gusta" para la publicación
       const numComentariosactualizados = await Comentarios.count({ id_publicaciones: id_publicaciones });
       await Publicacion.update({ id: id_publicaciones }).set({ num_comentarios: numComentariosactualizados });
-      const tipoNotificacion = 'comentario';
-      const fecha_notificacion = new Date().toISOString();
-      const idNotificacion = await Notificacion.create({
+
+      const publicaciones = await Publicacion.find({ id: id_publicaciones });
+        //console.log(publicaciones);
+        const id_ajeno = publicaciones[0].id_usuario;
+        //console.log(id_ajeno);
+        const tipoNotificacion = 'comentario';
+        const fecha_notificacion = new Date().toISOString();
+        const idNotificacion = await Notificacion.create({
           tipo_noti: tipoNotificacion,
           fecha_notificacion: fecha_notificacion,
-          id_usuario
-      }).fetch();
+          id_usuario,
+          id_ajeno
+        }).fetch();
   
       return res.status(200).json({ respuesta: nuevaRespuesta });
     } catch (error) {

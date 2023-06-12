@@ -91,9 +91,13 @@
         </div>
         <div class="col-10 col-md-6 border-end p-0">
             <div *ngFor="let notificacion of notificaciones">
-                <p>{{ notificacion.tipo_noti }}</p>
-                <p>{{ notificacion.fecha_notificacion }}</p>
+              <div *ngIf="notificacion.id_ajeno === usuario.id">
+                  <p>{{ notificacion.id_ajeno }}</p>
+                  <p>{{ notificacion.tipo_noti }}</p>
+                  <p>{{ notificacion.fecha_notificacion }}</p>
                 <hr>
+              </div>
+                
             </div>
               
         </div>

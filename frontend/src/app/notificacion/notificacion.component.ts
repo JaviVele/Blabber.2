@@ -20,6 +20,7 @@ export class NotificacionComponent implements OnInit {
           this.usuario = response;
           this.id = this.usuario.id;
           console.log(this.id);
+          
           this.obtenerNotificacionesUsuario();
         },
         error => {
@@ -30,9 +31,9 @@ export class NotificacionComponent implements OnInit {
   }
 
   obtenerNotificacionesUsuario(): void {
-    const idUsuario = this.id;
+    
 
-    this.backandService.obtenerNotificaciones(idUsuario).subscribe(
+    this.backandService.obtenerNotificaciones().subscribe(
       (response: any) => {
         this.notificaciones = response;
         console.log(this.notificaciones);

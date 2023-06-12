@@ -62,7 +62,7 @@ module.exports.routes = {
 
     //RUTAS DE NOTIFICACIONES//
     'POST /notificaciones': 'NotificacionesController.crear',
-    'GET /notificaciones/:idUsuario': 'NotificacionesController.listar',
+    'GET /notificaciones/': 'NotificacionesController.listar',
     'DELETE /notificaciones/:id': 'NotificacionesController.eliminar',
 
     //RUTAS DE MENSAJES//

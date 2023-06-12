@@ -38,20 +38,25 @@ module.exports = {
           
         }).fetch();
         // Obtener el número actual de "Me gusta" para la publicación
-        const numMgActualizado = await MeGusta.count({ id_publicacion: id_publicacion });
-  
-        // Actualizar el contador de "Me gusta" en la publicación
-        await Publicacion.update({ id: id_publicacion }).set({ num_mg: numMgActualizado });
+        
 
+        const publicaciones = await Publicacion.find({ id: id_publicacion });
+        //console.log(publicaciones);
+        const id_ajeno = publicaciones[0].id_usuario;
+        //console.log(id_ajeno);
         const tipoNotificacion = 'me gusta';
         const fecha_notificacion = new Date().toISOString();
         const idNotificacion = await Notificacion.create({
           tipo_noti: tipoNotificacion,
           fecha_notificacion: fecha_notificacion,
-          id_usuario
+          id_usuario,
+          id_ajeno
         }).fetch();
+        const numMgActualizado = await MeGusta.count({ id_publicacion: id_publicacion });
   
-        res.status(200).json({ num_mg: numMgActualizado, nuevo_megusta: nuevoMegusta });
+        // Actualizar el contador de "Me gusta" en la publicación
+        await Publicacion.update({ id: id_publicacion }).set({ num_mg: numMgActualizado });
+        res.status(200).json({ num_mg: numMgActualizado, nuevo_megusta: nuevoMegusta});
       }
     } catch (error) {
       console.log(error);

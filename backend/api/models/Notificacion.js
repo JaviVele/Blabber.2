@@ -18,6 +18,9 @@ module.exports = {
     },
     id_usuario: {
       model: 'Usuario'
+    },
+    id_ajeno: {
+      model: 'Usuario'
     }
 
   },
