@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackendService } from '../services/backend.service';
+import { merge } from 'rxjs';
 //import { formatDistanceToNow } from 'date-fns';
 
 @Component({
@@ -22,7 +23,7 @@ export class InicioComponent implements OnInit {
   mostrarPopUp = false;
   publicacionSeleccionadaId: number = 0;
   comentarios: any[] = [];
-
+  palabrasMasRepetidas: any[] = [];
 
   constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
 
@@ -35,6 +36,7 @@ export class InicioComponent implements OnInit {
           this.fotoPerfil(this.usuario);
           this.obtenerUsuariosSeguidos(this.id);
           this.listarPublicaciones(this.id);
+          //this.obtenerPalabrasMasRepetidas(this.publicaciones);
         },
         error => {
           console.log(error);
@@ -115,11 +117,16 @@ export class InicioComponent implements OnInit {
             this.publicaciones = response.filter((publicacion) => {
               return usuariosSeguidos.includes(publicacion.id_usuario);
             });
+            //console.log(this.publicaciones);
+            this.contarPalabras(this.publicaciones);
+            
           },
           (error) => {
             console.error(error);
           }
+          
         );
+        
       },
       (error) => {
         console.error(error);
@@ -211,9 +218,42 @@ export class InicioComponent implements OnInit {
     
   }
   
+  contarPalabras(publicaciones: any[]): void {
+    const palabras: { [palabra: string]: number } = {};
+    //console.log(publicaciones);
+    // Recorrer las publicaciones
+    for (const publicacion of publicaciones) {
+      const mensaje = publicacion.contenido.mensaje;
+      //console.log(mensaje);
+      // Separar el mensaje en palabras
+      const palabrasMensaje = mensaje.split(' ');
+      //console.log(palabrasMensaje);
+      // Contar las palabras
+      for (const palabra of palabrasMensaje) {
+        // Ignorar palabras vacías o de longitud menor a 3 caracteres
+        if (palabra.trim() !== '' && palabra.length > 2) {
+          if (palabras[palabra]) {
+            palabras[palabra]++;
+          } else {
+            palabras[palabra] = 1;
+          }
+        }
+      }
+    }
+    console.log(palabras);
+    const palabrasOrdenadas = Object.entries(palabras).sort((a, b) => b[1] - a[1]);
+    console.log(palabrasOrdenadas);
+    // Obtener las 5 palabras más frecuentes
+    this.palabrasMasRepetidas = palabrasOrdenadas.slice(0, 5).map((item) => item[0]);
+    
+    
+  }
   
-  
-  
-  
+ 
+
+// ...
+
+
+
   
 }

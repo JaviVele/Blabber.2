@@ -267,12 +267,15 @@
 
           <mat-card class="card">
             <mat-card-header>
-              <mat-card-title class="card-titulo">Título del Card</mat-card-title>
-              <mat-card-subtitle class="card-subtitulo">Subtítulo del Card</mat-card-subtitle>
-              <mat-card-subtitle class="card-view">Viewers</mat-card-subtitle>
+              <mat-card-title class="card-titulo">Tendencias</mat-card-title>
             </mat-card-header>
-            <mat-icon class="card-icono">more_horizontal</mat-icon>
+            <mat-card-content>
+              <ul>
+                <li *ngFor="let palabra of palabrasMasRepetidas">{{ palabra }}</li>
+              </ul>
+            </mat-card-content>
           </mat-card>
+          
 
 
         </div>
