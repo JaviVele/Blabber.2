@@ -19,6 +19,7 @@ export class PerfilComponent implements OnInit {
   palabrasMasRepetidas: any[] = [];
   publicaciones: any[] = [];
   usuarioSesion: any;
+  seguidor: boolean = false;
 
   constructor(private route: ActivatedRoute, private backandService: BackendService,
     private renderer: Renderer2, private dialog: MatDialog, private sessionStorageService: SessionStorageService) {
@@ -31,6 +32,7 @@ export class PerfilComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.backandService.listarUno(params['id']).subscribe(
         response => {
+          this.comprobarUsuario(response);
           this.usuario = response;
           this.id = this.usuario.id;
           this.listarPublicaciones(this.id);
@@ -41,7 +43,6 @@ export class PerfilComponent implements OnInit {
         }
         );
       });
-      this.comprobarUsuario();
   }
 
 
@@ -136,8 +137,6 @@ export class PerfilComponent implements OnInit {
     const palabrasOrdenadas = Object.entries(palabras).sort((a, b) => b[1] - a[1]);
     // Obtener las 5 palabras más frecuentes
     this.palabrasMasRepetidas = palabrasOrdenadas.slice(0, 5).map((item) => item[0]);
-
-
   }
 
   seguir() {
@@ -170,17 +169,21 @@ export class PerfilComponent implements OnInit {
     );
   }
 
-  comprobarUsuario(){
+  comprobarUsuario(usuario: any) {
     const comprobar = {
-      seguidor_id: this.usuario?.id,
-      seguido_id: this.usuarioSesion.id
-    }
+      seguidor_id: this.usuarioSesion.id,
+      seguido_id: usuario.id
+    };
+  
     this.backandService.comprobarSeguidor(comprobar).subscribe(
       response => {
         console.log(response);
+        if (response.id) {
+          this.seguidor = true;
+        }
       },
       error => {
-
+        console.error(error);
       }
     );
   }

@@ -120,7 +120,6 @@ export class BackendService {
   }
   
   comprobarUsuarioArroba(usuario: any): Observable<any> {
-    console.log(usuario);
     const url = 'http://localhost:1337/';
    
     return this.http.post(url + 'usuarios/comprobarUsuarioArroba', {"usuario": usuario});
