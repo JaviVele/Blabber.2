@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -19,10 +19,12 @@ export class PerfilComponent implements OnInit {
   palabrasMasRepetidas: any[] = [];
   publicaciones: any[] = [];
   usuarioSesion: any;
-  seguidor: boolean = false;
+  seguido: boolean = false;
+  seguidor!: string;
 
   constructor(private route: ActivatedRoute, private backandService: BackendService,
-    private renderer: Renderer2, private dialog: MatDialog, private sessionStorageService: SessionStorageService) {
+    private renderer: Renderer2, private dialog: MatDialog, private sessionStorageService: SessionStorageService,
+    private router: Router) {
     this.listarTodasPublicaciones();
   }
 
@@ -32,18 +34,19 @@ export class PerfilComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.backandService.listarUno(params['id']).subscribe(
         response => {
-          this.comprobarUsuario(response);
           this.usuario = response;
           this.id = this.usuario.id;
           this.listarPublicaciones(this.id);
           this.fotoPerfil(this.usuario);
+          this.comprobarUsuario(response);
         },
         error => {
           console.log(error);
         }
-        );
-      });
+      );
+    });
   }
+  
 
 
   listarPublicaciones(userId: any) {
@@ -114,14 +117,11 @@ export class PerfilComponent implements OnInit {
 
   contarPalabras(publicaciones: any[]): void {
     const palabras: { [palabra: string]: number } = {};
-    //console.log(publicaciones);
     // Recorrer las publicaciones
     for (const publicacion of publicaciones) {
       const mensaje = publicacion.contenido.mensaje;
-      //console.log(mensaje);
       // Separar el mensaje en palabras
       const palabrasMensaje = mensaje.split(' ');
-      //console.log(palabrasMensaje);
       // Contar las palabras
       for (const palabra of palabrasMensaje) {
         // Ignorar palabras vacías o de longitud menor a 3 caracteres
@@ -179,11 +179,24 @@ export class PerfilComponent implements OnInit {
       response => {
         console.log(response);
         if (response.id) {
-          this.seguidor = true;
+          this.seguido = true;
         }
       },
       error => {
         console.error(error);
+      }
+    );
+  }
+
+  busquedadSeguidor(){
+    const seguidor = this.seguidor;
+    this.backandService.comprobarUsuarioArroba(seguidor).subscribe(
+      response => {
+        this.router.navigate(['/perfil', response.usuario.id]);
+      },
+      error => {
+        this.seguidor = "No hay seguidores con ese nombre";
+        console.log(error)
       }
     );
   }

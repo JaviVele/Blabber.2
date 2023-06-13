@@ -232,6 +232,9 @@ input[type="text"] {
   background-color: transparent;
   margin: 3px;
   padding: 3px;
+  &:focus{
+    background-color: transparent;
+  }
 }
 
 #icono {
