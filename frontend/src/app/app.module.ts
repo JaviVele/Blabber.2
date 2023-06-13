@@ -39,7 +39,7 @@ import { NotificacionComponent } from './notificacion/notificacion.component';
     FormsModule,
     RouterModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

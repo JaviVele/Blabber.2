@@ -141,6 +141,21 @@ module.exports = {
     } catch(error) {
       res.status(500).json({error: 'Error al comprobar el usuario'});
     }
+  },
+
+  comprobarUsuarioArroba: async function (req, res){
+    var nombreArroba = req.param("usuario");
+    try {
+      const comprobarUsuario = await Usuario.findOne({nombre_arroba: nombreArroba})
+      if (!comprobarUsuario) {
+        return res.status(404).json({ error: 'Usuario no encontrado en la base de datos' });
+        //return res.notFound('Usuario no encontrado en la base de datos');
+      }
+      //res.json(comprobarUsuario);
+      return res.status(200).json({usuario: comprobarUsuario });
+    } catch(error) {
+      res.status(500).json({error: 'Error al comprobar el usuario'});
+    }
   }
 
 };

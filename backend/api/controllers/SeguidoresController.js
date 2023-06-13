@@ -3,22 +3,23 @@
 
 module.exports = {
   seguirUsuario: async function (req, res) {
-    try {
+    // try {
       const { idUsuarioSeguir } = req.body;
-      const seguidor = req.user.id;
+     console.log(req.body);
+    //   const seguidor = req.user.id;
 
-      // Verificar si el usuario ya sigue al usuario objetivo
-      const existeSeguidor = await Seguidores.findOne({ seguidor, seguido: idUsuarioSeguir });
-      if (existeSeguidor) {
-        return res.status(400).json({ error: 'Ya sigues a este usuario' });
-      }
+    //   // Verificar si el usuario ya sigue al usuario objetivo
+    //   const existeSeguidor = await Seguidores.findOne({ seguidor, seguido: idUsuarioSeguir });
+    //   if (existeSeguidor) {
+    //     return res.status(400).json({ error: 'Ya sigues a este usuario' });
+    //   }
 
-      // Crear el nuevo seguidor
-      const nuevoSeguidor = await Seguidores.create({ seguidor, seguido: idUsuarioSeguir });
-      res.status(201).json(nuevoSeguidor);
-    } catch (error) {
-      res.status(500).json({ error: 'Error al seguir al usuario' });
-    }
+    //   // Crear el nuevo seguidor
+    //   const nuevoSeguidor = await Seguidores.create({ seguidor, seguido: idUsuarioSeguir });
+    //   res.status(201).json(nuevoSeguidor);
+    // } catch (error) {
+    //   res.status(500).json({ error: 'Error al seguir al usuario' });
+    //  }
   },
 
   obtenerSeguidores: async function (req, res) {
@@ -68,4 +69,19 @@ module.exports = {
       res.status(500).json({ error: 'Error al dejar de seguir al usuario' });
     }
   },
+  seguidorNuevo: async function (req, res) {
+    try {
+      console.log(req.body);
+      const { fecha, seguidor_id, seguido_id } = req.body;
+
+      const nuevo = await Seguidores.create( {
+        fecha,
+        seguidor_id,
+        seguido_id
+      }).fetch();
+      return res.status(200).json(nuevo);
+    } catch (error) {
+      return res.status(500).json({ error: 'Ocurrió un error al seguir el usuario', mensaje: error.message });
+    }
+  }
 };

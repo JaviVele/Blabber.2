@@ -1,7 +1,9 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../services/backend.service';
 import { merge } from 'rxjs';
+import { SessionStorageService } from '../services/session-storage.service';
+
 //import { formatDistanceToNow } from 'date-fns';
 
 @Component({
@@ -24,13 +26,18 @@ export class InicioComponent implements OnInit {
   publicacionSeleccionadaId: number = 0;
   comentarios: any[] = [];
   palabrasMasRepetidas: any[] = [];
+  seguidor!: string;
+  sesion!: any;
 
-  constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
+  constructor(private route: ActivatedRoute, private backandService: BackendService,
+     private renderer: Renderer2, private router: Router,private sessionStorageService: SessionStorageService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.backandService.listarUno(params['id']).subscribe(
         response => {
+          //almacenamos en la sesions el usuario
+          this.sessionStorageService.setItem('usuarioPrincipal', response);
           this.usuario = response;
           this.id = this.usuario.id;
           this.fotoPerfil(this.usuario);
@@ -43,7 +50,6 @@ export class InicioComponent implements OnInit {
         }
       );
     });
-
   }
   checkInput() {
     if (this.contenido.trim() !== '') {
@@ -80,7 +86,20 @@ export class InicioComponent implements OnInit {
       }
     );
   }
-  
+
+  //funcion de buscar al seguidor 
+  busquedadSeguidor(){
+    const seguidor = this.seguidor;
+    this.backandService.comprobarUsuarioArroba(seguidor).subscribe(
+      response => {
+        this.router.navigate(['/perfil', response.usuario.id]);
+      },
+      error => {
+        this.seguidor = "No hay seguidores con ese nombre";
+        console.log(error)
+      }
+    );
+  }
 
   fotoPerfil(usuario: any) {
     if (usuario.foto_perfil) {
@@ -242,9 +261,7 @@ export class InicioComponent implements OnInit {
         }
       }
     }
-    console.log(palabras);
     const palabrasOrdenadas = Object.entries(palabras).sort((a, b) => b[1] - a[1]);
-    console.log(palabrasOrdenadas);
     // Obtener las 5 palabras más frecuentes
     this.palabrasMasRepetidas = palabrasOrdenadas.slice(0, 5).map((item) => item[0]);
     

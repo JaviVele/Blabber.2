@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { BackendService } from '../services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { SessionStorageService } from '../services/session-storage.service';
+
 
 
 @Component({
@@ -15,15 +17,17 @@ export class PerfilComponent implements OnInit {
   usuario: any;
   foto: boolean = false;
   palabrasMasRepetidas: any[] = [];
-
   publicaciones: any[] = [];
+  usuarioSesion: any;
 
   constructor(private route: ActivatedRoute, private backandService: BackendService,
-     private renderer: Renderer2, private dialog: MatDialog) {
-      this.listarTodasPublicaciones();
-     }
+    private renderer: Renderer2, private dialog: MatDialog, private sessionStorageService: SessionStorageService) {
+    this.listarTodasPublicaciones();
+  }
 
   ngOnInit(): void {
+    // Para acceder a la variable almacenada en la sesión desde el nuevo componente
+    this.usuarioSesion = this.sessionStorageService.getItem('usuarioPrincipal');
     this.route.params.subscribe(params => {
       this.backandService.listarUno(params['id']).subscribe(
         response => {
@@ -35,61 +39,60 @@ export class PerfilComponent implements OnInit {
         error => {
           console.log(error);
         }
-      );
-    });
+        );
+      });
+      this.comprobarUsuario();
   }
 
 
   listarPublicaciones(userId: any) {
-        userId = this.id;
-        this.backandService.listarPublicacionesUsuario(userId).subscribe(
-          (response) => {
-            this.publicaciones = response;
-            },
-          (error) => {
-             console.error(error);
-          }
-        )};
+    userId = this.id;
+    this.backandService.listarPublicacionesUsuario(userId).subscribe(
+      (response) => {
+        this.publicaciones = response;
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
+  };
 
-  
+
 
   getTimeElapsed(fechaPublicacion: string): string {
     const fechaCreacion = new Date(fechaPublicacion);
     const fechaActual = new Date();
-  
+
     const diferencia = Math.abs(fechaActual.getTime() - fechaCreacion.getTime());
     const segundos = Math.floor(diferencia / 1000);
     const minutos = Math.floor(segundos / 60);
     const horas = Math.floor(minutos / 60);
     const dias = Math.floor(horas / 24);
-  
+
     if (dias > 0) {
-      return ` ${ dias} dias`;
+      return ` ${dias} dias`;
     } else if (horas > 0) {
-      return ` ${ horas} horas`;
+      return ` ${horas} horas`;
     } else if (minutos > 0) {
-      return ` ${ minutos} minutos`;
+      return ` ${minutos} minutos`;
     } else {
       return 'Ahora mismo';
     }
   }
-  
+
   recargarPagina() {
     this.renderer.setProperty(window, 'location', window.location.href);
   }
-  
-  
-   openDialog(): void {
+
+
+  openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: "50%",
       height: "72%",
       position: { top: "-20%", left: "25%" },
-      data: {"usuario" : this.usuario}
-      
-
-      
+      data: { "usuario": this.usuario }
     });
-    
+
   }
   fotoPerfil(usuario: any) {
     if (usuario.foto_perfil) {
@@ -97,15 +100,14 @@ export class PerfilComponent implements OnInit {
     }
   }
   listarTodasPublicaciones() {
-        this.backandService.listarPublicaciones().subscribe(
-          (response) => {
-            console.log(response);
-            this.contarPalabras(response);
-          }
-          ,
-          (error) => {
-            console.error(error);
-          }
+    this.backandService.listarPublicaciones().subscribe(
+      (response) => {
+        this.contarPalabras(response);
+      }
+      ,
+      (error) => {
+        console.error(error);
+      }
     );
   }
 
@@ -131,13 +133,55 @@ export class PerfilComponent implements OnInit {
         }
       }
     }
-    console.log(palabras);
     const palabrasOrdenadas = Object.entries(palabras).sort((a, b) => b[1] - a[1]);
-    console.log(palabrasOrdenadas);
     // Obtener las 5 palabras más frecuentes
     this.palabrasMasRepetidas = palabrasOrdenadas.slice(0, 5).map((item) => item[0]);
-    
-    
+
+
   }
-  
+
+  seguir() {
+
+    let fecha = new Date();
+
+    let anio = fecha.getFullYear(); // Obtiene el año en formato AAAA
+    let mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Obtiene el mes en formato MM
+    let dia = fecha.getDate().toString().padStart(2, '0'); // Obtiene el día en formato DD
+
+    let horas = fecha.getHours().toString().padStart(2, '0'); // Obtiene las horas en formato HH
+    let minutos = fecha.getMinutes().toString().padStart(2, '0'); // Obtiene los minutos en formato MI
+    let segundos = fecha.getSeconds().toString().padStart(2, '0'); // Obtiene los segundos en formato SS
+
+    let formatoBase = `${anio}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
+
+    const seguidor = {
+      fecha: formatoBase,
+      seguidor_id: this.usuario.id,
+      seguido_id: this.usuarioSesion.id
+    };
+    this.backandService.seguidorNuevo(seguidor).subscribe(
+      (response) => {
+       console.log(response);
+      }
+      ,
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  comprobarUsuario(){
+    const comprobar = {
+      seguidor_id: this.usuario?.id,
+      seguido_id: this.usuarioSesion.id
+    }
+    this.backandService.comprobarSeguidor(comprobar).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+
+      }
+    );
+  }
 }

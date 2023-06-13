@@ -13,14 +13,14 @@
       <div class="desaparecer container mt-5">
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button class="custom-button" [routerLink]="['/inicio', usuario.id]" (click)="recargarPagina()">
+            <button class="custom-button" [routerLink]="['/inicio', usuario?.id]" (click)="recargarPagina()">
               <p class="text"><img class="icon" src="../../assets/house-heart.svg">Inicio</p>
             </button>
           </div>
         </div>
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button class="custom-button" [routerLink]="['/notificacion', usuario.id]">
+            <button class="custom-button" [routerLink]="['/notificacion', usuario?.id]">
               <p class="text"><img class="icon" src="../../assets/bell.svg">Notificaciones</p>
             </button>
           </div>
@@ -34,7 +34,7 @@
         </div>
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button class="custom-button" [routerLink]="['/perfil', usuario.id]">
+            <button class="custom-button" [routerLink]="['/perfil', usuario?.id]">
               <p class="text"><img class="icon" src="../../assets/person.svg">Perfil</p>
             </button>
           </div>
@@ -58,7 +58,7 @@
           <div class="container mt-5">
             <div class="row mt-5">
               <div class="col-12 d-flex justify-content-center">
-                <button class="custom-button" [routerLink]="['/inicio', usuario.id]" (click)="recargarPagina()">
+                <button class="custom-button" [routerLink]="['/inicio', usuario?.id]" (click)="recargarPagina()">
                   <p class="text"><img class="icon" src="../../assets/house-heart.svg">Inicio</p>
                 </button>
               </div>
@@ -79,7 +79,7 @@
             </div>
             <div class="row mt-5">
               <div class="col-12 d-flex justify-content-center">
-                <button class="custom-button" [routerLink]="['/perfil', usuario.id]">
+                <button class="custom-button" [routerLink]="['/perfil', usuario?.id]">
                   <p class="text"><img class="icon" src="../../assets/person.svg">Perfil</p>
                 </button>
               </div>
@@ -97,7 +97,7 @@
           <img [src]="usuario.foto_perfil" alt="Avatar">
         </div>
         <ng-template #inicial>
-          <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
+          <app-initials-avatar name="{{usuario?.nombre_usuario}}"></app-initials-avatar>
         </ng-template>
         <div class="mensaje">
           <form (ngSubmit)="onSubmit()">
@@ -261,11 +261,13 @@
 
     <div class="col ultima p-0">
       <div class="container m-0">
-        <div class="container-buscador">
-          <mat-icon id="icono">search</mat-icon>
-          <input type="text" placeholder="Buscar seguidor..." id="buscador"/>
-        </div>
-        <div class="tendencia">
+        <form (ngSubmit)="busquedadSeguidor()">
+          <div class="container-buscador">
+            <mat-icon id="icono">search</mat-icon>
+            <input type="text" placeholder="Buscar seguidor..." id="buscador" name="seguidor" [(ngModel)]="seguidor" (keydown.enter)="busquedadSeguidor()"/>
+          </div>
+        </form>
+          <div class="tendencia">
           
           <h3 class="tendencia-titulo">Que esta pasando?</h3>
 

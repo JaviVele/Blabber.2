@@ -21,6 +21,7 @@ module.exports.routes = {
   //RUTAS DE USUARIO//
   '/': { view: 'pages/homepage' },
   'POST /usuarios': 'UsuarioController.crear',
+  'POST /usuarios/comprobarUsuarioArroba': 'UsuarioController.comprobarUsuarioArroba',
   'POST /usuarios/comprobarUsuario': 'UsuarioController.comprobarUsuario',
   'POST /usuarios/actualizar': 'UsuarioController.actualizar',
   'GET /usuarios/:id': 'UsuarioController.listarUno',
@@ -30,6 +31,7 @@ module.exports.routes = {
   
   
   //RUTAS DE SEGUIDORES//
+  'POST /seguidorNuevo': 'SeguidoresController.seguidorNuevo',
   'POST /seguirUsuario': 'SeguidoresController.seguirUsuario',
   'GET /seguidores': 'SeguidoresController.obtenerSeguidores',
   'GET /seguidos': 'SeguidoresController.obtenerSeguidos',

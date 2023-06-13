@@ -480,9 +480,10 @@ width: 100%;
 .btn-seguir{
   margin-right: 15px;
   margin-bottom: 15px;
-  background-color: #91FAF9;
-  border-color: #91FAF9;
-  &:hover, &:focus{
+  background-color: transparent;
+  color: #91FAF9;
+  border: transparent;
+  &:hover{
     background-color: #77D5D3;
     border-color: #77D5D3;
   }
