@@ -14,7 +14,7 @@ export class NotificacionComponent implements OnInit {
 
 
 
-  openDialog2() {
+  openDialog() {
     this.showDialog = true;
   }
 

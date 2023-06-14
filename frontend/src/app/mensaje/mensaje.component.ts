@@ -23,7 +23,7 @@ export class MensajeComponent implements OnInit {
 
 
 
-  openDialog2() {
+  openDialog() {
     this.showDialog = true;
   }
 

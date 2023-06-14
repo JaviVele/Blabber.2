@@ -1,9 +1,7 @@
 <div class="container-fluid text-center">
   <div class="row">
     <div class="col-2 col-md-3 border-end ">
-      <!-- <picture class="imagencontainer img-fluid">
-        <img class="imagen" src="../../assets/ajolote-logo.png" alt="logo">
-      </picture> -->
+
       <a class="btn-canva" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
         aria-controls="offcanvasExample">
         <picture class="imagencontainer img-fluid">
@@ -41,12 +39,19 @@
         </div>
         
         <div class="dialog-container">
-          <div *ngIf="showDialog" class="dialog">
-            <button (click)="cerrarSesion()">Cerrar sesión</button>
+          <div *ngIf="showDialog" class="dialog" style="border: 1px solid rgba(0, 0, 0, 0.622);border-radius: 50px; padding: 3px;">
+            <button class="btn btn-light" style="border-radius: 50px;" (click)="cerrarSesion()">Cerrar sesión</button>
             <button (click)="cerrar()" class="tras"><mat-icon>close</mat-icon></button>
           </div>
           
-          <button (click)="openDialog()">Abrir diálogo</button>
+          <button (click)="openDialog()" style="border: none; width: 100%; border: 1px solid rgba(0, 0, 0, 0.365); border-radius: 50px; margin-top: 10px;">
+            <div class="cerrar-sesion">
+                <picture class="imagencontainer img-fluid">
+                  <img style="border-radius: 50%;" class="imagen" [src]="usuario.foto_perfil" alt="logo">
+                </picture>
+              <div class="tras"><mat-icon>more_horiz</mat-icon></div> 
+            </div>
+          </button>
         </div>
       </div>
       
@@ -97,12 +102,19 @@
           </div>
         </div>
         <div class="dialog-container">
-          <div *ngIf="showDialog" class="dialog">
-            <button (click)="cerrarSesion()">Cerrar sesión</button>
+          <div *ngIf="showDialog" class="dialog" style="border: 1px solid rgba(0, 0, 0, 0.622);border-radius: 50px; padding: 3px;">
+            <button class="btn btn-light" style="border-radius: 50px;" (click)="cerrarSesion()">Cerrar sesión</button>
             <button (click)="cerrar()" class="tras"><mat-icon>close</mat-icon></button>
           </div>
           
-          <button (click)="openDialog()">Abrir diálogo</button>
+          <button (click)="openDialog()" style="border: none; width: 100%; border: 1px solid rgba(0, 0, 0, 0.365); border-radius: 50px; margin-top: 10px;">
+            <div class="cerrar-sesion">
+                <picture class="imagencontainer img-fluid">
+                  <img style="border-radius: 50%;" class="imagen" [src]="usuario.foto_perfil" alt="logo">
+                </picture>
+              <div class="tras"><mat-icon>more_horiz</mat-icon></div> 
+            </div>
+          </button>
         </div>
         
       </div>
