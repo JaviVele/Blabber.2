@@ -21,7 +21,22 @@ export class PerfilComponent implements OnInit {
   usuarioSesion: any;
   seguido: boolean = false;
   seguidor!: string;
+  showDialog = false;
 
+
+
+  openDialog2() {
+    this.showDialog = true;
+  }
+
+  cerrarSesion() {    
+    // Una vez cerrada la sesión, cierra el diálogo
+    this.showDialog = false;
+  }
+  cerrar() {    
+    // Una vez cerrada la sesión, cierra el diálogo
+    this.showDialog = false;
+  }
   constructor(private route: ActivatedRoute, private backandService: BackendService,
     private renderer: Renderer2, private dialog: MatDialog, private sessionStorageService: SessionStorageService,
     private router: Router) {

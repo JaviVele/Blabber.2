@@ -40,7 +40,14 @@
                     </button>
                   </div>
                 </div>
-                
+                <div class="dialog-container">
+                  <div *ngIf="showDialog" class="dialog">
+                    <button (click)="cerrarSesion()">Cerrar sesión</button>
+                    <button (click)="cerrar()" class="tras"><mat-icon>close</mat-icon></button>
+                  </div>
+                  
+                  <button (click)="openDialog2()">Abrir diálogo</button>
+                </div>
               </div>
 
 
@@ -86,6 +93,14 @@
                           </div>
                         </div>
                         
+                      </div>
+                      <div class="dialog-container">
+                        <div *ngIf="showDialog" class="dialog">
+                          <button (click)="cerrarSesion()">Cerrar sesión</button>
+                          <button (click)="cerrar()" class="tras"><mat-icon>close</mat-icon></button>
+                        </div>
+                        
+                        <button (click)="openDialog2()">Abrir diálogo</button>
                       </div>
                 </div>
             </div>

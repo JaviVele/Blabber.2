@@ -429,4 +429,38 @@ nav {
   border-radius: 40%;
   background-color: #d32f2f;
 }
+.dialog-container {
+  margin-top: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  & button {
+    z-index: 1;
+    background-color: transparent;
+    
+  }
+  
+}
+
+
+.dialog {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: white;
+  z-index: 2;
+  align-items: center;
+  width: 100%;
+}
+.tras{
+  border: none;
+}
+// .dialog button {
+//   margin-bottom: 10px;
+// }
+
+
+
 

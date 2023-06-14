@@ -4,13 +4,8 @@
       <!-- <picture class="imagencontainer img-fluid">
           <img class="imagen" src="../../assets/ajolote-logo.png" alt="logo">
         </picture> -->
-      <a
-        class="btn-canva"
-        data-bs-toggle="offcanvas"
-        href="#offcanvasExample"
-        role="button"
-        aria-controls="offcanvasExample"
-      >
+      <a class="btn-canva" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+        aria-controls="offcanvasExample">
         <picture class="imagencontainer img-fluid">
           <img class="imagen" src="../../assets/ajolote-logo.png" alt="logo" />
         </picture>
@@ -18,11 +13,7 @@
       <div class="desaparecer container mt-5">
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button
-              class="custom-button"
-              [routerLink]="['/inicio', usuario?.id]"
-              (click)="recargarPagina()"
-            >
+            <button class="custom-button" [routerLink]="['/inicio', usuario?.id]" (click)="recargarPagina()">
               <p class="text">
                 <img class="icon" src="../../assets/house-heart.svg" />Inicio
               </p>
@@ -31,10 +22,7 @@
         </div>
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button
-              class="custom-button"
-              [routerLink]="['/notificacion', usuario?.id]"
-            >
+            <button class="custom-button" [routerLink]="['/notificacion', usuario?.id]">
               <p class="text">
                 <img class="icon" src="../../assets/bell.svg" />Notificaciones
               </p>
@@ -43,71 +31,49 @@
         </div>
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button
-              class="custom-button"
-              [routerLink]="['/mensaje', usuario?.id]"
-            >
+            <button class="custom-button" [routerLink]="['/mensaje', usuario?.id]">
               <p class="text">
-                <img
-                  class="icon"
-                  src="../../assets/envelope-open-heart.svg"
-                />Mensajes
+                <img class="icon" src="../../assets/envelope-open-heart.svg" />Mensajes
               </p>
             </button>
           </div>
         </div>
         <div class="row mt-5">
           <div class="col-12 d-flex justify-content-center">
-            <button
-              class="custom-button"
-              [routerLink]="['/perfil', usuario?.id]"
-            >
+            <button class="custom-button" [routerLink]="['/perfil', usuario?.id]">
               <p class="text">
                 <img class="icon" src="../../assets/person.svg" />Perfil
               </p>
             </button>
           </div>
         </div>
+        <div class="dialog-container">
+          <div *ngIf="showDialog" class="dialog">
+            <button (click)="cerrarSesion()">Cerrar sesión</button>
+            <button (click)="cerrar()" class="tras"><mat-icon>close</mat-icon></button>
+          </div>
+          
+          <button (click)="openDialog2()">Abrir diálogo</button>
+        </div>
       </div>
-
       <!-- EMPIEZA EL CANVA -->
-      <div
-        class="offcanvas offcanvas-start"
-        tabindex="-1"
-        id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel"
-      >
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasExampleLabel">
             <picture class="imagencontainer img-fluid">
-              <img
-                class="imagen"
-                src="../../assets/ajolote-logo.png"
-                alt="logo"
-              />
+              <img class="imagen" src="../../assets/ajolote-logo.png" alt="logo" />
             </picture>
           </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
           <div class="container mt-5">
             <div class="row mt-5">
               <div class="col-12 d-flex justify-content-center">
-                <button
-                  class="custom-button"
-                  [routerLink]="['/inicio', usuario?.id]"
-                  (click)="recargarPagina()"
-                >
+                <button class="custom-button" [routerLink]="['/inicio', usuario?.id]" (click)="recargarPagina()">
                   <p class="text">
-                    <img
-                      class="icon"
-                      src="../../assets/house-heart.svg"
-                    />Inicio
+                    <img class="icon" src="../../assets/house-heart.svg" />Inicio
                   </p>
                 </button>
               </div>
@@ -116,40 +82,36 @@
               <div class="col-12 d-flex justify-content-center">
                 <button class="custom-button" [routerLink]="['/notificacion', usuario?.id]">
                   <p class="text">
-                    <img
-                      class="icon"
-                      src="../../assets/bell.svg"
-                    />Notificaciones
+                    <img class="icon" src="../../assets/bell.svg" />Notificaciones
                   </p>
                 </button>
               </div>
             </div>
             <div class="row mt-5">
               <div class="col-12 d-flex justify-content-center">
-                <button
-                  class="custom-button"
-                  [routerLink]="['/mensaje', usuario?.id]"
-                >
+                <button class="custom-button" [routerLink]="['/mensaje', usuario?.id]">
                   <p class="text">
-                    <img
-                      class="icon"
-                      src="../../assets/envelope-open-heart.svg"
-                    />Mensajes
+                    <img class="icon" src="../../assets/envelope-open-heart.svg" />Mensajes
                   </p>
                 </button>
               </div>
             </div>
             <div class="row mt-5">
               <div class="col-12 d-flex justify-content-center">
-                <button
-                  class="custom-button"
-                  [routerLink]="['/perfil', usuario?.id]"
-                >
+                <button class="custom-button" [routerLink]="['/perfil', usuario?.id]">
                   <p class="text">
                     <img class="icon" src="../../assets/person.svg" />Perfil
                   </p>
                 </button>
               </div>
+            </div>
+            <div class="dialog-container">
+              <div *ngIf="showDialog" class="dialog">
+                <button (click)="cerrarSesion()">Cerrar sesión</button>
+                <button (click)="cerrar()" class="tras"><mat-icon>close</mat-icon></button>
+              </div>
+              
+              <button (click)="openDialog2()">Abrir diálogo</button>
             </div>
           </div>
         </div>
@@ -162,11 +124,11 @@
       <div>
         <label>Usuario Destinatario:</label>
         <select (change)="seleccionarUsuario($event)">
-            <option value="">Seleccionar usuario</option>
-            <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre_arroba }}</option>
-          </select>
-          
-          
+          <option value="">Seleccionar usuario</option>
+          <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre_arroba }}</option>
+        </select>
+
+
       </div>
 
       <div>
@@ -179,9 +141,9 @@
       <div *ngFor="let conversacion of conversaciones">
         <p>{{ conversacion.id_usuario_envia}} {{ conversacion.contenido }} {{ conversacion.id_usuario_recibe}}</p>
         <!-- Otros detalles de la conversación -->
+      </div>
     </div>
-    </div>
-    
-      
+
+
   </div>
 </div>

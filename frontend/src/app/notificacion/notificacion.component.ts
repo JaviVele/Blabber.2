@@ -10,6 +10,22 @@ export class NotificacionComponent implements OnInit {
   id: any;
   usuario: any;
   notificaciones: any[] = [];
+  showDialog = false;
+
+
+
+  openDialog2() {
+    this.showDialog = true;
+  }
+
+  cerrarSesion() {    
+    // Una vez cerrada la sesión, cierra el diálogo
+    this.showDialog = false;
+  }
+  cerrar() {    
+    // Una vez cerrada la sesión, cierra el diálogo
+    this.showDialog = false;
+  }
 
   constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
 

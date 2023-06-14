@@ -28,6 +28,23 @@ export class InicioComponent implements OnInit {
   palabrasMasRepetidas: any[] = [];
   seguidor!: string;
   sesion!: any;
+  showDialog = false;
+
+
+
+  openDialog() {
+    this.showDialog = true;
+  }
+
+  cerrarSesion() {    
+    // Una vez cerrada la sesión, cierra el diálogo
+    this.showDialog = false;
+  }
+  cerrar() {    
+    // Una vez cerrada la sesión, cierra el diálogo
+    this.showDialog = false;
+  }
+
 
   constructor(private route: ActivatedRoute, private backandService: BackendService,
      private renderer: Renderer2, private router: Router,private sessionStorageService: SessionStorageService) {}
