@@ -8,17 +8,32 @@
 module.exports = {
     crear: async function (req, res) {
         try {
-          const nuevoMensaje = await Mensaje.create(req.body).fetch();
-          res.status(201).json(nuevoMensaje);
+          const {contenido, id_usuario_envia, id_usuario_recibe} = req.body;
+          const fecha_envio = new Date();
+          const mensaje = await Mensaje.create({
+            contenido,
+            fecha_envio,
+            id_usuario_envia,
+            id_usuario_recibe
+          }).fetch();
+          res.status(200).json(mensaje);
         } catch (error) {
+          console.log(error);
           res.status(500).json({ error: 'Error al crear el mensaje' });
         }
       },
     
       listar: async function (req, res) {
+        const usuarioId = req.param('usuarioId');
+        
+        console.log(usuarioId);
         try {
-          const mensajes = await Mensaje.find();
-          res.json(mensajes);
+          const mensajes = await Mensaje.find({id_usuario_envia: usuarioId});
+          const mensajesRecibidos = await Mensaje.find({ id_usuario_recibe: usuarioId });
+
+          // Combinar los mensajes enviados y recibidos
+          const conversacion = [...mensajes, ...mensajesRecibidos];
+          res.json(conversacion);
         } catch (error) {
           res.status(500).json({ error: 'Error al obtener la lista de mensajes' });
         }

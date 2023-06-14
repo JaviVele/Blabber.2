@@ -134,5 +134,19 @@ export class BackendService {
     const url = 'http://localhost:1337/';
     return this.http.post(url + 'seguirUsuario' , comprobar);
   }
+
+  obtenerConversaciones(usuarioId: number): Observable<any> {
+    const url = 'http://localhost:1337/mensajes/'+usuarioId;
+    // const params = new HttpParams().set('usuarioId', usuarioId);
+    // console.log(params);
+    console.log(url);
+    
+    return this.http.get(url);
+  }
+
+  crearMensaje(mensaje: any): Observable<any> {
+    const url = 'http://localhost:1337/';
+    return this.http.post(url + 'mensajes', mensaje);
+  }
 }
 

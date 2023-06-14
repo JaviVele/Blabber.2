@@ -23,19 +23,7 @@ module.exports = {
     }
 
   },
-  beforeCreate: function (values, next) {
-    if (values.fecha_envio) {
-      values.fecha_envio = moment(values.fecha_envio).format('YYYY-MM-DD');
-    }
-    return next();
-  },
-
-  beforeUpdate: function (values, next) {
-    if (values.fecha_envio) {
-      values.fecha_envio = moment(values.fecha_envio).format('YYYY-MM-DD');
-    }
-    return next();
-  }
+ 
 
 };
 

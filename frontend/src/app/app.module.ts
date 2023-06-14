@@ -17,6 +17,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { InitialsAvatarComponent } from './initials-avatar/initials-avatar.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { NotificacionComponent } from './notificacion/notificacion.component';
+import { MensajeComponent } from './mensaje/mensaje.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { NotificacionComponent } from './notificacion/notificacion.component';
     InitialsAvatarComponent,
     DialogComponent,
     NotificacionComponent,
+    MensajeComponent,
     
   ],
   imports: [
