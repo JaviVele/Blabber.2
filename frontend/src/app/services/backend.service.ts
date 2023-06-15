@@ -70,6 +70,14 @@ export class BackendService {
     };  
     return this.http.post<any>('http://localhost:1337/megustas', data);
   }
+  darReblub(id_publicacion: number, id_usuario: number): Observable<any> {
+    const data = {
+      id_usuario: id_usuario,
+      id_publicaciones: id_publicacion
+    };  
+    console.log(data);
+    return this.http.post<any>('http://localhost:1337/reblabbers', data);
+  }
 
   actualizarPerfil(usuario: any): Observable<any> {
     const url = 'http://localhost:1337/';

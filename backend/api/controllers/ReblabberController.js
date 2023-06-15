@@ -8,10 +8,31 @@
 module.exports = {
   
     crear: async function (req, res) {
+        const { id_usuario, id_publicaciones } = req.body;
+        console.log(id_publicaciones);
         try {
-          const nuevoReblabber = await Reblabbers.create(req.body).fetch();
+          
+          const nuevoReblabber = await Reblabbers.create(
+            {
+              id_usuario,
+              id_publicaciones
+            }
+          ).fetch();
+          const publicaciones = await Publicacion.find({ id: id_publicaciones });
+          //console.log(publicaciones);
+          const id_ajeno = publicaciones[0].id_usuario;
+        //console.log(id_ajeno);
+          const tipoNotificacion = 'rebblabber';
+          const fecha_notificacion = new Date().toISOString();
+          const idNotificacion = await Notificacion.create({
+            tipo_noti: tipoNotificacion,
+            fecha_notificacion: fecha_notificacion,
+            id_usuario,
+            id_ajeno
+        }).fetch();
           res.status(201).json(nuevoReblabber);
         } catch (error) {
+          console.log(error);
           res.status(500).json({ error: 'Error al crear el reblabber' });
         }
       },

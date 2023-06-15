@@ -213,6 +213,21 @@ export class InicioComponent implements OnInit {
     );
   }
 
+  darReblub(publicacion: any) {
+    const id_usuario = this.id; // Reemplaza 1 con el ID del usuario actualmente logueado
+    // console.log(response.num_mg);
+    this.backandService.darReblub(publicacion.id, id_usuario).subscribe(
+      response => {
+        // Actualizar el contador de "Me gusta" en la publicación
+        console.log(response);
+        //publicacion.num_mg=response.num_mg;
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
   abrirPopUp(publicacionId: number) {
     this.mostrarPopUp = true;
     this.publicacionSeleccionadaId = publicacionId;
