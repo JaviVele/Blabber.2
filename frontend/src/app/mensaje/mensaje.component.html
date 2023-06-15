@@ -122,25 +122,23 @@
 
     </div>
 
-    <div class="col-9 border-end p-0">
+    <div class="col-9 border-end p-0 busquedad">
       <h2>Crear Mensaje</h2>
 
-      <div>
-        <label>Usuario Destinatario:</label>
-        <select (change)="seleccionarUsuario($event)">
-          <option value="">Seleccionar usuario</option>
-          <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre_arroba }}</option>
-        </select>
-
-
+      <div class="form">
+        <div>
+          <label>Usuario Destinatario:</label>
+          <select (change)="seleccionarUsuario($event)"  class="form-select">
+            <option value="">Seleccionar usuario</option>
+            <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre_arroba }}</option>
+          </select>
+        </div>   
+        <div>
+          <label>Contenido:</label>
+          <textarea class="form-control" [(ngModel)]="contenido"></textarea>
+        </div>
+        <button (click)="crearMensaje()">Enviar Mensaje</button>
       </div>
-
-      <div>
-        <label>Contenido:</label>
-        <textarea [(ngModel)]="contenido"></textarea>
-      </div>
-
-      <button (click)="crearMensaje()">Enviar Mensaje</button>
       <hr>
       <div *ngFor="let conversacion of conversaciones">
         <p>{{ conversacion.id_usuario_envia}} {{ conversacion.contenido }} {{ conversacion.id_usuario_recibe}}</p>
