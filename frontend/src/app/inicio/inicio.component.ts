@@ -38,6 +38,9 @@ export class InicioComponent implements OnInit {
 
   cerrarSesion() {    
     // Una vez cerrada la sesión, cierra el diálogo
+    this.sessionStorageService.removeItem("usuarioPrincipal");
+    this.router.navigate(['/login']);
+
     this.showDialog = false;
   }
   cerrar() {    

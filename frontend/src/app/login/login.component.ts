@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BackendService } from '../services/backend.service';
 import { Router } from '@angular/router';
+import { SessionStorageService } from '../services/session-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   submitted: boolean = false;
   registrado: boolean = true;
 
-  constructor(private backendService: BackendService, private router: Router) { }
+  constructor(private backendService: BackendService, private router: Router, private sessionStorageService: SessionStorageService) { }
 
   onSubmit() {
     this.submitted = true;
@@ -26,6 +27,7 @@ export class LoginComponent {
 
       this.backendService.comprobarUsuario(data).subscribe(
         response => {
+          this.sessionStorageService.setItem('usuarioPrincipal', response);
           this.registrado = true;
           let id = response.usuario.id;
           this.router.navigate(['/inicio', id]);
