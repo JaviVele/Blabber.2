@@ -123,10 +123,9 @@
       </div>
         <div class="col-10 col-md-6 border-end p-0">
             <div *ngFor="let notificacion of notificaciones">
-              <div *ngIf="notificacion.id_ajeno === usuario.id">
-                  <p>{{ notificacion.id_ajeno }}</p>
-                  <p>{{ notificacion.tipo_noti }}</p>
-                  <p>{{ notificacion.fecha_notificacion }}</p>
+              <div *ngIf="notificacion.id_ajeno.id === usuario.id">
+                  <p>El usuario {{ notificacion.id_ajeno.nombre_usuario | titlecase  }} hizo una interaccion {{ notificacion.tipo_noti }} en una publicacion</p>
+                  <p>{{ notificacion.fecha_notificacion | date: "dd-MM-YYYY" }}</p>
                 <hr>
               </div>
                 

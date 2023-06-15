@@ -73,32 +73,6 @@ module.exports = {
           res.status(500).json({ error: 'Error al obtener la lista de me gustas' });
         }
       },
-    
-    //   listarUno: async function(req, res) {
-    //     try {
-    //       const comentario = await Comentario.findOne({ id: req.params.id });
-    //       if (!comentario) {
-    //         return res.notFound('Comentario no encontrado');
-    //       }
-    //       return res.json(comentario);
-    //     } catch (error) {
-    //       return res.serverError(error);
-    //     }
-    //   },
-    
-    //   actualizar: async function (req, res) {
-    //     try {
-    //       const seguidorActualizado = await Comentario.updateOne({ id: req.params.id })
-    //         .set(req.body)
-    //         .intercept((error) => {
-    //           return res.status(404).json({ error: 'Comentario no encontrado' });
-    //         });
-    
-    //       res.json(seguidorActualizado);
-    //     } catch (error) {
-    //       res.status(500).json({ error: 'Error al actualizar el comentario' });
-    //     }
-    //   },
       eliminar: async function (req, res) {
         try {
           const meGustaEliminado = await MeGusta.destroyOne({ id: req.params.id })

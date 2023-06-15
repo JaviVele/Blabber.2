@@ -17,10 +17,10 @@ module.exports = {
       columnType: 'date',
     },
     id_usuario: {
-      model: 'Usuario'
+      model: 'usuario'
     },
     id_ajeno: {
-      model: 'Usuario'
+      model: 'usuario'
     }
 
   },

@@ -58,7 +58,6 @@ export class NotificacionComponent implements OnInit {
     this.backandService.obtenerNotificaciones().subscribe(
       (response: any) => {
         this.notificaciones = response;
-        console.log(this.notificaciones);
       },
       (error: any) => {
         console.error(error);

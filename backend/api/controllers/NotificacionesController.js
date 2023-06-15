@@ -27,7 +27,7 @@ module.exports = {
         //const idUsuario = req.param('idUsuario');
         //console.log(idUsuario);
         try {
-          const notificaciones = await Notificacion.find();
+          const notificaciones = await Notificacion.find().populate("id_ajeno");
           res.json(notificaciones);
         } catch (error) {
           res.status(500).json({ error: 'Error al obtener la lista de notificaciones' });
