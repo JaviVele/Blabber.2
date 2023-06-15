@@ -47,7 +47,7 @@
           <button (click)="openDialog()" style="border: none; width: 100%; border: 1px solid rgba(0, 0, 0, 0.365); border-radius: 50px; margin-top: 10px;">
             <div class="cerrar-sesion">
                 <picture class="imagencontainer img-fluid">
-                  <img style="border-radius: 50%;" class="imagen" [src]="usuario.foto_perfil" alt="logo">
+                  <img style="border-radius: 50%;" class="imagen" [src]="usuario?.foto_perfil" alt="logo">
                 </picture>
               <div class="tras"><mat-icon>more_horiz</mat-icon></div> 
             </div>
@@ -110,7 +110,7 @@
           <button (click)="openDialog()" style="border: none; width: 100%; border: 1px solid rgba(0, 0, 0, 0.365); border-radius: 50px; margin-top: 10px;">
             <div class="cerrar-sesion">
                 <picture class="imagencontainer img-fluid">
-                  <img style="border-radius: 50%;" class="imagen" [src]="usuario.foto_perfil" alt="logo">
+                  <img style="border-radius: 50%;" class="imagen" [src]="usuario?.foto_perfil" alt="logo">
                 </picture>
               <div class="tras"><mat-icon>more_horiz</mat-icon></div> 
             </div>

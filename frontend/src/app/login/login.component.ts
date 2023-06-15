@@ -27,7 +27,7 @@ export class LoginComponent {
 
       this.backendService.comprobarUsuario(data).subscribe(
         response => {
-          this.sessionStorageService.setItem('usuarioPrincipal', response);
+          this.sessionStorageService.setItem('usuarioPrincipal', response.usuario);
           this.registrado = true;
           let id = response.usuario.id;
           this.router.navigate(['/inicio', id]);

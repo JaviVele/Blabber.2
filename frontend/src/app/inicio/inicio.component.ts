@@ -57,7 +57,7 @@ export class InicioComponent implements OnInit {
       this.backandService.listarUno(params['id']).subscribe(
         response => {
           //almacenamos en la sesions el usuario
-          this.sessionStorageService.setItem('usuarioPrincipal', response);
+          // this.sessionStorageService.setItem('usuarioPrincipal', response);
           this.usuario = response;
           this.id = this.usuario.id;
           this.fotoPerfil(this.usuario);

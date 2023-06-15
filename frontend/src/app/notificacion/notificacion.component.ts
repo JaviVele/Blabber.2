@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../services/backend.service';
+import { SessionStorageService } from '../services/session-storage.service';
 @Component({
   selector: 'app-notificacion',
   templateUrl: './notificacion.component.html',
@@ -20,6 +21,9 @@ export class NotificacionComponent implements OnInit {
 
   cerrarSesion() {    
     // Una vez cerrada la sesión, cierra el diálogo
+    this.sessionStorageService.removeItem("usuarioPrincipal");
+    this.router.navigate(['/login']);
+
     this.showDialog = false;
   }
   cerrar() {    
@@ -27,7 +31,9 @@ export class NotificacionComponent implements OnInit {
     this.showDialog = false;
   }
 
-  constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2) {}
+  constructor(private route: ActivatedRoute, private backandService: BackendService, private renderer: Renderer2,
+    private sessionStorageService: SessionStorageService,
+    private router: Router ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
