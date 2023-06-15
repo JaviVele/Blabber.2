@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../services/backend.service';
 import { Router } from '@angular/router';
+import { SessionStorageService } from '../services/session-storage.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,7 @@ export class SignupComponent {
   fecha_nacimiento: string = '';
   cuenta: boolean = false;
 
-  constructor(private backendService: BackendService, private router: Router) { }
+  constructor(private backendService: BackendService, private router: Router,private sessionStorageService: SessionStorageService ) { }
 
  
 
@@ -32,6 +33,7 @@ export class SignupComponent {
       response => {
         this.cuenta = false;
         let id = response.usuario.id;
+        this.sessionStorageService.setItem('usuarioPrincipal', response.usuario);
         this.router.navigate(['/inicio', id]);
         // La solicitud al servidor fue exitosa, puedes manejar la respuesta aquí
         //console.log(response);
