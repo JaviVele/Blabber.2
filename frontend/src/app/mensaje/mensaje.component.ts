@@ -79,6 +79,7 @@ export class MensajeComponent implements OnInit {
   obtenerConversaciones(): void {
     this.backandService.obtenerConversaciones(this.id).subscribe(
       (conversaciones) => {
+        console.log(conversaciones);
         this.conversaciones = conversaciones;
       },
       (error) => {

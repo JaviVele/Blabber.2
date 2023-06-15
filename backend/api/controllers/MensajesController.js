@@ -28,8 +28,8 @@ module.exports = {
         
         console.log(usuarioId);
         try {
-          const mensajes = await Mensaje.find({id_usuario_envia: usuarioId});
-          const mensajesRecibidos = await Mensaje.find({ id_usuario_recibe: usuarioId });
+          const mensajes = await Mensaje.find({id_usuario_envia: usuarioId}).populate("id_usuario_recibe");
+          const mensajesRecibidos = await Mensaje.find({ id_usuario_recibe: usuarioId }).populate("id_usuario_recibe");
 
           // Combinar los mensajes enviados y recibidos
           const conversacion = [...mensajes, ...mensajesRecibidos];
