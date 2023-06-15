@@ -26,7 +26,6 @@ module.exports = {
       listar: async function (req, res) {
         const usuarioId = req.param('usuarioId');
         
-        console.log(usuarioId);
         try {
           const mensajes = await Mensaje.find({id_usuario_envia: usuarioId}).populate("id_usuario_recibe");
           const mensajesRecibidos = await Mensaje.find({ id_usuario_recibe: usuarioId }).populate("id_usuario_recibe");
