@@ -7,16 +7,17 @@ import { InicioComponent } from './inicio/inicio.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { NotificacionComponent } from './notificacion/notificacion.component';
 import { MensajeComponent } from './mensaje/mensaje.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'inicio', component: InicioComponent },
-  { path: 'inicio/:id', component: InicioComponent },
-  { path: 'perfil/:id', component: PerfilComponent },
-  { path: 'notificacion/:id', component: NotificacionComponent },
-  { path: 'mensaje/:id', component: MensajeComponent },
+  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
+  { path: 'inicio/:id', component: InicioComponent, canActivate: [AuthGuard] },
+  { path: 'perfil/:id', component: PerfilComponent, canActivate: [AuthGuard] },
+  { path: 'notificacion/:id', component: NotificacionComponent, canActivate: [AuthGuard] },
+  { path: 'mensaje/:id', component: MensajeComponent, canActivate: [AuthGuard] },
 
 ];
 
