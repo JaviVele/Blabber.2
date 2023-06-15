@@ -422,7 +422,7 @@
     padding: 10px;
   }
   .dialog-container {
-    margin-top: 90%;
+    margin-top: 70%;
     margin-bottom: 20px;
     position: relative;
     & button {
@@ -448,5 +448,22 @@
   }
   .tras{
     border: none;
+  }
+  .container-notificacion{
+    padding: 0;
+    &_texto{
+      border-bottom:1px solid #333;
+      & p{
+        padding: 20px;
+        font-size: 16px;
+        & a{
+          text-decoration: none;
+          font-weight: bolder;
+          color: black;
+          cursor: pointer;
+          padding: 0px 4px;
+        }
+      }
+    }
   }
   
