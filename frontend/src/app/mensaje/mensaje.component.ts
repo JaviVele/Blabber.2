@@ -23,7 +23,6 @@ export class MensajeComponent implements OnInit {
   idEnviar: any;
 
 
-
   openDialog() {
     this.showDialog = true;
   }
@@ -132,5 +131,6 @@ export class MensajeComponent implements OnInit {
     } else {
       console.log('Por favor, selecciona un usuario destinatario.');
     }
+    this.recargarPagina();
   }
 }

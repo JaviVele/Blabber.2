@@ -12,7 +12,7 @@ export class NotificacionComponent implements OnInit {
   usuario: any;
   notificaciones: any[] = [];
   showDialog = false;
-
+  usuarioNotificacion : any[] = [];
 
 
   openDialog() {
@@ -41,7 +41,6 @@ export class NotificacionComponent implements OnInit {
         response => {
           this.usuario = response;
           this.id = this.usuario.id;
-          console.log(this.id);
           
           this.obtenerNotificacionesUsuario();
         },
@@ -53,20 +52,31 @@ export class NotificacionComponent implements OnInit {
   }
 
   obtenerNotificacionesUsuario(): void {
-    
-
     this.backandService.obtenerNotificaciones().subscribe(
-      (response: any) => {
+      (response) => {
+        this.obtenerDatosUsuario(response);
         this.notificaciones = response;
       },
-      (error: any) => {
+      (error) => {
         console.error(error);
       }
     );
-  }
+  };
   direccionar(id: any){
     this.router.navigate(['/perfil', id]);
 
   }
-  
+  obtenerDatosUsuario(ids: any){
+    for (let index = 0; index < ids.length; index++) {
+      const id = ids[index].id_ajeno;
+      this.backandService.listarUno(id).subscribe(
+        response => {
+          this.usuarioNotificacion.push(response);
+        },
+        error => {
+          console.log(error);
+        }
+        );
+      }
+  }
 }
