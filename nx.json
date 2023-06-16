@@ -1,0 +1,28 @@
+{
+    "defaultProject": "backend",
+    "projects": {
+      "backend": {
+        "tags": [],
+        "implicitDependencies": [],
+        "targets": {
+          "build": {
+            "executor": "@nrwl/node:package",
+            "options": {
+              "outputPath": "dist/backend",
+              "main": "backend/app.js",
+              "tsConfig": "backend/tsconfig.json",
+              "packageJson": "backend/package.json"
+            },
+            "configurations": {
+              "production": {
+                "optimization": true,
+                "extractLicenses": true,
+                "inspect": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
