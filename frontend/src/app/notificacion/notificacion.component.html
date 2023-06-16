@@ -110,7 +110,7 @@
             <button (click)="openDialog()" style="border: none; width: 100%; border: 1px solid rgba(0, 0, 0, 0.365); border-radius: 50px; margin-top: 10px;">
               <div class="cerrar-sesion">
                   <picture class="imagencontainer img-fluid">
-                    <img style="border-radius: 50%;" class="imagen" [src]="usuario.foto_perfil" alt="logo">
+                    <img style="border-radius: 50%;" class="imagen" [src]="usuario?.foto_perfil" alt="logo">
                   </picture>
                 <div class="tras"><mat-icon>more_horiz</mat-icon></div> 
               </div>
@@ -122,13 +122,13 @@
   
       </div>
         <div class="col-10 col-md-6 border-end container-notificacion">
-            <div *ngFor="let notificacion of notificaciones">
-              <div *ngIf="notificacion.id_ajeno.id !== usuario.id" class="container-notificacion_texto">
+            <div *ngFor="let notificacion of notificaciones; let i = index">
+              <div *ngIf="usuarioNotificacion[i]?.id !== usuario.id" class="container-notificacion_texto">
                   <picture class="noti-img">
-                    <img [src]="notificacion.id_ajeno.foto_perfil" alt="">
+                    <img [src]="usuarioNotificacion[i]?.foto_perfil" alt="">
                   </picture>
                   <div class="noti-text">
-                  <label><strong (click)="direccionar(notificacion.id_ajeno.id)"> {{ notificacion.id_ajeno.nombre_usuario | titlecase  }} </strong>
+                  <label><strong (click)="direccionar(usuarioNotificacion[i]?.id)"> {{ usuarioNotificacion[i]?.nombre_usuario | titlecase  }} </strong>
                     hizo una interaccion de {{ notificacion.tipo_noti }} en una publicacion</label>
                     <p>A las {{ notificacion.fecha_notificacion | date: "HH:mm" }} minutos<mat-icon>date_range</mat-icon></p>
                   </div>
