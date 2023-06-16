@@ -1,5 +1,5 @@
 #!/bin/bash
-export NIXPACKS_NX_APP_NAME=blabber
+export NIXPACKS_NX_APP_NAME=blabber.2
 # Comando para iniciar el backend
 sails lift:backend &
 
