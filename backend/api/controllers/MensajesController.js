@@ -24,11 +24,13 @@ module.exports = {
       },
     
       listar: async function (req, res) {
-        const usuarioId = req.param('usuarioId');
+        const id = req.body.id_usuario_envia;
+        const usuarioId = req.body.usuarioId;
+        // const usuarioId = req.param('usuarioId');
         
         try {
-          const mensajes = await Mensaje.find({id_usuario_envia: usuarioId}).populate("id_usuario_recibe");
-          const mensajesRecibidos = await Mensaje.find({ id_usuario_recibe: usuarioId }).populate("id_usuario_recibe");
+          const mensajes = await Mensaje.find({id_usuario_envia: id, id_usuario_recibe: usuarioId}).sort('contenido ASC').populate("id_usuario_recibe");
+          const mensajesRecibidos = await Mensaje.find({ id_usuario_recibe: id, id_usuario_envia: usuarioId }).sort('contenido ASC').populate("id_usuario_recibe");
 
           // Combinar los mensajes enviados y recibidos
           const conversacion = [...mensajes, ...mensajesRecibidos];
