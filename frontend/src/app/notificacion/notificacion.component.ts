@@ -15,6 +15,11 @@ export class NotificacionComponent implements OnInit {
   usuarioNotificacion: any;
   idajeno: any;
   datosUser: any;
+  foto: boolean = false;
+  palabrasMasRepetidas: any[] = [];
+  seguidor!: string;
+
+
 
   openDialog() {
     this.showDialog = true;
@@ -42,7 +47,7 @@ export class NotificacionComponent implements OnInit {
         response => {
           this.usuario = response;
           this.id = this.usuario.id;
-          
+          this.fotoPerfil(this.usuario);
           this.obtenerNotificacionesUsuario();
         },
         error => {
@@ -86,5 +91,53 @@ export class NotificacionComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+  fotoPerfil(usuario: any) {
+    if (usuario.foto_perfil) {
+      this.foto = true;
+    }
+  }
+  recargarPagina() {
+    this.renderer.setProperty(window, 'location', window.location.href);
+  }
+  busquedadSeguidor(){
+    const seguidor = this.seguidor;
+    this.backandService.comprobarUsuarioArroba(seguidor).subscribe(
+      response => {
+        this.router.navigate(['/perfil', response.usuario.id]);
+      },
+      error => {
+        this.seguidor = "No hay seguidores con ese nombre";
+        console.log(error)
+      }
+    );
+  }
+  contarPalabras(publicaciones: any[]): void {
+    const palabras: { [palabra: string]: number } = {};
+    //console.log(publicaciones);
+    // Recorrer las publicaciones
+    for (const publicacion of publicaciones) {
+      const mensaje = publicacion.contenido.mensaje;
+      //console.log(mensaje);
+      // Separar el mensaje en palabras
+      const palabrasMensaje = mensaje.split(' ');
+      //console.log(palabrasMensaje);
+      // Contar las palabras
+      for (const palabra of palabrasMensaje) {
+        // Ignorar palabras vacías o de longitud menor a 3 caracteres
+        if (palabra.trim() !== '' && palabra.length > 2) {
+          if (palabras[palabra]) {
+            palabras[palabra]++;
+          } else {
+            palabras[palabra] = 1;
+          }
+        }
+      }
+    }
+    const palabrasOrdenadas = Object.entries(palabras).sort((a, b) => b[1] - a[1]);
+    // Obtener las 5 palabras más frecuentes
+    this.palabrasMasRepetidas = palabrasOrdenadas.slice(0, 5).map((item) => item[0]);
+    
+    
   }
 }

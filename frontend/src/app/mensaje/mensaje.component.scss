@@ -576,18 +576,20 @@
     }
   }
 }
-.container-mensajes{
+.container-mensajes {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
-  &_text{
+  margin-bottom: 20px;
+
+  &_text {
+    display: flex;
+    flex-direction: column;
     width: fit-content;
     flex: 1;
     padding: 10px;
   }
-}
-.message {
-  margin-bottom: 10px;
 }
 
 .message-content {
@@ -598,15 +600,19 @@
 }
 
 .sent-message {
-  background-color: #a1e2c5; /* Color de fondo para los mensajes enviados */
-  align-self: flex-end;
+  background-color: #92e5c0; /* Color de fondo para los mensajes enviados */
   flex: 1;
 }
 
 .received-message {
   flex: 1;
-  background-color: #77D5D3; /* Color de fondo para los mensajes recibidos */
-  align-self: flex-start;
+  background-color: #77d5d3; /* Color de fondo para los mensajes recibidos */
+  margin-left: auto; /* Alineación a la izquierda */
+}
+
+
+.message {
+  margin-bottom: 10px;
 }
 .footer {
   position: fixed;
@@ -634,4 +640,15 @@
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+}
+.imagencontainer-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  & img{
+    display: block;
+    width: 80%;
+  }
 }
