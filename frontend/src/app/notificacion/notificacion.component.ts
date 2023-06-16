@@ -41,7 +41,6 @@ export class NotificacionComponent implements OnInit {
         response => {
           this.usuario = response;
           this.id = this.usuario.id;
-          console.log(this.id);
           
           this.obtenerNotificacionesUsuario();
         },
@@ -57,7 +56,6 @@ export class NotificacionComponent implements OnInit {
       (response) => {
         this.obtenerDatosUsuario(response);
         this.notificaciones = response;
-        console.log(this.notificaciones)
       },
       (error) => {
         console.error(error);
@@ -80,6 +78,5 @@ export class NotificacionComponent implements OnInit {
         }
         );
       }
-      console.log(this.usuarioNotificacion);
   }
 }

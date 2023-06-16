@@ -140,9 +140,15 @@
         <button (click)="crearMensaje()">Enviar Mensaje</button>
       </div>
       <hr>
-      <div *ngFor="let conversacion of conversaciones">
-        <p>{{ conversacion.id_usuario_envia}} {{ conversacion.contenido }} {{ conversacion.id_usuario_recibe.id}}</p>
-        <!-- Otros detalles de la conversación -->
+      <div class="container-mensajes">
+
+        <div *ngFor="let conversacion of conversaciones">
+          <div *ngIf="conversacion.id_usuario_recibe.id == idEnviar">
+
+            <p>{{ conversacion.id_usuario_envia}} {{ conversacion.contenido }} {{ conversacion.id_usuario_recibe.nombre_usuario}}</p>
+            <!-- Otros detalles de la conversación -->
+          </div>
+        </div>
       </div>
     </div>
 
