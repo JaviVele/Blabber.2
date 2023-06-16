@@ -576,19 +576,19 @@
     }
   }
 }
-.container-mensajes{
+.container-mensajes {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
-  &_text{
+
+  &_text {
+    display: flex;
+    flex-direction: column;
     width: fit-content;
     flex: 1;
     padding: 10px;
   }
-}
-.message {
-  margin-bottom: 10px;
 }
 
 .message-content {
@@ -601,13 +601,18 @@
 .sent-message {
   background-color: #92e5c0; /* Color de fondo para los mensajes enviados */
   flex: 1;
-  align-self: flex-end;
+  margin-right: auto;
 }
 
 .received-message {
   flex: 1;
-  background-color: #77D5D3; /* Color de fondo para los mensajes recibidos */
-  align-self: flex-start;
+  background-color: #77d5d3; /* Color de fondo para los mensajes recibidos */
+  margin-left: auto; /* Alineación a la izquierda */
+}
+
+
+.message {
+  margin-bottom: 10px;
 }
 .footer {
   position: fixed;
