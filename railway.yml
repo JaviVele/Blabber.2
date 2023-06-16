@@ -1,0 +1,10 @@
+version: '1'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env:
+      - PORT=1337
+    ports:
+      - 80:1337
