@@ -143,13 +143,17 @@ export class BackendService {
     return this.http.post(url + 'seguirUsuario' , comprobar);
   }
 
-  obtenerConversaciones(usuarioId: number): Observable<any> {
-    const url = 'http://localhost:1337/mensajes/'+usuarioId;
+  obtenerConversaciones(id:number ,usuarioId: number): Observable<any> {
+    const usuarioIds = {
+      id_usuario_envia: id,
+      usuarioId: usuarioId
+    }
+    const url = 'http://localhost:1337/';
     // const params = new HttpParams().set('usuarioId', usuarioId);
     // console.log(params);
     console.log(url);
     
-    return this.http.get(url);
+    return this.http.post(url + 'comprobarMensajes', usuarioIds);
   }
 
   crearMensaje(mensaje: any): Observable<any> {

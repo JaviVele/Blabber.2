@@ -69,7 +69,7 @@ module.exports.routes = {
 
     //RUTAS DE MENSAJES//
     'POST /mensajes': 'MensajesController.crear',
-    'GET /mensajes/:usuarioId': 'MensajesController.listar',
+    'POST /comprobarMensajes': 'MensajesController.listar',
     'DELETE /mensajes/:id': 'MensajesController.eliminar',
 
     //RUTA DE ME GUSTAS//

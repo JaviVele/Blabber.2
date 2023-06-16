@@ -133,21 +133,16 @@
             <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre_arroba }}</option>
           </select>
         </div>   
-        <!-- <div>
-          <label>Contenido:</label>
-          <textarea class="form-control" [(ngModel)]="contenido"></textarea>
-        </div>
-        <button (click)="crearMensaje()">Enviar Mensaje</button> -->
       </div>
       <hr>
       <div class="container-mensajes">
 
         <div *ngFor="let conversacion of conversaciones" class="container-mensajes_text">
-          <div *ngIf="conversacion.id_usuario_recibe.id == idEnviar" class="message-content" [ngClass]="{'sent-message': conversacion.id_usuario==usuario.id, 'received-message': conversacion.id_usuario!=usuario.id}">
-
-            <p>{{ conversacion.id_usuario_envia}} {{ conversacion.contenido }} {{ conversacion.id_usuario_recibe.nombre_usuario}}</p>
-            <!-- Otros detalles de la conversación -->
-          </div>
+            <div *ngIf="conversacion.id_usuario_recibe.id == usuario.id || conversacion.id_usuario_envia == usuario.id" class="message-content" [ngClass]="{'sent-message': conversacion.id_usuario_envia==usuario.id, 'received-message': conversacion.id_usuario_envia!=usuario.id}">
+              
+              <p>{{ conversacion.id_usuario_envia}} {{ conversacion.contenido }} {{ conversacion.id_usuario_recibe.nombre_usuario}}</p>
+              <!-- Otros detalles de la conversación -->
+            </div>
         </div>
       </div>
       <div class="footer">

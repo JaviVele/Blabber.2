@@ -54,7 +54,6 @@ export class MensajeComponent implements OnInit {
           this.id = this.usuario.id;
           
           this.fotoPerfil(this.usuario);
-          console.log(this.id);
           this.obtenerUsuarios();
         },
         error => {
@@ -77,7 +76,7 @@ export class MensajeComponent implements OnInit {
 
   obtenerConversaciones(): void {
     
-    this.backandService.obtenerConversaciones(this.idEnviar).subscribe(
+    this.backandService.obtenerConversaciones(this.id, this.idEnviar).subscribe(
       (conversaciones) => {
         console.log(conversaciones);
         this.conversaciones = conversaciones;
@@ -91,10 +90,10 @@ export class MensajeComponent implements OnInit {
 
   seleccionarUsuario(event: Event) {
     const usuarioId = (event.target as HTMLInputElement).value;
-    console.log(usuarioId);
     this.idUsuarioRecibe = usuarioId ? Number(usuarioId) : null;
     this.idEnviar = usuarioId;
     this.obtenerConversaciones();
+    console.log(this.idEnviar);
   }
   
   obtenerUsuarios() {
