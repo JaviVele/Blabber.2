@@ -302,6 +302,19 @@ export class InicioComponent implements OnInit {
     
     
   }
+
+  eliminarPublicacion(publicaciones: any) {
+    console.log(publicaciones);
+    this.backandService.eliminarPublicacion(publicaciones).subscribe(
+      (response) => {
+        //this.listarPublicaciones(this.id);
+        console.log(response);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
   
  
 

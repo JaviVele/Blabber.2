@@ -205,6 +205,9 @@
                   <span class="contador-mensajes">{{ publicacion.num_comentarios }}</span>
                 </button>
               </div>
+              <div>
+                <button (click)="eliminarPublicacion(publicacion.id)">Eliminar</button>
+              </div>
             </div>
             <hr class="hrpubli border border-2">
           </div>

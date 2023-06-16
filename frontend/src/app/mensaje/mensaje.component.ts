@@ -114,7 +114,7 @@ export class MensajeComponent implements OnInit {
         id_usuario_envia: this.usuario.id,
         id_usuario_recibe: this.idUsuarioRecibe
       };
-
+      console.log(mensaje);
       this.backandService.crearMensaje(mensaje).subscribe(
         (response) => {
           // El mensaje se ha enviado correctamente, puedes realizar acciones adicionales si es necesario
@@ -129,6 +129,6 @@ export class MensajeComponent implements OnInit {
     } else {
       console.log('Por favor, selecciona un usuario destinatario.');
     }
-    this.recargarPagina();
+    //this.recargarPagina();
   }
 }

@@ -118,14 +118,15 @@ module.exports = {
         }
       },
       eliminar: async function (req, res) {
+        const { id } = req.params;
+        console.log(id);
         try {
-          const publicacionEliminado = await Publicacion.destroyOne({ id: req.params.id })
-            .intercept((err) => {
-              return res.status(404).json({ error: 'Publicacion no encontrado' });
-            });
+          const publicacionEliminado = await Publicacion.destroy({ id: id })
+          const meGusta = await MeGusta.destroy({ id_publicacion: id })
     
           res.json(publicacionEliminado);
         } catch (error) {
+          console.log(error);
           res.status(500).json({ error: 'Error al eliminar la publicacion' });
         }
       },

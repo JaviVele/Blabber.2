@@ -160,5 +160,11 @@ export class BackendService {
     const url = 'http://localhost:1337/';
     return this.http.post(url + 'mensajes', mensaje);
   }
+
+  eliminarPublicacion(id: any): Observable<any> {
+    console.log(id);
+    const url = 'http://localhost:1337/';
+    return this.http.delete(url + 'publicaciones/' + id);
+  }
 }
 
