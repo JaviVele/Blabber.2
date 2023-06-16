@@ -141,8 +141,11 @@
       </div>
       <hr>
       <div *ngFor="let conversacion of conversaciones">
-        <p>{{ conversacion.id_usuario_envia}} {{ conversacion.contenido }} {{ conversacion.id_usuario_recibe.id}}</p>
-        <!-- Otros detalles de la conversación -->
+        <div *ngIf="usuario.id === conversacion.id_usuario_recibe.id || usuario.id === conversacion.id_usuario_envia.id">
+          <p><img [src]="conversacion.id_usuario_envia.foto_perfil" alt="">{{ conversacion.id_usuario_envia}} {{ conversacion.contenido }}</p>
+        </div>
+        
+        
       </div>
     </div>
 
