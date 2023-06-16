@@ -93,7 +93,6 @@ export class MensajeComponent implements OnInit {
     this.idUsuarioRecibe = usuarioId ? Number(usuarioId) : null;
     this.idEnviar = usuarioId;
     this.obtenerConversaciones();
-    console.log(this.idEnviar);
   }
   
   obtenerUsuarios() {
