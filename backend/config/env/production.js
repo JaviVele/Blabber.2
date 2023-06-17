@@ -49,12 +49,12 @@ module.exports = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-    default: {
-       adapter: 'sails-mysql',
-       url:'mysql://root:VB7u0Cr0zNxa73hbrK7V@containers-us-west-71.railway.app:5456/railway'
+    // default: {
+    //    adapter: 'sails-mysql',
+    //    url:'mysql://root:VB7u0Cr0zNxa73hbrK7V@containers-us-west-71.railway.app:5456/railway'
       
 
-    },
+    // },
 
   },
 
