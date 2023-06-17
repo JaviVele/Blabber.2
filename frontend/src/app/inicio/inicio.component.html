@@ -37,28 +37,30 @@
             </button>
           </div>
         </div>
-        
-        
+
+
         <div class="dialog-container" style="margin-right: 10px;">
-          <div *ngIf="showDialog" class="dialog" style="border: 1px solid rgba(0, 0, 0, 0.622);border-radius: 50px; padding: 3px;">
+          <div *ngIf="showDialog" class="dialog"
+            style="border: 1px solid rgba(0, 0, 0, 0.622);border-radius: 50px; padding: 3px;">
             <button class="btn btn-light" style="border-radius: 50px;" (click)="cerrarSesion()">Cerrar sesión</button>
             <button (click)="cerrar()" class="tras"><mat-icon>close</mat-icon></button>
           </div>
-          
-          <button (click)="openDialog()" style="border: none; width: 100%; border: 1px solid rgba(0, 0, 0, 0.365); border-radius: 50px; margin-top: 10px;">
+
+          <button (click)="openDialog()"
+            style="border: none; width: 100%; border: 1px solid rgba(0, 0, 0, 0.365); border-radius: 50px; margin-top: 10px;">
             <div class="cerrar-sesion">
-                  <div class="imagencontainer-close img-fluid" *ngIf="foto; else inicial" >
-                    <img style="border-radius: 50%;" class="imagen" [src]="usuario?.foto_perfil" alt="Avatar">
-                  </div>
-                  <ng-template #inicial>
-                    <app-initials-avatar name="{{usuario?.nombre_usuario}}"></app-initials-avatar>
-                  </ng-template>
-              <div class="tras"><mat-icon>more_horiz</mat-icon></div> 
+              <div class="imagencontainer-close img-fluid" *ngIf="foto; else inicial">
+                <img style="border-radius: 50%;" class="imagen" [src]="usuario?.foto_perfil" alt="Avatar">
+              </div>
+              <ng-template #inicial>
+                <app-initials-avatar name="{{usuario?.nombre_usuario}}"></app-initials-avatar>
+              </ng-template>
+              <div class="tras"><mat-icon>more_horiz</mat-icon></div>
             </div>
           </button>
         </div>
       </div>
-      
+
 
 
       <!-- EMPIEZA EL CANVA -->
@@ -102,29 +104,31 @@
                 </button>
               </div>
             </div>
-            
+
 
           </div>
         </div>
         <div class="dialog-container">
-          <div *ngIf="showDialog" class="dialog" style="border: 1px solid rgba(0, 0, 0, 0.622);border-radius: 50px; padding: 3px;">
+          <div *ngIf="showDialog" class="dialog"
+            style="border: 1px solid rgba(0, 0, 0, 0.622);border-radius: 50px; padding: 3px;">
             <button class="btn btn-light" style="border-radius: 50px;" (click)="cerrarSesion()">Cerrar sesión</button>
             <button (click)="cerrar()" class="tras"><mat-icon>close</mat-icon></button>
           </div>
-          
-          <button (click)="openDialog()" style="border: none; width: 100%; border: 1px solid rgba(0, 0, 0, 0.365); border-radius: 50px; margin-top: 10px;">
+
+          <button (click)="openDialog()"
+            style="border: none; width: 100%; border: 1px solid rgba(0, 0, 0, 0.365); border-radius: 50px; margin-top: 10px;">
             <div class="cerrar-sesion">
-                <div class="imagencontainer-close img-fluid" *ngIf="foto; else inicial" >
-                  <img style="border-radius: 50%;" class="imagen" [src]="usuario.foto_perfil" alt="Avatar">
-                </div>
-                <ng-template #inicial>
-                  <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
-                </ng-template>
-              <div class="tras"><mat-icon>more_horiz</mat-icon></div> 
+              <div class="imagencontainer-close img-fluid" *ngIf="foto; else inicial">
+                <img style="border-radius: 50%;" class="imagen" [src]="usuario.foto_perfil" alt="Avatar">
+              </div>
+              <ng-template #inicial>
+                <app-initials-avatar name="{{usuario.nombre_usuario}}"></app-initials-avatar>
+              </ng-template>
+              <div class="tras"><mat-icon>more_horiz</mat-icon></div>
             </div>
           </button>
         </div>
-        
+
       </div>
 
 
@@ -183,13 +187,12 @@
                 getTimeElapsed(publicacion.fecha_publicacion) }}</p>
             </ng-template>
             <p>{{ publicacion.contenido.mensaje }}</p>
-            <div class="publicacion-imagen">
+            <div [ngClass]="{ 'publicacion-imagen': publicacion.contenido.imagen, 'publicacion-noImagen': !publicacion.contenido.imagen }">
               <img *ngIf="publicacion.contenido.imagen" [src]="publicacion.contenido.imagen"
                 alt="Imagen de la publicación">
             </div>
             <div class="publicacion-interaccion">
               <div class="publicacion-interaccion_like">
-
                 <button class="btn-i" (click)="darMeGusta(publicacion)">
                   <mat-icon>
                     <span [ngStyle]="{
@@ -213,8 +216,8 @@
                   <span class="contador-mensajes">{{ publicacion.num_comentarios }}</span>
                 </button>
               </div>
-              <div>
-                <button (click)="eliminarPublicacion(publicacion.id)">Eliminar</button>
+              <div class="eliminar-publicacion">
+                <button (click)="eliminarPublicacion(publicacion.id)"><mat-icon>delete</mat-icon></button>
               </div>
             </div>
             <hr class="hrpubli border border-2">
@@ -247,9 +250,10 @@
                   {{getTimeElapsed(publicacion.fecha_publicacion) }}</p>
               </ng-template>
               <p>{{ publicacion.contenido.mensaje }}</p>
-              <div class="publicacion-imagen">
+              <div >
                 <img *ngIf="publicacion.contenido.imagen" [src]="publicacion.contenido.imagen"
-                  alt="Imagen de la publicación">
+                  alt="{{publicacion.contenido.imagen}}" >
+                  
               </div>
               <div class="publicacion-interaccion">
                 <div class="publicacion-interaccion_like">

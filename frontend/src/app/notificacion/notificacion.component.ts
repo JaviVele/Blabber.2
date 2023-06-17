@@ -18,6 +18,7 @@ export class NotificacionComponent implements OnInit {
   foto: boolean = false;
   palabrasMasRepetidas: any[] = [];
   seguidor!: string;
+  usuarioSesion: any;
 
 
 
@@ -42,6 +43,8 @@ export class NotificacionComponent implements OnInit {
     private router: Router ) {}
 
   ngOnInit(): void {
+    this.usuarioSesion = this.sessionStorageService.getItem('usuarioPrincipal');
+
     this.route.params.subscribe(params => {
       this.backandService.listarUno(params['id']).subscribe(
         response => {
