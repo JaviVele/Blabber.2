@@ -18,6 +18,7 @@ module.exports.datastores = {
 
   default: {
     adapter: 'sails-mysql',
+    // url: 'mysql://root:@localhost:3306/blabber',
     url: 'mysql://u8l4mtoziaufgbrq:UrD0qkgDbwTQ6sCQ9W34@bln7kds5etmqmvwe6y0m-mysql.services.clever-cloud.com:3306/bln7kds5etmqmvwe6y0m',
     timezone: 'UTC',
     // ...
