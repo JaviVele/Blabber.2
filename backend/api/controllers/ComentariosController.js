@@ -26,7 +26,7 @@ module.exports = {
       // Crear la nueva respuesta
       const nuevaRespuesta = await Comentarios.create({
         contenido: contenido,
-        fecha_contenido: fecha_contenido,
+        fecha_contenido: new Date(),
         num_mg: num_mg,
         id_usuario: id_usuario,
         id_publicaciones: id_publicaciones
@@ -43,7 +43,7 @@ module.exports = {
         const id_ajeno = publicaciones[0].id_usuario;
         //console.log(id_ajeno);
         const tipoNotificacion = 'comentario';
-        const fecha_notificacion = new Date().toISOString();
+        const fecha_notificacion = new Date();
         const idNotificacion = await Notificacion.create({
           tipo_noti: tipoNotificacion,
           fecha_notificacion: fecha_notificacion,

@@ -45,7 +45,7 @@ module.exports = {
         const id_ajeno = publicaciones[0].id_usuario;
         //console.log(id_ajeno);
         const tipoNotificacion = 'me gusta';
-        const fecha_notificacion = new Date().toISOString();
+        const fecha_notificacion = new Date();
         const idNotificacion = await Notificacion.create({
           tipo_noti: tipoNotificacion,
           fecha_notificacion: fecha_notificacion,

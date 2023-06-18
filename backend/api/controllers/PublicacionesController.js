@@ -37,7 +37,7 @@ module.exports = {
                 mensaje: mensaje,
                 imagen: ''
               },
-              fecha_publicacion,
+              fecha_publicacion: new Date(),
               num_mg,
               num_comentarios,
               id_usuario
@@ -62,7 +62,7 @@ module.exports = {
                 mensaje: mensaje,
                 imagen: result.secure_url
               },
-              fecha_publicacion,
+              fecha_publicacion: new Date(),
               num_mg,
               num_comentarios,
               id_usuario

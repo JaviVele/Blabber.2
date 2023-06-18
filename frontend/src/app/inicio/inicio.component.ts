@@ -86,11 +86,10 @@ export class InicioComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.imagen);
   
     const publicacion = {
       contenido: this.contenido,
-      fecha_publicacion: new Date().toISOString(),
+      fecha_publicacion: "",
       num_mg: 0,
       num_comentarios: 0,
       id_usuario: this.usuario.id,
@@ -248,7 +247,7 @@ export class InicioComponent implements OnInit {
     if (this.nuevaRespuesta !== '') {
       const nuevoComentario = {
         contenido: this.nuevaRespuesta,
-        fecha_contenido: new Date().toISOString(),
+        fecha_contenido:"",
         num_mg: 0,
       };
       console.log(this.publicacionSeleccionadaId);
