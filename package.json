@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "ng": "ng",
+        "start": "sails lift",
+        "build": "ng build"
+    }
+}
