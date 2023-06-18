@@ -1,7 +1,7 @@
 {
     "scripts": {
         "ng": "ng",
-        "start": "sails lift",
-        "build": "ng build"
+        "start": "npx concurrently \"cd /backend && npx sails lift\" \"npm start\" \"npm build\"",
+        "build": "npx concurrently \"cd /frontend && npx build\" \"npm start\""
     }
 }
