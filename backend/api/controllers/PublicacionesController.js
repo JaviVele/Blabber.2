@@ -19,8 +19,8 @@ module.exports = {
 
 
     crear: function (req, res) {
-      //console.log(req.body);
-      //console.log(req.file('imagen'));
+      // console.log(req.body);
+      // console.log(req.file('imagen'));
       req.file('imagen').upload(async function (err, uploadedFiles) {
         if (err) {
           return res.send(500, err);
@@ -53,7 +53,6 @@ module.exports = {
           if (error) {
             return res.send(500, error);
           }
-  
           const { contenido, fecha_publicacion, num_mg, num_comentarios, id_usuario } = req.body;
           let mensaje =req.body.contenido;
           //console.log(mensaje);
