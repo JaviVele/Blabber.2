@@ -34,11 +34,8 @@
     "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo",
     "dev": "sails lift",
-    
     "build": "sails www:production",
-    "build:production": "npm run nx:build",
-    "nx:build": "nx build <NxAppName> --configuration=production"
-    
+    "build:production": "npm run nx:build"
   },
   "main": "app.js",
   "repository": {
