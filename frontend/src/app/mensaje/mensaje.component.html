@@ -138,16 +138,19 @@
           <label>Usuario Destinatario:</label>
           <select (change)="seleccionarUsuario($event)"  class="form-select">
             <option value="">Seleccionar usuario</option>
-            <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre_arroba }}</option>
+            <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre_usuario }}</option>
           </select>
         </div>   
       </div>
       <hr>
       <div class="container-mensajes">
-        <div *ngFor="let conversacion of conversaciones" class="container-mensajes_text" >
-            <div *ngIf="conversacion.id_usuario_recibe.id == usuario.id || conversacion.id_usuario_envia == usuario.id" class="message-content" [ngClass]="{'sent-message': conversacion.id_usuario_envia==usuario.id, 'received-message': conversacion.id_usuario_envia!=usuario.id}">
-              
-              <p>{{ conversacion.id_usuario_envia}} {{ conversacion.contenido }} {{ conversacion.id_usuario_recibe.nombre_usuario}}</p>
+        <div *ngFor="let conversacion of conversaciones" class="message-content m-1" [ngClass]="{'sent-message': conversacion.id_usuario_envia==usuario.id, 'received-message': conversacion.id_usuario_envia!=usuario.id}">
+            <div *ngIf="conversacion.id_usuario_recibe.id == usuario.id || conversacion.id_usuario_envia == usuario.id">
+              <div>
+                <ng-container *ngIf="conversacion.id_usuario_envia == usuario.id; else recibido"><strong>Yo:</strong></ng-container>
+                <ng-template #recibido><strong>{{conversacion.id_usuario_recibe.nombre_usuario}}:</strong></ng-template>
+                <p>{{conversacion.contenido}}</p>
+              </div>
             </div>
         </div>
       </div>

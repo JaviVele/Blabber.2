@@ -596,12 +596,12 @@
   padding: 10px;
   border-radius: 20px;
   color: #fff;
-  max-width: 70%;
 }
 
 .sent-message {
   background-color: #92e5c0; /* Color de fondo para los mensajes enviados */
   flex: 1;
+  align-self: flex-end;
 }
 
 .received-message {
