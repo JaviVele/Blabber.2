@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npx concurrently \"cd ../backend && npx sails lift\" \"npm start\"",
+    "start": "ng start",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -22,6 +22,7 @@
     "@angular/router": "^16.0.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
+    "concurrently": "^8.1.0",
     "lite-server": "^2.6.1",
     "ngx-webstorage": "^12.0.0",
     "rxjs": "~7.8.0",
@@ -33,7 +34,6 @@
     "@angular/cli": "~16.0.2",
     "@angular/compiler-cli": "^16.0.0",
     "@types/jasmine": "~4.3.0",
-    "concurrently": "^8.2.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
