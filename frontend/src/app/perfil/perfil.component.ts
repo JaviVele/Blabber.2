@@ -197,7 +197,9 @@ export class PerfilComponent implements OnInit {
       response => {
         console.log(response);
         if (response.id) {
+          
           this.seguido = true;
+          console.log(this.seguido);
         }
       },
       error => {
